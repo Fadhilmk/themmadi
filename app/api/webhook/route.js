@@ -12,7 +12,7 @@ export default async function handler(req, res) {
             const challenge = req.query['hub.challenge'];
 
             if (mode && token) {
-                if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+                if (mode === 'subscribe' && token === 'sample') {
                     res.status(200).send(challenge);
                 } else {
                     res.status(403).send('Forbidden');
