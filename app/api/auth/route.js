@@ -1,12 +1,9 @@
-// 
-
 import { db } from '../../../firebaseConfig';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET); // Ensure JWT_SECRET is in Uint8Array format
 
 export default async (req) => {
     try {
@@ -41,7 +38,12 @@ export default async (req) => {
             if (!isMatch) {
                 return new Response(JSON.stringify({ success: false, error: 'Invalid credentials' }), { status: 400 });
             }
-            const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+            // Create a JWT token
+            const token = await new SignJWT({ email: user.email })
+                .setProtectedHeader({ alg: 'HS256' })
+                .setExpirationTime('1h')
+                .sign(JWT_SECRET);
+
             return new Response(JSON.stringify({ success: true, token }), { status: 200 });
         } else {
             return new Response(JSON.stringify({ success: false, error: 'Invalid request' }), { status: 400 });
@@ -51,6 +53,7 @@ export default async (req) => {
         return new Response(JSON.stringify({ success: false, error: 'Unexpected error' }), { status: 500 });
     }
 };
+
 export const config = {
-    runtime: 'nodejs',
+    runtime: 'edge', // Update this based on your runtime requirements
 };
