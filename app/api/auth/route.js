@@ -1,6 +1,6 @@
 import { db } from '../../../firebaseConfig';
 import bcrypt from 'bcryptjs';
-import { SignJWT, jwtVerify } from 'jose';
+import { SignJWT } from 'jose';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET); // Ensure JWT_SECRET is in Uint8Array format
@@ -54,6 +54,4 @@ export default async (req) => {
     }
 };
 
-export const config = {
-    runtime: 'edge', // Update this based on your runtime requirements
-};
+export const runtime = 'edge'; // Updated configuration
