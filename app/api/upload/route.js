@@ -5,10 +5,12 @@ import { db } from '../../../firebaseConfig';
 const upload = multer({ dest: 'uploads/' });
 const uploadMiddleware = upload.single('file');
 
+export const runtime = 'edge';
+
 const handler = async (req, res) => {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(req.file.path);
-    const sheet = workbook.worksheets[0]; // Get the first worksheet
+    const sheet = workbook.worksheets[0];
     const numbers = sheet.getSheetValues();
 
     // Assuming the first row contains headers
@@ -33,8 +35,6 @@ const handler = async (req, res) => {
 
     res.status(200).json({ success: true });
 };
-
-export const runtime = 'edge';
 
 export default async (req, res) => {
     if (req.method === 'POST') {
