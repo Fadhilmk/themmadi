@@ -1,15 +1,12 @@
-import multer from 'multer';
+import { NextResponse } from 'next/server';
 import ExcelJS from 'exceljs';
 import { db } from '../../../firebaseConfig';
 
-const upload = multer({ dest: 'uploads/' });
-const uploadMiddleware = upload.single('file');
-
 export const runtime = 'edge';
 
-const handler = async (req, res) => {
+const parseExcelFile = async (fileBuffer) => {
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile(req.file.path);
+    await workbook.xlsx.load(fileBuffer);
     const sheet = workbook.worksheets[0];
     const numbers = sheet.getSheetValues();
 
@@ -18,7 +15,7 @@ const handler = async (req, res) => {
     const dataRows = numbers.slice(2);
 
     // Convert data to objects with headers as keys
-    const dataObjects = dataRows.map(row => {
+    return dataRows.map(row => {
         const obj = {};
         headerRow.forEach((header, index) => {
             if (header) {
@@ -27,28 +24,34 @@ const handler = async (req, res) => {
         });
         return obj;
     });
+};
 
-    // Save numbers to the database
+const saveToDatabase = async (dataObjects) => {
     await Promise.all(dataObjects.map(async (number) => {
         await db.collection('numbers').add(number);
     }));
-
-    res.status(200).json({ success: true });
 };
 
-export default async (req, res) => {
+export default async (req) => {
     if (req.method === 'POST') {
-        return new Promise((resolve, reject) => {
-            uploadMiddleware(req, res, (err) => {
-                if (err) {
-                    res.status(500).json({ success: false, error: 'Error uploading file' });
-                    return reject();
-                }
-                handler(req, res).then(resolve).catch(reject);
-            });
-        });
+        try {
+            const formData = await req.formData();
+            const file = formData.get('file');
+
+            if (!file) {
+                return new NextResponse(JSON.stringify({ success: false, error: 'No file uploaded' }), { status: 400 });
+            }
+
+            const fileBuffer = Buffer.from(await file.arrayBuffer());
+            const dataObjects = await parseExcelFile(fileBuffer);
+            await saveToDatabase(dataObjects);
+
+            return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
+        } catch (error) {
+            console.error('Error processing file:', error);
+            return new NextResponse(JSON.stringify({ success: false, error: 'Error processing file' }), { status: 500 });
+        }
     } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+        return new NextResponse(`Method ${req.method} Not Allowed`, { status: 405 });
     }
 };
