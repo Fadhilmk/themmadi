@@ -35,18 +35,20 @@ const handler = async (req, res) => {
 };
 
 export const runtime = 'edge';
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
 
-export default (req, res) => {
-    uploadMiddleware(req, res, (err) => {
-        if (err) {
-            res.status(500).json({ success: false, error: 'Error uploading file' });
-        } else {
-            handler(req, res);
-        }
-    });
+export default async (req, res) => {
+    if (req.method === 'POST') {
+        return new Promise((resolve, reject) => {
+            uploadMiddleware(req, res, (err) => {
+                if (err) {
+                    res.status(500).json({ success: false, error: 'Error uploading file' });
+                    return reject();
+                }
+                handler(req, res).then(resolve).catch(reject);
+            });
+        });
+    } else {
+        res.setHeader('Allow', ['POST']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
 };
