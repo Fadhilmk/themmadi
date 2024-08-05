@@ -7,7 +7,6 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const runtime = 'edge';
 
 export default async (req) => {
     try {
@@ -51,4 +50,7 @@ export default async (req) => {
         console.error('API Error:', error);
         return new Response(JSON.stringify({ success: false, error: 'Unexpected error' }), { status: 500 });
     }
+};
+export const config = {
+    runtime: 'nodejs',
 };
