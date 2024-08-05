@@ -54,11 +54,4 @@ export const POST = async (req) => {
     }
 };
 
-export const runtime = 'nodejs'; // Updated configuration for nodejs runtime
-
-// Use named exports instead of default export
-export const config = {
-    api: {
-        bodyParser: true,
-    },
-};
+export const runtime = 'nodejs'; // Ensure the runtime is set to nodejs for the usage of bcrypt

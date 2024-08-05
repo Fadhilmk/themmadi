@@ -32,26 +32,26 @@ const saveToDatabase = async (dataObjects) => {
     }));
 };
 
-export default async (req) => {
-    if (req.method === 'POST') {
-        try {
-            const formData = await req.formData();
-            const file = formData.get('file');
+export async function POST(req) {
+    try {
+        const formData = await req.formData();
+        const file = formData.get('file');
 
-            if (!file) {
-                return new NextResponse(JSON.stringify({ success: false, error: 'No file uploaded' }), { status: 400 });
-            }
-
-            const fileBuffer = Buffer.from(await file.arrayBuffer());
-            const dataObjects = await parseExcelFile(fileBuffer);
-            await saveToDatabase(dataObjects);
-
-            return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
-        } catch (error) {
-            console.error('Error processing file:', error);
-            return new NextResponse(JSON.stringify({ success: false, error: 'Error processing file' }), { status: 500 });
+        if (!file) {
+            return new NextResponse(JSON.stringify({ success: false, error: 'No file uploaded' }), { status: 400 });
         }
-    } else {
-        return new NextResponse(`Method ${req.method} Not Allowed`, { status: 405 });
+
+        const fileBuffer = Buffer.from(await file.arrayBuffer());
+        const dataObjects = await parseExcelFile(fileBuffer);
+        await saveToDatabase(dataObjects);
+
+        return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
+    } catch (error) {
+        console.error('Error processing file:', error);
+        return new NextResponse(JSON.stringify({ success: false, error: 'Error processing file' }), { status: 500 });
     }
-};
+}
+
+export async function GET() {
+    return new NextResponse('Method Not Allowed', { status: 405 });
+}
