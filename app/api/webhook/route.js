@@ -1,52 +1,51 @@
+import { NextResponse } from 'next/server';
 import { db } from '../../../firebaseConfig';
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
-export default async function handler(req, res) {
-    const { method } = req;
+// Handle GET request for webhook verification
+export async function GET(req) {
+    const { searchParams } = new URL(req.url);
+    const mode = searchParams.get('hub.mode');
+    const token = searchParams.get('hub.verify_token');
+    const challenge = searchParams.get('hub.challenge');
 
-    switch (method) {
-        case 'GET':
-            // Verify webhook
-            const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN;
-            const mode = req.query['hub.mode'];
-            const token = req.query['hub.verify_token'];
-            const challenge = req.query['hub.challenge'];
+    if (mode === 'subscribe' && token === 'sample') {
+        return new NextResponse(challenge);
+    } else {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+}
 
-            if (mode && token) {
-                if (mode === 'subscribe' && token === 'sample') {
-                    res.status(200).send(challenge);
-                } else {
-                    res.status(403).send('Forbidden');
-                }
-            }
-            break;
-        case 'POST':
-            // Handle incoming messages
-            const { entry } = req.body;
-            for (const entryItem of entry) {
-                for (const change of entryItem.changes) {
-                    const messageData = change.value.messages[0];
-                    const { from, id, text, timestamp } = messageData;
+// Handle POST request for webhook notifications
+export async function POST(req) {
+    try {
+        const body = await req.json();
+        console.log('Incoming webhook:', JSON.stringify(body));
 
-                    const userQuery = await db.collection('users').where('phoneNumberId', '==', change.value.metadata.phone_number_id).get();
-                    userQuery.forEach(async (userDoc) => {
-                        const user = userDoc.data();
-                        const message = {
-                            userId: user.email,
-                            to: user.phoneNumberId,
-                            from,
-                            content: text.body,
-                            messageId: id,
-                            status: 'received',
-                            timestamp: new Date(parseInt(timestamp) * 1000),
-                        };
-                        await db.collection('messages').add(message);
-                    });
-                }
-            }
-            res.status(200).send('EVENT_RECEIVED');
-            break;
-        default:
-            res.status(400).json({ success: false });
-            break;
+        const entry = body.entry[0];
+        const changes = entry.changes[0].value;
+        const contact = changes.contacts[0];
+        const message = changes.messages[0];
+
+        const userName = contact.profile.name;
+        const messageBody = message.text.body;
+        const userPhoneNumber = message.from;
+        const messageId = message.id;
+        const timestamp = new Date(message.timestamp * 1000); // Convert Unix timestamp to JavaScript Date
+
+        // Save the message to Firebase
+        await addDoc(collection(db, 'messages'), {
+            userName,
+            messageBody,
+            userPhoneNumber,
+            messageId,
+            timestamp,
+            read: false,
+        });
+
+        return NextResponse.json({ message: 'EVENT_RECEIVED' });
+    } catch (error) {
+        console.error('Error handling webhook:', error);
+        return NextResponse.json({ error: 'Failed to process webhook' }, { status: 500 });
     }
 }
