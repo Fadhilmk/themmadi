@@ -1,11 +1,11 @@
 import { db } from '../../../firebaseConfig';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import { SignJWT } from 'jose';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET); // Ensure JWT_SECRET is in Uint8Array format
 
-export default async (req) => {
+export const POST = async (req) => {
     try {
         const body = await req.json();
         console.log(body); // Log the request body to ensure it's being received correctly
@@ -54,4 +54,11 @@ export default async (req) => {
     }
 };
 
-export const runtime = 'edge'; // Updated configuration
+export const runtime = 'nodejs'; // Updated configuration for nodejs runtime
+
+// Use named exports instead of default export
+export const config = {
+    api: {
+        bodyParser: true,
+    },
+};
