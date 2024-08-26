@@ -1,0 +1,26 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  li {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .self-end {
+    align-self: flex-end;
+  }
+  
+  .self-start {
+    align-self: flex-start;
+  }
+  

@@ -7,35 +7,38 @@ import {
   where,
   onSnapshot,
   addDoc,
-  doc,
 } from "firebase/firestore";
 
 const PHONE_NUMBER_ID = "405411442646087";
 const ACCESS_TOKEN = "EAAYbZBkW0wTYBO8MufpJln3szUjyPx8aesb2USJgmYgd9jnqoOwTA7lGASvmv9sVtEDUyQNTZC3KAtZCj6im6eZAtdFYYxeRe0Hag86tUP8ODmNUR7s5uI1VavN712iuUpBAyQPZCCQOsMXu5oX0UY72B8kAvy1L65Er2XoATfT0CFAzOELTzVnL3YuYsfMSXogZDZD";
 
 export default function Inbox({ params }) {
-  const { userId } = params;
+  const {userId} = params;
+  const { phoneNumber } = params;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [userName, setUserName] = useState("User");
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    console.log(userId)
+    console.log(userName)
     const fetchDetails = async () => {
       try {
-        const userDocRef = doc(db, "users", userId);
-        const userQuery = query(collection(userDocRef, "messages"));
-
-        const unsubscribeUser = onSnapshot(userDocRef, (docSnapshot) => {
-          if (docSnapshot.exists()) {
-            const userData = docSnapshot.data();
+        const userDocRef = collection(db, "users", userId, "messages");
+        const userQuery = query(
+          userDocRef,
+          where("userPhoneNumber", "==", phoneNumber)
+        );
+  
+        const unsubscribeUser = onSnapshot(userQuery, (snapshot) => {
+          if (!snapshot.empty) {
+            const userData = snapshot.docs[0].data();
             setUserName(userData.userName || "User");
           } else {
             console.warn("User not found");
           }
         });
-
+  
         const unsubscribeMessages = onSnapshot(userQuery, (snapshot) => {
           const msgs = [];
           snapshot.forEach((doc) => {
@@ -46,18 +49,18 @@ export default function Inbox({ params }) {
                 ? new Date(timestamp.seconds * 1000)
                 : new Date(parseInt(timestamp) * 1000)
               : new Date();
-
+  
             msgs.push({
               id: doc.id,
               ...data,
               sentAt: date,
             });
           });
-
+  
           msgs.sort((a, b) => a.sentAt - b.sentAt);
           setMessages(msgs);
         });
-
+  
         return () => {
           unsubscribeUser();
           unsubscribeMessages();
@@ -66,10 +69,10 @@ export default function Inbox({ params }) {
         console.error("Error fetching details:", error);
       }
     };
-
+  
     fetchDetails();
-  }, [userId]);
-
+  }, [userId, phoneNumber]);
+  
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -89,31 +92,30 @@ export default function Inbox({ params }) {
             },
             body: JSON.stringify({
               messaging_product: "whatsapp",
-              to: userId,
+              to: phoneNumber,
               type: "text",
               text: { body: newMessage },
             }),
           }
         );
-
+  
         if (!response.ok) {
           throw new Error("Failed to send message");
         }
-
-        const userDocRef = doc(db, "users", userId);
-        const docRef = await addDoc(collection(userDocRef, "messages"), {
-          userPhoneNumber: userId,
+  
+        const docRef = await addDoc(collection(db, "users", userId, "messages"), {
+          userPhoneNumber: phoneNumber,
           messageBody: newMessage,
           sentAt: new Date(),
           read: true,
         });
-
+  
         setNewMessage("");
         setMessages((prevMessages) => [
           ...prevMessages,
           {
             id: docRef.id,
-            userPhoneNumber: userId,
+            userPhoneNumber: phoneNumber,
             messageBody: newMessage,
             read: true,
             sentAt: new Date(),
@@ -124,6 +126,7 @@ export default function Inbox({ params }) {
       }
     }
   };
+  
 
   const formatTimestamp = (timestamp) => {
     if (!timestamp) return "Unknown time";
