@@ -14,6 +14,7 @@ export default function Inbox({ userId }) {
         const fetchMessages = async () => {
             try {
                 // Get the user's document reference
+                console.log(userId)
                 const userDocRef = doc(db, 'users', userId);
 
                 // Subscribe to the messages subcollection of the user

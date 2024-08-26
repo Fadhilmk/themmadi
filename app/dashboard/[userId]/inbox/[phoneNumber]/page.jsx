@@ -1,43 +1,42 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { db } from "../../../../../firebaseConfig";
+import { db } from "../../firebase";
 import {
   collection,
   query,
   where,
   onSnapshot,
   addDoc,
+  doc,
 } from "firebase/firestore";
-import { useParams } from 'next/navigation';
+
 const PHONE_NUMBER_ID = "405411442646087";
 const ACCESS_TOKEN = "EAAYbZBkW0wTYBO8MufpJln3szUjyPx8aesb2USJgmYgd9jnqoOwTA7lGASvmv9sVtEDUyQNTZC3KAtZCj6im6eZAtdFYYxeRe0Hag86tUP8ODmNUR7s5uI1VavN712iuUpBAyQPZCCQOsMXu5oX0UY72B8kAvy1L65Er2XoATfT0CFAzOELTzVnL3YuYsfMSXogZDZD";
 
 export default function Inbox({ params }) {
-  const { userId } = useParams();
-  const { phoneNumber } = params;
+  const { userId } = params;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [userName, setUserName] = useState("User");
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    console.log({userId})
+    console.log(userId)
     const fetchDetails = async () => {
       try {
-        // Fetch the user's name from the 'users' collection
-        const userDocRef = doc(db, "users",userId);
-        const userSnap = await userDocRef.get();
-        if (userSnap.exists()) {
-          const userData = userSnap.data();
-          setUserName(userData.userName || "User");
-        } else {
-          console.warn("User not found");
-        }
+        const userDocRef = doc(db, "users", userId);
+        const userQuery = query(collection(userDocRef, "messages"));
 
-        // Fetch the user's messages from the 'messages' subcollection
-        const messagesRef = collection(userDocRef, "messages");
-        const msgQuery = query(messagesRef, where("userPhoneNumber", "==", phoneNumber));
-        const unsubscribeMessages = onSnapshot(msgQuery, (snapshot) => {
+        const unsubscribeUser = onSnapshot(userDocRef, (docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            setUserName(userData.userName || "User");
+          } else {
+            console.warn("User not found");
+          }
+        });
+
+        const unsubscribeMessages = onSnapshot(userQuery, (snapshot) => {
           const msgs = [];
           snapshot.forEach((doc) => {
             const data = doc.data();
@@ -60,6 +59,7 @@ export default function Inbox({ params }) {
         });
 
         return () => {
+          unsubscribeUser();
           unsubscribeMessages();
         };
       } catch (error) {
@@ -68,7 +68,8 @@ export default function Inbox({ params }) {
     };
 
     fetchDetails();
-  }, [phoneNumber]);
+  }, [userId]);
+
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -88,7 +89,7 @@ export default function Inbox({ params }) {
             },
             body: JSON.stringify({
               messaging_product: "whatsapp",
-              to: phoneNumber,
+              to: userId,
               type: "text",
               text: { body: newMessage },
             }),
@@ -99,8 +100,9 @@ export default function Inbox({ params }) {
           throw new Error("Failed to send message");
         }
 
-        const docRef = await addDoc(collection(db, "messages"), {
-          userPhoneNumber: phoneNumber,
+        const userDocRef = doc(db, "users", userId);
+        const docRef = await addDoc(collection(userDocRef, "messages"), {
+          userPhoneNumber: userId,
           messageBody: newMessage,
           sentAt: new Date(),
           read: true,
@@ -111,7 +113,7 @@ export default function Inbox({ params }) {
           ...prevMessages,
           {
             id: docRef.id,
-            userPhoneNumber: phoneNumber,
+            userPhoneNumber: userId,
             messageBody: newMessage,
             read: true,
             sentAt: new Date(),
