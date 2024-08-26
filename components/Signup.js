@@ -1,97 +1,260 @@
+
+// "use client"
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import {auth} from "../firebaseConfig"
+// const Signup = () => {
+  
+//   const [form, setForm] = useState({
+//     email: "",
+//     password: "",
+//     verifyToken: "",
+//     phoneNumberId: "",
+//     accessToken: "",
+//   });
+//   const router = useRouter();
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setForm({ ...form, [name]: value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     console.log(form); // Log the form data before sending it
+
+//     // Fix: Call Firebase functions on the client-side (explained later)
+//     try {
+//       const userCredential = await createUserWithEmailAndPassword(
+//         auth,
+//         form.email,
+//         form.password
+//       );
+//       // Signed up
+//       const user = userCredential.user;
+//       // ... (handle successful signup)
+//       router.push("/login");
+//     } catch (error) {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // .. (handle signup errors)
+//       console.error("Fetch Error:", error); // Log the fetch error
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
+//       <h1 className="text-2xl font-bold mb-6">Signup</h1>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Email</label>
+//         <input
+//           type="email"
+//           name="email"
+//           value={form.email}
+//           onChange={handleChange}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Password</label>
+//         <input
+//           type="password"
+//           name="password"
+//           value={form.password}
+//           onChange={handleChange}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       {/* Other input fields... */}
+//       <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+//         Signup
+//       </button>
+//     </form>
+//   );
+// };
+
+// export default Signup;
+
+
+
+// "use client";
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { doc, setDoc } from "firebase/firestore";
+// import { auth, db } from "../firebaseConfig"; // Ensure db is exported from firebaseConfig
+
+// const Signup = () => {
+//   const [form, setForm] = useState({
+//     email: "",
+//     password: "",
+//     verifyToken: "",
+//     phoneNumberId: "",
+//     accessToken: "",
+//   });
+//   const router = useRouter();
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setForm({ ...form, [name]: value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     console.log(form); // Log the form data before sending it
+
+//     try {
+//       const userCredential = await createUserWithEmailAndPassword(
+//         auth,
+//         form.email,
+//         form.password
+//       );
+
+//       // User signed up successfully
+//       const user = userCredential.user;
+
+//       // Store the email in Firestore under the "users" collection
+//       await setDoc(doc(db, "users", user.uid), {
+//         email: form.email,
+//         isTrial:false,
+//         createdAt: new Date(),
+//       });
+
+//       // Redirect to login page after successful signup
+//       router.push("/login");
+//     } catch (error) {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // Handle signup errors
+//       console.error("Signup Error:", error); // Log the error
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
+//       <h1 className="text-2xl font-bold mb-6">Signup</h1>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Email</label>
+//         <input
+//           type="email"
+//           name="email"
+//           value={form.email}
+//           onChange={handleChange}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Password</label>
+//         <input
+//           type="password"
+//           name="password"
+//           value={form.password}
+//           onChange={handleChange}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       {/* Other input fields... */}
+//       <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+//         Signup
+//       </button>
+//     </form>
+//   );
+// };
+
+// export default Signup;
+
+
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig"; // Ensure db is exported from firebaseConfig
 
 const Signup = () => {
-    const [form, setForm] = useState({ email: '', password: '', verifyToken: '', phoneNumberId: '', accessToken: '' });
-    const router = useRouter();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    username: "", // Added username
+  });
+  const router = useRouter();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(form); // Log the form data before sending it
-        try {
-            const res = await fetch('/api/auth', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...form, type: 'signup' }),
-            });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(form); // Log the form data before sending it
 
-            if (!res.ok) {
-                const data = await res.json();
-                alert(data.error || 'An error occurred');
-                return;
-            }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
 
-            router.push('/login');
-        } catch (error) {
-            console.error('Fetch Error:', error); // Log the fetch error
-            alert('An unexpected error occurred');
-        }
-    };
+      // User signed up successfully
+      const user = userCredential.user;
 
-    return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
-            <h1 className="text-2xl font-bold mb-6">Signup</h1>
-            <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border rounded"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-gray-700">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border rounded"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-gray-700">Verify Token</label>
-                <input
-                    type="text"
-                    name="verifyToken"
-                    value={form.verifyToken}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border rounded"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-gray-700">Phone Number ID</label>
-                <input
-                    type="text"
-                    name="phoneNumberId"
-                    value={form.phoneNumberId}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border rounded"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-gray-700">Access Token</label>
-                <input
-                    type="text"
-                    name="accessToken"
-                    value={form.accessToken}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border rounded"
-                />
-            </div>
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Signup</button>
-        </form>
-    );
+      // Store user information in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: form.email,
+        username: form.username, // Save username
+        isTrial: false,
+        createdAt: new Date(),
+      });
+
+      // Redirect to login page after successful signup
+      router.push("/login");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // Handle signup errors
+      console.error("Signup Error:", error); // Log the error
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
+      <h1 className="text-2xl font-bold mb-6">Signup</h1>
+      <div className="mb-4">
+        <label className="block text-gray-700">Username</label>
+        <input
+          type="text"
+          name="username"
+          value={form.username}
+          onChange={handleChange}
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Email</label>
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        Signup
+      </button>
+    </form>
+  );
 };
 
 export default Signup;
