@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '../../../../firebase'; // Adjust the path if necessary
+import { db } from '../../../../firebaseConfig'; // Adjust the path if necessary
 import { collection, doc, addDoc } from 'firebase/firestore';
 
 // Handle GET request for webhook verification
