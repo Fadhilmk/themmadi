@@ -209,11 +209,9 @@ export default function Inbox({ userId }) {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                // Get the user's document reference
                 const userDocRef = doc(db, 'users', userId);
                 const phoneNumbersCollection = collection(userDocRef, 'messages');
 
-                // Subscribe to the phoneNumbers subcollection
                 const unsubscribe = onSnapshot(phoneNumbersCollection, (snapshot) => {
                     const receivedNumbers = new Map();
                     const conversationNumbers = new Map();
@@ -223,17 +221,18 @@ export default function Inbox({ userId }) {
                         const phoneData = phoneDoc.data();
                         const phoneNumber = phoneDoc.id;
 
-                        // Query the messages within this phone number's document
-                        const messagesRef = collection(phoneDoc.ref, 'messages');
-                        const messagesQuery = query(messagesRef, where('received', '==', true));
+                        // Query the messages for received and conversation
+                        const receivedMessagesRef = collection(phoneDoc.ref, 'messages');
+                        const receivedMessagesQuery = query(receivedMessagesRef, where('received', '==', true));
 
-                        onSnapshot(messagesQuery, (messagesSnapshot) => {
+                        const conversationMessagesQuery = query(receivedMessagesRef, where('received', '==', false));
+
+                        // Subscribe to received messages
+                        onSnapshot(receivedMessagesQuery, (receivedSnapshot) => {
                             let receivedCount = 0;
 
-                            messagesSnapshot.forEach((msgDoc) => {
-                                const msgData = msgDoc.data();
-                                const isReceived = msgData.received;
-                                const timestamp = msgData.timestamp?.seconds ? msgData.timestamp.seconds * 1000 : Date.now();
+                            receivedSnapshot.forEach((msgDoc) => {
+                                const isReceived = msgDoc.data().received;
 
                                 if (isReceived) {
                                     hasReceived = true;
@@ -243,21 +242,33 @@ export default function Inbox({ userId }) {
                                         receivedNumbers.set(phoneNumber, { count: 0 });
                                     }
                                     receivedNumbers.get(phoneNumber).count += 1;
-                                } else {
-                                    if (!conversationNumbers.has(phoneNumber)) {
-                                        conversationNumbers.set(phoneNumber, { count: 0, timestamp });
-                                    } else {
-                                        // Update to the latest timestamp
-                                        conversationNumbers.get(phoneNumber).timestamp = Math.max(conversationNumbers.get(phoneNumber).timestamp, timestamp);
-                                    }
-                                    conversationNumbers.get(phoneNumber).count += 1;
                                 }
                             });
 
                             if (receivedCount > 0) {
                                 setHasReceivedMessages(hasReceived);
                                 setPhoneNumbers(Array.from(receivedNumbers.entries()));
+                            }
+                        });
 
+                        // Subscribe to conversation messages
+                        onSnapshot(conversationMessagesQuery, (conversationSnapshot) => {
+                            let conversationCount = 0;
+
+                            conversationSnapshot.forEach((msgDoc) => {
+                                const timestamp = msgDoc.data().timestamp?.seconds ? msgDoc.data().timestamp.seconds * 1000 : Date.now();
+
+                                if (!conversationNumbers.has(phoneNumber)) {
+                                    conversationNumbers.set(phoneNumber, { count: 0, timestamp });
+                                } else {
+                                    // Update to the latest timestamp
+                                    conversationNumbers.get(phoneNumber).timestamp = Math.max(conversationNumbers.get(phoneNumber).timestamp, timestamp);
+                                }
+                                conversationNumbers.get(phoneNumber).count += 1;
+                                conversationCount += 1;
+                            });
+
+                            if (conversationCount > 0) {
                                 // Sort conversations by latest timestamp (newest first)
                                 const sortedConversations = Array.from(conversationNumbers.entries()).sort(
                                     (a, b) => b[1].timestamp - a[1].timestamp
@@ -403,5 +414,3 @@ export default function Inbox({ userId }) {
         </div>
     );
 }
-
-
