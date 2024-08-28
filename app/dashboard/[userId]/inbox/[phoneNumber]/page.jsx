@@ -446,7 +446,6 @@ import { db } from "../../../../../firebaseConfig";
 import {
   collection,
   query,
-  where,
   onSnapshot,
   addDoc,
   serverTimestamp,
@@ -466,24 +465,13 @@ export default function Inbox({ params }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const fetchDetails = async () => {
+    const fetchMessages = async () => {
       try {
-        // Fetch User Name
-        const userDocRef = doc(db, "users", userId);
-        const userSnapshot = await getDoc(userDocRef);
-        if (userSnapshot.exists()) {
-          const userData = userSnapshot.data();
-          setUserName(userData.userName || "User");
-        } else {
-          console.warn("User document not found");
-        }
-
         // Fetch Messages
-        const msgQuery = query(
-          collection(db, "users", userId, "messages"),
-          where("userPhoneNumber", "==", phoneNumber)
-        );
-        const unsubscribeMessages = onSnapshot(msgQuery, (snapshot) => {
+        const messagesRef = collection(db, "users", userId, "messages", phoneNumber, "messages");
+        const messagesQuery = query(messagesRef);
+
+        const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
           const msgs = [];
           snapshot.forEach((doc) => {
             const data = doc.data();
@@ -499,6 +487,11 @@ export default function Inbox({ params }) {
               ...data,
               sentAt: date,
             });
+
+            // Set userName from the message data
+            if (data.userName) {
+              setUserName(data.userName);
+            }
           });
 
           msgs.sort((a, b) => a.sentAt - b.sentAt);
@@ -506,14 +499,14 @@ export default function Inbox({ params }) {
         });
 
         return () => {
-          unsubscribeMessages();
+          unsubscribe();
         };
       } catch (error) {
-        console.error("Error fetching details:", error);
+        console.error("Error fetching messages:", error);
       }
     };
 
-    fetchDetails();
+    fetchMessages();
   }, [userId, phoneNumber]);
 
   useEffect(() => {
@@ -546,7 +539,9 @@ export default function Inbox({ params }) {
           throw new Error("Failed to send message");
         }
 
-        await addDoc(collection(db, "users", userId, "messages"), {
+        // Add the new message to Firestore
+        const messagesRef = collection(db, "users", userId, "messages", phoneNumber, "messages");
+        await addDoc(messagesRef, {
           userPhoneNumber: phoneNumber,
           messageBody: newMessage,
           sentAt: serverTimestamp(),
