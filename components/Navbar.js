@@ -12,21 +12,8 @@ const Navbar = () => {
 
     return (
         <>
-        <nav className="text-white p-3 flex justify-end" style={{ backgroundColor: '#2c8ffa' }}>
-            <div className="container mx-auto">
-                <div className="flex items-center">
-                    <div className="flex items-center space-x-4 font-style">
-                        <span className="text-xs md:text-sm" id="font-color-white">example@gmail.com</span>
-                    </div>
-                    <div className="ml-auto flex items-center space-x-8">
-                        <span className="text-xs md:text-sm" id="font-color-white">Phone:987654321</span>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
         {/* Non-Sticky Navbar */}
-        <nav className="sticky top-0 z-10 py-2 bg-white border-b-1 border-blue-500 shadow-lg">
+        <nav className="sticky top-0 z-10 py-2 bg-white border-b-1 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
                     {/* Left Section for Logo */}

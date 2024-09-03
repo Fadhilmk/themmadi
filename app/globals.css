@@ -26,3 +26,84 @@ html {
   }
 }
 
+.DemoGradient {
+  background: linear-gradient(0.33turn, #56ccf2, #2f80ed, #9b51e0, #ff6f61);
+  background-size: 400% 400%;
+  animation: GradientBackground 12s ease infinite;
+}
+
+@keyframes GradientBackground { 
+  0%   { background-position: 0%   50%; } 
+  50%  { background-position: 100% 50%; } 
+  100% { background-position: 0%   50%; } 
+}
+
+.bg { 
+  width: 400%;
+  height: 400%; 
+  background: linear-gradient(0.33turn, #f6a192, #ffd9df, #f6c492, #f6a192); 
+  background-size: 100% 100%; 
+  animation: GradientBackground 12s ease infinite; 
+}
+
+/* @keyframes GradientBackground { 
+  0%   { transform: translate(0, -50%); } 
+  50%  { transform: translate(-75%, 0); } 
+  100% { transform: translate(0, -50%); } 
+} */
+
+.getStart {font-family:arial; padding:50px; text-align:center}
+
+.btn {
+  background-color:#2c8ffa;
+  background-size: 0% 100%;
+  border: 1px solid white;
+  border-radius:30px;
+	color:#fff;
+	display:inline-block;
+	font-size:20px;
+	outline:none;
+	padding:15px 30px;
+	text-align:center;
+	text-decoration:none;
+  transition: background-color .5s;
+  width:300px;
+}
+		
+.btn:hover {
+  background-color:#2c8ffa;
+  background-image:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%);
+  background-repeat:no-repeat;
+  background-size: 200% 100%; 
+  transition:background-size 1s, background-color 1s;
+}
+		
+.btn:active {
+  background-color:#2c8ffa; 
+  transition:background-size 0
+}
+
+
+.btn-contact{
+  background-color:#2c8ffa;
+  background-size: 0% 100%;
+	color:#fff;
+	display:inline-block;
+	outline:none;
+	text-align:center;
+	text-decoration:none;
+  transition: background-color .5s;
+}
+
+.btn-contact:hover {
+  background-color:#2c8ffa;
+  background-image:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%);
+  background-repeat:no-repeat;
+  background-size: 200% 100%; 
+  transition:background-size 1s, background-color 1s;
+}
+		
+.btn-contact:active {
+  background-color:#2c8ffa; 
+  transition:background-size 0
+}

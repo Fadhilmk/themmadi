@@ -6,11 +6,11 @@ const AboutUs = () => {
       <div className="my-8">
         <hr className="border-t border-gray-300" />
       </div>
-      <div id='about' className="container mx-auto px-1 mb-10">
-        <h1 className="text-4xl text-center text-blue-500 mt-2 font-bold mb-8 mt-10">ABOUT US</h1>
+      <div id='about' className="container mx-auto px-1 mb-10 min-h-screen flex flex-col justify-center">
+        <h1 style={{fontFamily:'initial'}} className="text-4xl text-center text-blue-500 font-bold mb-8">ABOUT US</h1>
         <div className="flex flex-col lg:flex-row items-center justify-center">
           <div className="lg:w-1/2 p-4">
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-700 leading-snug">
               At MaaDiy we’re all about making your marketing journey exciting and effective. Our platform is designed to help you connect with your audience through direct, personalized messaging that truly resonates. We’ve been dedicated to providing innovative solutions that make crafting, sending, and tracking campaigns easy and enjoyable.
             </p>
             <p className="text-lg text-gray-700 mt-4">
