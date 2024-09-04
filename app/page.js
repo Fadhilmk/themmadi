@@ -4,13 +4,15 @@ import Home from "../components/Home";
 import AboutUs from "../components/About";
 import ContactUs from "../components/Contact";
 import Footer from "../components/Footer";
+import Card from "../components/card";
 export default function LandingPage() {
   return (
     <div>
       <Navbar />
       <Home />
+      <Card />
       <AboutUs />
-      <ContactUs />
+      {/* <ContactUs /> */}
       <Footer />
     </div>
   );

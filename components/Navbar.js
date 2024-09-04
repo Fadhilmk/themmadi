@@ -25,22 +25,20 @@ const Navbar = () => {
                             height={90}
                             className="object-contain"
                         />
-                        <div>
-                            <p style={{color:'#2c8ffa', fontSize:35, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
-                        </div>
+                        <p style={{color:'#2c8ffa', fontSize:35, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
                     </div>
 
                     {/* Right Section for Nav Links */}
                     <div className='flex' style={{width:'50%'}}>
                         <div className="hidden md:flex items-center space-x-10 ml-auto">
                             <Link href="/" className="text-black hover:text-blue-500 no-underline">Home</Link>
-                            <Link href="/products" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
+                            <Link href="/pricing" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
                             <Link href="/#about" className="text-black hover:text-blue-500 no-underline">About Us</Link>
                             <Link href="/#contact" className="text-black hover:text-blue-500 no-underline">Contact Us</Link>
                         </div>
                         <div className="hidden md:flex items-center space-x-4 ml-auto">
                             <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline">Login</Link>
-                            <Link href="/signup" className="text-white text-sm no-underline p-1 px-2 rounded-lg border-blue-500 hover:bg-blue-500" style={{backgroundColor:'#2c8ffa'}}>Signup</Link>
+                            <Link href="/signup" className="btn-contact text-white text-sm no-underline p-1 px-2 rounded-lg border-blue-500 hover:bg-blue-500">Signup</Link>
                         </div>
                     </div>
 
@@ -57,7 +55,7 @@ const Navbar = () => {
                 {/* Mobile Menu */}
                 <div className={`md:hidden flex flex-col text-center space-y-8 transition-all duration-1000 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                     <Link href="/" className="text-black hover:text-blue-600 no-underline pt-4">Home</Link>
-                    <Link href="/products" className="text-black hover:text-blue-600 no-underline">Products</Link>
+                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline">Pricing</Link>
                     <Link href="/#about" className="text-black hover:text-blue-600 no-underline">About Us</Link>
                     <Link href="/#contact" className="text-black hover:text-blue-600 no-underline">Contact Us</Link>
                     <Link href="/login" className="text-black hover:text-blue-500 no-underline">Login</Link>
