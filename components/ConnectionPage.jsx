@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import CryptoJS from "crypto-js";
 import { FaCopy } from "react-icons/fa";
@@ -16,9 +16,45 @@ const ConnectionPage = ({ userId }) => {
 
   // Encryption function
   const encryptData = (data) => {
-    const secretKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY; // Ensure you set this in your environment variables
+    const secretKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
+    console.log('Encryption Key:', secretKey); // Add this line
+    if (!secretKey) {
+      throw new Error('Encryption key is not defined');
+    }
     return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
   };
+  // Decryption function
+  const decryptData = (cipherText) => {
+    const secretKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
+    const bytes = CryptoJS.AES.decrypt(cipherText, secretKey);
+    return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  };
+
+  // Load encrypted data from Firebase on component mount
+  useEffect(() => {
+    const loadEncryptedData = async () => {
+      try {
+        const userDocRef = doc(db, "users", userId, "documents", "connectionData");
+        const docSnap = await getDoc(userDocRef);
+
+        if (docSnap.exists()) {
+          const encryptedData = docSnap.data().data;
+          const decryptedData = decryptData(encryptedData);
+
+          setAccessToken(decryptedData.accessToken || "");
+          setVerifyToken(decryptedData.verifyToken || "");
+          setPhoneNumberId(decryptedData.phoneNumberId || "");
+          setBusinessPhoneNumberId(decryptedData.businessPhoneNumberId || "");
+        } else {
+          console.error("No encrypted data found!");
+        }
+      } catch (error) {
+        console.error("Error loading data:", error);
+      }
+    };
+
+    loadEncryptedData();
+  }, [userId]);
 
   const handleSave = async () => {
     const encryptedData = encryptData({

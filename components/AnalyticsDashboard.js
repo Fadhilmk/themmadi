@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryTypeCards from "./CategoryTypeCards";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebaseConfig";
 const whatsappBusinessAccountId = process.env.NEXT_PUBLIC_BUSSINESS_ID;
 const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN
   
@@ -110,7 +111,7 @@ const AnalyticsDashboard = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchMessageAnalyticsData();
   }, [messageStartDate, messageEndDate, messageGranularity]);
 

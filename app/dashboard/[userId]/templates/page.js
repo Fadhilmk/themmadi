@@ -507,11 +507,11 @@ const TemplatesPage = () => {
         />
       </div>
 
-      <div className="pt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="pt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {filteredTemplates.map(template => (
           <div
             key={template.id}
-            className="template-card w-full lg:w-80 mx-auto rounded-lg shadow hover:shadow-md p-4 bg-white cursor-pointer"
+            className="template-card w-full lg:w-70 mx-auto rounded-lg shadow hover:shadow-md p-4 bg-white cursor-pointer"
             style={{
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1)",
               transition: "box-shadow 0.3s ease-in-out",
