@@ -23,7 +23,7 @@ const AboutUs = () => {
               At MaaDiy we&apos;re all about making your marketing journey exciting and effective. Our platform is designed to help you connect with your audience through direct, personalized messaging that truly resonates. We&apos;ve been dedicated to providing innovative solutions that make crafting, sending, and tracking campaigns easy and enjoyable.
             </p>
             <p className="text-lg text-gray-700 mt-4" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-              Our mission is to empower small businesses like yours with tools that drive real results. With our user-friendly design and insightful analytics, you can create impactful messages that captivate your audience and achieve your goals. Whether you're a small business or a large enterprise, we&apos;re here to support you every step of the way.
+              Our mission is to empower small businesses like yours with tools that drive real results. With our user-friendly design and insightful analytics, you can create impactful messages that captivate your audience and achieve your goals. Whether you&apos;re a small business or a large enterprise, we&apos;re here to support you every step of the way.
             </p>
             <p className="text-lg text-gray-700 mt-4" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
               Explore MaaDiy and see how we can help you turn every message into a moment of success!
