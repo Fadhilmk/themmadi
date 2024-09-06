@@ -139,11 +139,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      localStorage.setItem("token", await user.getIdToken()); // Store token
-      console.log(user);
-      router.push(`/dashboard/${user.uid}`);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password).then(async(user)=>{
+        console.log(user);
+        localStorage.setItem("token", await user.user.getIdToken()); // Store token
+        router.push(`/dashboard/${user.uid}`);
+      })
+      
     } catch (error) {
       console.error("Error logging in:", error);
 
