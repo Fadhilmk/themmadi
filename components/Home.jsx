@@ -49,7 +49,7 @@ export default function Home() {
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
               <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>UI/UX Review Check</h3>
               <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                Because it's about motivating the doers. Because I'm here to follow my dreams and inspire others.
+                Because it&apos;s about motivating the doers. Because I&apos;m here to follow my dreams and inspire others.
               </p>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
             <div className="lg:w-1/2 lg:pr-12 text-left mt-6 lg:mt-0">
               <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Customization Options</h3>
               <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                Customize your app effortlessly and match your brand's identity with our powerful tools.
+                Customize your app effortlessly and match your brand&apos;s identity with our powerful tools.
               </p>
             </div>
           </div>

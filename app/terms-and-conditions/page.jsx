@@ -8,7 +8,7 @@ export default function TermsAndConditions() {
       <div className="max-w-4xl mx-auto p-8">
         <h1 className="text-4xl font-bold mb-6 text-blue-500">Terms and Conditions</h1>
         <p className="mb-4">
-          Welcome to [Your Company Name]! These terms and conditions outline the rules and regulations for the use of [Your Company Name]'s Website, located at [website url].
+          Welcome to [Your Company Name]! These terms and conditions outline the rules and regulations for the use of [Your Company Name]&apos;s Website, located at [website url].
         </p>
         <h2 className="text-2xl font-bold mb-4 text-blue-500">Acceptance of Terms</h2>
         <p className="mb-4">

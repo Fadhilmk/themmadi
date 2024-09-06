@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
       <div className="max-w-4xl mx-auto p-8">
         <h1 className="text-4xl font-bold mb-6 text-blue-500">Privacy Policy</h1>
         <p className="mb-4">
-          Your privacy is important to us. It is [Your Company Name]'s policy to respect your privacy regarding any information we may collect from you across our website, [website url], and other sites we own and operate.
+          Your privacy is important to us. It is [Your Company Name]&apos;s policy to respect your privacy regarding any information we may collect from you across our website, [website url], and other sites we own and operate.
         </p>
         <h2 className="text-2xl font-bold mb-4 text-blue-500">Information We Collect</h2>
         <p className="mb-4">
