@@ -20,6 +20,18 @@ html {
   scroll-behavior:smooth;
 }
 
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: url('/fonts/LeagueSpartan-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: 'LeagueSpartan', sans-serif;
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

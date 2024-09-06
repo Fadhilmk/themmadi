@@ -13,7 +13,7 @@ const Navbar = () => {
     return (
         <>
         {/* Non-Sticky Navbar */}
-        <nav className="sticky top-0 z-10 py-2 bg-white border-b-1 shadow-lg">
+        <nav className="sticky top-0 z-10 py-4 bg-white border-b-1 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
                     {/* Left Section for Logo */}
@@ -31,14 +31,14 @@ const Navbar = () => {
                     {/* Right Section for Nav Links */}
                     <div className='flex' style={{width:'50%'}}>
                         <div className="hidden md:flex items-center space-x-10 ml-auto">
-                            <Link href="/" className="text-black hover:text-blue-500 no-underline">Home</Link>
-                            <Link href="/pricing" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
-                            <Link href="/#about" className="text-black hover:text-blue-500 no-underline">About Us</Link>
-                            <Link href="/#contact" className="text-black hover:text-blue-500 no-underline">Contact Us</Link>
+                            <Link href="/" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
+                            <Link href="/pricing" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
+                            <Link href="/#about" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
+                            <Link href="/#contact" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Contact Us</Link>
                         </div>
                         <div className="hidden md:flex items-center space-x-4 ml-auto">
-                            <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline">Login</Link>
-                            <Link href="/signup" className="btn-contact text-white text-sm no-underline p-1 px-2 rounded-lg border-blue-500 hover:bg-blue-500">Signup</Link>
+                            <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{fontFamily: 'LeagueSpartan, sans-serif', borderWidth:1}}>Login</Link>
+                            <Link href="/signup" className="btn-contact text-white text-sm no-underline p-2 rounded-lg border-blue-500 hover:bg-blue-500" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Get Started</Link>
                         </div>
                     </div>
 
@@ -58,9 +58,18 @@ const Navbar = () => {
                     <Link href="/pricing" className="text-black hover:text-blue-600 no-underline">Pricing</Link>
                     <Link href="/#about" className="text-black hover:text-blue-600 no-underline">About Us</Link>
                     <Link href="/#contact" className="text-black hover:text-blue-600 no-underline">Contact Us</Link>
-                    <Link href="/login" className="text-black hover:text-blue-500 no-underline">Login</Link>
-                    <Link href="/signup" className="text-black hover:text-blue-500 no-underline pb-4">Signup</Link>
+
+                    {/* Login Button with Blue Border */}
+                    <Link href="/login" className="text-black hover:text-blue-500 no-underline rounded-lg border border-blue-400 px-4 py-2">
+                        Login
+                    </Link>
+
+                    {/* Get Started Button with Centered Text */}
+                    <Link href="/signup" className="text-black hover:text-white no-underline pb-4 bg-blue-400 py-2 px-4 rounded-lg flex items-center justify-center">
+                        Get Started
+                    </Link>
                 </div>
+
             </div>
         </nav>
         </>

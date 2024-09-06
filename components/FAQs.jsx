@@ -32,13 +32,14 @@ const FAQs = () => {
   return (
     <div className="bg-white py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-center text-blue-500">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-extrabold text-center text-blue-500" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Frequently Asked Questions</h2>
         <div className="mt-8 space-y-6">
           {faqs.map((faq, index) => (
             <div key={index} className="border-b border-gray-300 pb-4">
               <button
                 className="w-full flex justify-between items-center text-left text-lg font-semibold text-blue-500 focus:outline-none"
                 onClick={() => toggleQuestion(index)}
+                style={{fontFamily: 'LeagueSpartan, sans-serif'}}
               >
                 {faq.question}
                 <ChevronDownIcon
@@ -46,7 +47,7 @@ const FAQs = () => {
                 />
               </button>
               {openQuestion === index && (
-                <p className="mt-2 text-gray-600">{faq.answer}</p>
+                <p style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="mt-2 text-gray-600">{faq.answer}</p>
               )}
             </div>
           ))}

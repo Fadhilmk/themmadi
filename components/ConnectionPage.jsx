@@ -48,10 +48,10 @@ const ConnectionPage = ({ userId }) => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Connection Settings</h2>
+      <h2 style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="text-xl font-semibold mb-4">Connection Settings</h2>
       <form>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Access Token</label>
+          <label style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="block text-sm font-medium text-gray-700">Access Token</label>
           <input
             type="text"
             value={accessToken}
@@ -60,7 +60,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Verify Token</label>
+          <label style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="block text-sm font-medium text-gray-700">Verify Token</label>
           <input
             type="text"
             value={verifyToken}
@@ -69,7 +69,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Phone Number ID</label>
+          <label style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="block text-sm font-medium text-gray-700">Phone Number ID</label>
           <input
             type="text"
             value={phoneNumberId}
@@ -78,7 +78,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Business Phone Number ID</label>
+          <label style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="block text-sm font-medium text-gray-700">Business Phone Number ID</label>
           <input
             type="text"
             value={businessPhoneNumberId}
@@ -87,7 +87,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4 relative flex items-center">
-          <label className="block text-sm font-medium text-gray-700">Webhook URL</label>
+          <label style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="block text-sm font-medium text-gray-700">Webhook URL</label>
           <input
             type="text"
             value={webhookUrl}
