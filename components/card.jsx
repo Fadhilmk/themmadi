@@ -5,7 +5,10 @@ export default function Card() {
     <>
       <div className="relative text-center mb-12">
         <div className="inline-block bg-blue-100 text-blue-700 px-8 py-4 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+          <h1
+            className="text-4xl font-bold"
+            style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+          >
             PRICING
           </h1>
         </div>
@@ -57,15 +60,29 @@ export default function Card() {
             <div className="glass"></div>
             <div className="content">
               <div style={{ padding: 20, position: "relative", top: -40 }}>
-                <h5 style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="mb-4 text-center text-xl font-medium text-gray-500 dark:text-black-400">
-                  Standard plan
+                <h5
+                  style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                  className="mb-4 text-center text-xl font-medium text-gray-500 dark:text-black-400"
+                >
+                  Base plan
                 </h5>
                 <div className="flex items-baseline justify-center text-gray-900 dark:text-white">
-                  <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="text-3xl font-semibold">$</span>
-                  <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="text-5xl font-extrabold tracking-tight">
-                    49
+                  <span
+                    style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                    className="text-3xl font-semibold"
+                  >
+                    $
                   </span>
-                  <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">
+                  <span
+                    style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                    className="text-5xl font-extrabold tracking-tight"
+                  >
+                    3
+                  </span>
+                  <span
+                    style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                    className="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400"
+                  >
                     /month
                   </span>
                 </div>
@@ -80,8 +97,11 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-                      2 team members
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400"
+                    >
+                      Upto 70% Open rate.
                     </span>
                   </li>
                   <li className="flex items-center">
@@ -94,8 +114,11 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-                      20GB Cloud storage
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400"
+                    >
+                      Upto to-40 50% conversion rate
                     </span>
                   </li>
                   <li className="flex items-center">
@@ -108,13 +131,16 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-                      Integration help
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500 dark:text-gray-400"
+                    >
+                      Upto 5000 Contacts
                     </span>
                   </li>
-                  <li className="flex items-center line-through decoration-gray-500">
+                  <li className="flex items-center ">
                     <svg
-                      className="w-4 h-4 text-gray-400 dark:text-gray-500"
+                      className="w-4 h-4 text-blue-700 dark:text-blue-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -122,13 +148,16 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500">
-                      Sketch Files
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500"
+                    >
+                      Bulk contacts upload using excel sheet
                     </span>
                   </li>
-                  <li className="flex items-center line-through decoration-gray-500">
+                  <li className="flex items-center ">
                     <svg
-                      className="w-4 h-4 text-gray-400 dark:text-gray-500"
+                      className="w-4 h-4 text-blue-700 dark:text-blue-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -136,13 +165,16 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500">
-                      API Access
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500"
+                    >
+                      Mange conversation directly on our platform
                     </span>
                   </li>
-                  <li className="flex items-center line-through decoration-gray-500">
+                  <li className="flex items-center ">
                     <svg
-                      className="w-4 h-4 text-gray-400 dark:text-gray-500"
+                      className="w-4 h-4 text-blue-700 dark:text-blue-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -150,13 +182,16 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500">
-                      Complete documentation
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500"
+                    >
+                      Analyze campaigns for better ROI
                     </span>
                   </li>
-                  <li className="flex items-center line-through decoration-gray-500">
+                  <li className="flex items-center ">
                     <svg
-                      className="w-4 h-4 text-gray-400 dark:text-gray-500"
+                      className="w-4 h-4 text-blue-700 dark:text-blue-500"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -164,8 +199,11 @@ export default function Card() {
                     >
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span style={{fontFamily: 'LeagueSpartan, sans-serif'}} className="ml-3 text-base font-normal leading-tight text-gray-500">
-                      24×7 phone & email support
+                    <span
+                      style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+                      className="ml-3 text-base font-normal leading-tight text-gray-500"
+                    >
+                      Reach customers almost anywhere
                     </span>
                   </li>
                 </ul>
@@ -176,7 +214,7 @@ export default function Card() {
               <div className="social-buttons-container">
                 <button className="social-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm  w-full">
                   <div
-                    style={{fontFamily: 'LeagueSpartan, sans-serif'}}
+                    style={{ fontFamily: "LeagueSpartan, sans-serif" }}
                     type="button"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
                   >
