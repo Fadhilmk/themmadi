@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Logo and Company Info */}
         <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-4 text-center md:text-left">
           <Image
-            src="/4.png"
+            src="/nav_logo.jpeg"
             alt="Logo"
             width={90}
             height={90}
@@ -43,16 +43,16 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div className="flex space-x-4 md:space-x-8 justify-center">
-          <a href="https://www.facebook.com/profile.php?id=61565378703285" target="_blank" rel="noopener noreferrer">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <img src="/facebook.png" alt="Facebook" className="w-8 h-8" />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
             <img src="/twitter.png" alt="Twitter" className="w-8 h-8" />
           </a>
-          <a href="https://www.instagram.com/the.maadiy?igsh=aTA2OHVzbmJ0end2" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src="/social.png" alt="Instagram" className="w-8 h-8" />
           </a>
-          <a href="https://www.youtube.com/channel/UCr9BooZmN_xsauO-lLz_nLw" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
             <img src="/linkedin.png" alt="LinkedIn" className="w-8 h-8" />
           </a>
         </div>
