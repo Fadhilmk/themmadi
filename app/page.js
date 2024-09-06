@@ -5,6 +5,7 @@ import AboutUs from "../components/About";
 import ContactUs from "../components/Contact";
 import Footer from "../components/Footer";
 import Card from "../components/card";
+import FAQs from "@/components/FAQs";
 export default function LandingPage() {
   return (
     <div>
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <Card />
       <AboutUs />
       {/* <ContactUs /> */}
+      <FAQs />
       <Footer />
     </div>
   );
