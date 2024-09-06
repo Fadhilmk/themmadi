@@ -16,21 +16,6 @@
   }
 }
 
-/* globals.css */
-@font-face {
-  font-family: 'LeagueSpartan';
-  src: url('/fonts/LeagueSpartan-Black.ttf') format('ttf'),
-       url('/fonts/LeagueSpartan-Bold.ttf') format('ttf'),
-       url('/fonts/LeagueSpartan-ExtraBold.ttf') format('ttf');
-  font-weight: normal; /* You can specify weights like 400, 700, etc. */
-  font-style: normal;  /* Adjust if the font is italic or bold */
-}
-
-body {
-  font-family: 'LeagueSpartan', sans-serif; /* Apply the custom font globally */
-}
-
-
 html {
   scroll-behavior:smooth;
 }
@@ -61,7 +46,7 @@ html {
   animation: GradientBackground 12s ease infinite; 
 }
 .getStart{
-  background-color:#1e8ded;
+  background-color:#65e448;
   background-size: 0% 100%;
   padding: 1rem 2rem; /* Adjust padding for better mobile experience */
 	color:#fff;
@@ -73,7 +58,7 @@ html {
 }
 
 .getStart:hover {
-  background-color:#3b63e6;
+  background-color:#40c223;
   background-image:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%);
   background-repeat:no-repeat;
   background-size: 200% 100%; 
@@ -81,7 +66,7 @@ html {
 }
 		
 .getStart:active {
-  background-color:#246cdf; 
+  background-color:#41b826; 
   transition:background-size 0
 }
 

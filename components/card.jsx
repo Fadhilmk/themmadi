@@ -3,7 +3,7 @@ import React from 'react'
 export default function Card () {
   return (
     <>
-        <h1 style={{fontFamily:'League Spartan'}} className="text-4xl text-center font-bold mt-8">Pricing</h1>
+        <h1 style={{fontFamily:'initial'}} className="text-4xl text-center text-blue-500 font-bold mt-8">PRICING</h1>
         <div style={{width:'100%', paddingBottom:50, justifyContent:'center', marginTop:50, display:'flex', alignItems:'center'}}>
                 <div className="parent">
                     <div className="card">
