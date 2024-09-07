@@ -34,7 +34,7 @@ const Navbar = () => {
                             <Link href="/" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
                             <Link href="/pricing" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
                             <Link href="/#about" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
-                            <Link href="/#contact" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Contact Us</Link>
+                            <Link href="/#features" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
                         </div>
                         <div className="hidden md:flex items-center space-x-4 ml-auto">
                             <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{fontFamily: 'LeagueSpartan, sans-serif', borderWidth:1}}>Login</Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
                     <Link href="/" className="text-black hover:text-blue-600 no-underline pt-4">Home</Link>
                     <Link href="/pricing" className="text-black hover:text-blue-600 no-underline">Pricing</Link>
                     <Link href="/#about" className="text-black hover:text-blue-600 no-underline">About Us</Link>
-                    <Link href="/#contact" className="text-black hover:text-blue-600 no-underline">Contact Us</Link>
+                    <Link href="/#features" className="text-black hover:text-blue-600 no-underline">Features</Link>
 
                     {/* Login Button with Blue Border */}
                     <Link href="/login" className="text-black hover:text-blue-500 no-underline rounded-lg border border-blue-400 px-4 py-2">
