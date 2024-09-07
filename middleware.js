@@ -1,39 +1,29 @@
-import { auth } from "./firebaseConfig";
 import { NextResponse } from "next/server";
 
 export default async function middleware(request) {
     const path = request.nextUrl.pathname;
+    const token = request.cookies.get("token");
+    const userId = request.cookies.get("userId");
+    console.log(userId)
 
-    // Only apply the token check to paths starting with /dashboard
+    // Protect /dashboard routes, only allow access if token exists
     if (path.startsWith("/dashboard")) {
         console.log("dashboard middleware: checking user authentication");
-
-        // Get the current user
-        const user = auth.currentUser;
-
-        // If no user is logged in, redirect to the login page
-        if (!user) {
-            console.log("dashboard middleware: no user logged in, redirecting");
-            return NextResponse.redirect(new URL("/login", request.url));
-        }
-
-        // Try to retrieve the token
-        try {
-            const token = await user.getIdToken();
-            if (!token) {
-                console.log("dashboard middleware: failed to retrieve token, redirecting");
-                return NextResponse.redirect(new URL("/login", request.url));
-            }
-        } catch (error) {
-            console.error("dashboard middleware: error retrieving token", error);
+        if (!token) {
+            console.log("dashboard middleware: no token found, redirecting");
             return NextResponse.redirect(new URL("/login", request.url));
         }
     }
 
-    // Allow access for all other paths
+    // If token exists, don't allow access to login or signup
+    if ((path === "/login" || path === "/signup") && token) {
+        console.log("middleware: token found, redirecting from login/signup");
+        return NextResponse.redirect(new URL(`/dashboard/${userId.value}`, request.url));
+    }
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/dashboard/:path*", "/dashboard"], // Apply middleware to /dashboard paths
+    matcher: ["/dashboard/:path*", "/dashboard", "/login", "/signup"],
 };

@@ -447,6 +447,8 @@ const DashboardLayout = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     router.push("/login");
   };
 
@@ -494,9 +496,8 @@ const DashboardLayout = ({ children }) => {
     <div className="flex h-screen overflow-hidden font-sans bg-gray-50">
       {/* Sidebar */}
       <div
-        className={`sidebar bg-white text-blue-500 w-72 fixed top-0 h-full transition-transform transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 z-50 shadow-2xl flex flex-col`}
+        className={`sidebar bg-white text-blue-500 w-72 fixed top-0 h-full transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } md:translate-x-0 z-50 shadow-2xl flex flex-col`}
       >
         <div className="p-6 border-b flex items-center space-x-4">
           <FaUserCircle className="text-4xl" />
@@ -518,11 +519,10 @@ const DashboardLayout = ({ children }) => {
               <li key={item.label}>
                 <button
                   onClick={() => handleLinkClick(item.section)} // Set active section on click
-                  className={`block pl-4 pr-4 py-3 rounded-lg transition-transform ${
-                    activeSection === item.section
+                  className={`block pl-4 pr-4 py-3 rounded-lg transition-transform ${activeSection === item.section
                       ? "bg-blue-500 text-white"
                       : "bg-white text-blue-500 hover:bg-blue-100"
-                  } flex items-center w-full text-left`}
+                    } flex items-center w-full text-left`}
                 >
                   <i className={`fa-solid ${item.icon} text-xl mr-3`}></i>
                   {item.label}

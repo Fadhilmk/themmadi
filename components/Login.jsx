@@ -123,6 +123,7 @@
 // export default Login;
 
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -135,7 +136,6 @@ const Login = () => {
   const [modalContent, setModalContent] = useState({ title: "", message: "" });
 
   const router = useRouter();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -156,10 +156,11 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Fetch and store token in localStorage
+      // Fetch and store token in cookies
       const token = await user.getIdToken();
       if (token) {
-        localStorage.setItem("token", token);
+        document.cookie = `token=${token}; path=/; max-age=3600; secure; SameSite=Strict`;
+        document.cookie = `userId=${user.uid}; path=/; max-age=3600; secure; SameSite=Strict`;
       } else {
         throw new Error("Unable to retrieve token");
       }
