@@ -103,17 +103,17 @@ const Footer = () => {
           {/* Primary Navigation Links */}
           <div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-left border-b md:border-none pb-4 md:pb-0">
             <a href="/about" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>About Us</a>
-            <a href="/services" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Services</a>
+            <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Services</a>
             <a href="/pricing" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Pricing</a>
             <a href="/blog" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Blog</a>
-            <a href="/product-overview" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Product Overview</a>
-            <a href="/book-demo" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Book a Demo</a>
+            <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Product Overview</a>
+            <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Book a Demo</a>
           </div>
 
           {/* Secondary Navigation Links */}
           <div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-left border-b md:border-none pb-4 md:pb-0">
-            <a href="/help-center" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Help Center</a>
-            <a href="/contact" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Contact</a>
+            <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Help Center</a>
+            <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Contact</a>
             <a href="/privacy-policy" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Privacy Policy</a>
             <a href="/terms-and-conditions" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Terms & Conditions</a>
             <a href="/signup" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Sign Up</a>
