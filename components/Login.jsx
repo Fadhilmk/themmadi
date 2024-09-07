@@ -138,19 +138,52 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setModalContent({
+        title: "Missing Credentials",
+        message: "Please enter both email and password.",
+      });
+      setShowModal(true);
+      return;
+    }
+
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-      localStorage.setItem("token", await user.getIdToken()); // Store token
+
+      // Fetch and store token in localStorage
+      const token = await user.getIdToken();
+      if (token) {
+        localStorage.setItem("token", token);
+      } else {
+        throw new Error("Unable to retrieve token");
+      }
+
       console.log(user);
       router.push(`/dashboard/${user.uid}`);
     } catch (error) {
       console.error("Error logging in:", error);
 
+      // Set error message
+      let errorMessage =
+        "Login failed. Please check your credentials and try again.";
+      if (error.code === "auth/wrong-password") {
+        errorMessage = "Incorrect password. Please try again.";
+      } else if (error.code === "auth/user-not-found") {
+        errorMessage = "No account found with this email.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
       // Show error modal
       setModalContent({
         title: "Login Error",
-        message: error.message || "Login failed. Please check your credentials and try again.",
+        message: errorMessage,
       });
       setShowModal(true);
     }
@@ -162,12 +195,17 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-blue-500">
-      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6"
+      >
         <h1 className="text-3xl font-bold text-center text-blue-500">Login</h1>
-        
+
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -178,7 +216,9 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               value={password}
@@ -198,8 +238,11 @@ const Login = () => {
         </button>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-          Don't have an account?{" "}
-          <a href="/signup" className="text-green-500 hover:text-green-600 font-semibold">
+          Dont have an account?{" "}
+          <a
+            href="/signup"
+            className="text-green-500 hover:text-green-600 font-semibold"
+          >
             Sign Up
           </a>
         </p>
@@ -209,7 +252,9 @@ const Login = () => {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">{modalContent.title}</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              {modalContent.title}
+            </h2>
             <p className="text-gray-600">{modalContent.message}</p>
             <button
               onClick={closeModal}
