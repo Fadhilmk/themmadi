@@ -24,6 +24,7 @@ const Navbar = () => {
                             width={90}
                             height={90}
                             className="object-contain"
+                            priority
                         />
                         <p style={{color:'#2c8ffa', fontSize:35, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
                     </div>
