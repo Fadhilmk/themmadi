@@ -18,6 +18,7 @@
     "exceljs": "^4.4.0",
     "firebase": "^10.12.5",
     "jose": "^5.6.3",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",
     "papaparse": "^5.4.1",

@@ -253,6 +253,156 @@
 // export default DashboardLayout;
 
 
+// "use client";
+// import { useState, useEffect } from "react";
+// import { useRouter, useParams } from "next/navigation";
+// import Link from "next/link";
+// import { HiMenu } from "react-icons/hi";
+// import { IoClose } from "react-icons/io5";
+// import { FaUserCircle } from "react-icons/fa";
+// import { FiSettings } from "react-icons/fi";
+// import { doc, getDoc } from "firebase/firestore";
+// import { db } from "../firebaseConfig";
+
+// const DashboardLayout = ({ children }) => {
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+//   const [username, setUsername] = useState("");
+//   const [activeSection, setActiveSection] = useState(""); // State for active link
+//   const router = useRouter();
+//   const { userId, section } = useParams();
+
+//   useEffect(() => {
+//     // Redirect to Dashboard if no section is provided
+//     if (!section) {
+//       router.push(`/dashboard/${userId}`);
+//     } else {
+//       setActiveSection(section);
+//     }
+//   }, [section, userId, router]);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     router.push("/login");
+//   };
+
+//   const toggleSidebar = () => {
+//     setIsSidebarOpen(!isSidebarOpen);
+//   };
+
+//   const handleClickOutside = (e) => {
+//     if (isSidebarOpen && !e.target.closest(".sidebar")) {
+//       setIsSidebarOpen(false);
+//     }
+//   };
+
+//   const handleLinkClick = (section) => {
+//     setActiveSection(section);
+//     router.push(`/dashboard/${userId}/${section}`);
+//   };
+
+//   useEffect(() => {
+//     const fetchUsername = async () => {
+//       try {
+//         const userDoc = doc(db, "users", userId);
+//         const docSnap = await getDoc(userDoc);
+//         if (docSnap.exists()) {
+//           setUsername(docSnap.data().username || "User");
+//         } else {
+//           console.error("No such document!");
+//         }
+//       } catch (error) {
+//         console.error("Error fetching username:", error);
+//       }
+//     };
+
+//     fetchUsername();
+
+//     document.addEventListener("click", handleClickOutside);
+//     return () => document.removeEventListener("click", handleClickOutside);
+//   }, [isSidebarOpen, userId]);
+
+//   return (
+//     <div className="flex h-screen overflow-hidden font-sans bg-gray-50">
+//       {/* Sidebar */}
+//       <div
+//         className={`sidebar bg-white text-blue-500 w-72 fixed top-0 h-full transition-transform transform ${
+//           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+//         } md:translate-x-0 z-50 shadow-2xl flex flex-col`}
+//       >
+//         <div className="p-6 border-b flex items-center space-x-4">
+//           <FaUserCircle className="text-4xl" />
+//           <h2 className="text-2xl font-semibold truncate">{username}</h2>
+//           <IoClose
+//             onClick={toggleSidebar}
+//             className="md:hidden text-blue-500 text-3xl cursor-pointer ml-auto"
+//           />
+//         </div>
+//         <nav className="flex-1 p-6">
+//           <ul className="space-y-4">
+//             {[
+//               { href: `dashboard/`, label: "Dashboard", icon: "fa-tachometer-alt" },
+//               { href: `dashboard/${userId}/inbox`, label: "Inbox", icon: "fa-inbox" },
+//               { href: `dashboard/${userId}/templates`, label: "Templates", icon: "fa-file-alt" },
+//               { href: `dashboard/${userId}/contacts`, label: "Contacts", icon: "fa-address-book" },
+//               { href: `dashboard/${userId}/connection`, label: "Connection", icon: "fa-link" },
+//             ].map((item) => (
+//               <li key={item.label}>
+//                 <button
+//                   onClick={() => handleLinkClick(item.href.split('/').pop())} // Set active section on click
+//                   className={`block pl-4 pr-4 py-3 rounded-lg transition-transform ${
+//                     activeSection === item.href.split('/').pop()
+//                       ? "bg-blue-500 text-white"
+//                       : "bg-white text-blue-500 hover:bg-blue-100"
+//                   } flex items-center w-full text-left`}
+//                 >
+//                   <i className={`fa-solid ${item.icon} text-xl mr-3`}></i>
+//                   {item.label}
+//                 </button>
+//               </li>
+//             ))}
+//           </ul>
+//         </nav>
+//         {/* Logout Button at Bottom */}
+//         <div className="p-6 border-t mt-auto">
+//           <button
+//             onClick={handleLogout}
+//             className="bg-blue-600 text-white w-full p-3 rounded-lg hover:bg-blue-700 transition"
+//           >
+//             Logout
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Header */}
+//       <div className="flex-1 flex flex-col">
+//         <div className="w-full bg-white text-blue-600 shadow-md p-6 fixed top-0 md:ml-72 z-40 flex items-center justify-between">
+//           <div className="flex items-center">
+//             <div className="md:hidden">
+//               <HiMenu
+//                 onClick={toggleSidebar}
+//                 className="text-blue-600 text-3xl cursor-pointer"
+//               />
+//             </div>
+//           </div>
+//           <div className="flex items-center space-x-4">
+//             {/* Account Icon */}
+//             <FaUserCircle className="text-3xl cursor-pointer" />
+//             {/* Settings Icon */}
+//             <FiSettings className="text-3xl cursor-pointer" />
+//           </div>
+//         </div>
+
+//         {/* Main Content Area */}
+//         <main className="flex-1 p-6 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
+//           {children}
+//         </main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardLayout;
+
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -262,12 +412,13 @@ import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
+import Cookies from 'js-cookie';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [username, setUsername] = useState("");
-  const [activeSection, setActiveSection] = useState(""); // State for active link
+  const [activeSection, setActiveSection] = useState(""); 
   const router = useRouter();
   const { userId, section } = useParams();
 
@@ -280,10 +431,21 @@ const DashboardLayout = ({ children }) => {
     }
   }, [section, userId, router]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  const handleLogout = async () => {
+  try {
+    // Sign out the user from Firebase
+    await auth.signOut();
+    
+    // Remove cookies
+    Cookies.remove("token");
+    Cookies.remove("userId");
+    
+    // Redirect to login page
     router.push("/login");
-  };
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+};
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -316,7 +478,6 @@ const DashboardLayout = ({ children }) => {
     };
 
     fetchUsername();
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isSidebarOpen, userId]);
@@ -348,7 +509,7 @@ const DashboardLayout = ({ children }) => {
             ].map((item) => (
               <li key={item.label}>
                 <button
-                  onClick={() => handleLinkClick(item.href.split('/').pop())} // Set active section on click
+                  onClick={() => handleLinkClick(item.href.split('/').pop())} 
                   className={`block pl-4 pr-4 py-3 rounded-lg transition-transform ${
                     activeSection === item.href.split('/').pop()
                       ? "bg-blue-500 text-white"

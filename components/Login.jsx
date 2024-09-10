@@ -64,11 +64,71 @@
 // };
 
 // export default Login;
-"use client"
+// "use client"
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebaseConfig";
+
+// const Login = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const router = useRouter();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+//       const user = userCredential.user;
+//       localStorage.setItem("token", await user.getIdToken()); // Store token
+//       console.log(user);
+//       router.push(`/dashboard/${user.uid}`);
+//     } catch (error) {
+//       console.error("Error logging in:", error);
+//       alert("Login failed. Please check your credentials and try again.");
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
+//       <h1 className="text-2xl font-bold mb-6">Login</h1>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Email</label>
+//         <input
+//           type="email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       <div className="mb-4">
+//         <label className="block text-gray-700">Password</label>
+//         <input
+//           type="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           className="w-full px-3 py-2 border rounded"
+//         />
+//       </div>
+//       <button
+//         type="submit"
+//         className="bg-blue-500 text-white px-4 py-2 rounded"
+//       >
+//         Login
+//       </button>
+//     </form>
+//   );
+// };
+
+// export default Login;
+
+"use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Cookies from 'js-cookie';  // Import js-cookie
 import { auth } from "../firebaseConfig";
+import withNoAuth from "./withNoAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -80,8 +140,13 @@ const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      localStorage.setItem("token", await user.getIdToken()); // Store token
-      console.log(user);
+
+      // Get the token and store it in cookies
+      const token = await user.getIdToken();
+      Cookies.set("token", token, { secure: true, sameSite: 'Strict' });
+      Cookies.set("userId", user.uid, { secure: true, sameSite: 'Strict' });
+
+      // Redirect to the dashboard
       router.push(`/dashboard/${user.uid}`);
     } catch (error) {
       console.error("Error logging in:", error);
@@ -120,4 +185,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withNoAuth(Login);
