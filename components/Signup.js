@@ -687,4 +687,4 @@ const Signup = () => {
   );
 };
 
-export default withNoAuth(Signup);
+export default Signup;

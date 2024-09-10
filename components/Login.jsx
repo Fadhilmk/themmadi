@@ -519,4 +519,4 @@ const Login = () => {
   );
 };
 
-export default withNoAuth(Login);
+export default Login;

@@ -2,7 +2,7 @@
 import AnalyticsDashboard from '@/components/AnalyticsDashboard';
 import { useParams } from 'next/navigation';
 import withAuth from '@/components/withAuth';  // Import the HOC
-export default function DashboardPage() {
+function DashboardPage() {
     const { userId } = useParams();
     
     return (
@@ -11,3 +11,5 @@ export default function DashboardPage() {
         </div>
     );
 }
+
+export default withAuth(DashboardPage);  // Wrap the page with HOC
