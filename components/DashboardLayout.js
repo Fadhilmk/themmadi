@@ -262,7 +262,8 @@ import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { auth,db } from "../firebaseConfig";
+import Cookies from 'js-cookie';
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -280,9 +281,20 @@ const DashboardLayout = ({ children }) => {
     }
   }, [section, userId, router]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    router.push("/login");
+  const handleLogout = async () => {
+    try {
+      // Sign out the user from Firebase
+      await auth.signOut();
+      
+      // Remove cookies
+      Cookies.remove("token");
+      Cookies.remove("userId");
+      
+      // Redirect to login page
+      router.push("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   const toggleSidebar = () => {

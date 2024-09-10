@@ -1,8 +1,8 @@
 "use client";
 import AnalyticsDashboard from '@/components/AnalyticsDashboard';
 import { useParams } from 'next/navigation';
-
-export default function DashboardPage() {
+import withAuth from '@/components/withAuth';  // Import the HOC
+function DashboardPage() {
     const { userId } = useParams();
     
     return (
@@ -11,3 +11,5 @@ export default function DashboardPage() {
         </div>
     );
 }
+
+export default withAuth(DashboardPage);  // Wrap the page with HOC

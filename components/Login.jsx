@@ -144,7 +144,7 @@
 //         localStorage.setItem("token", await user.user.getIdToken()); // Store token
 //         router.push(`/dashboard/${user.uid}`);
 //       })
-      
+
 //     } catch (error) {
 //       console.error("Error logging in:", error);
 
@@ -165,7 +165,7 @@
 //     <div className="flex items-center justify-center min-h-screen bg-blue-500">
 //       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6">
 //         <h1 className="text-3xl font-bold text-center text-blue-500">Login</h1>
-        
+
 //         <div className="space-y-4">
 //           <div>
 //             <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -227,24 +227,173 @@
 
 // export default Login;
 
+// "use client";
+
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebaseConfig";
+
+// const Login = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [showModal, setShowModal] = useState(false);
+//   const [modalContent, setModalContent] = useState({ title: "", message: "" });
+
+//   const router = useRouter();
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!email || !password) {
+//       setModalContent({
+//         title: "Missing Credentials",
+//         message: "Please enter both email and password.",
+//       });
+//       setShowModal(true);
+//       return;
+//     }
+
+//     try {
+//       const userCredential = await signInWithEmailAndPassword(
+//         auth,
+//         email,
+//         password
+//       );
+//       const user = userCredential.user;
+
+//       // Fetch and store token in cookies
+//       const token = await user.getIdToken();
+//       if (token) {
+//         document.cookie = `token=${token}; path=/; max-age=3600; secure; SameSite=Strict`;
+//         document.cookie = `userId=${user.uid}; path=/; max-age=3600; secure; SameSite=Strict`;
+//       } else {
+//         throw new Error("Unable to retrieve token");
+//       }
+
+//       console.log(user);
+//       router.push(`/dashboard/${user.uid}`);
+//     } catch (error) {
+//       console.error("Error logging in:", error);
+
+//       // Set error message
+//       let errorMessage =
+//         "Login failed. Please check your credentials and try again.";
+//       if (error.code === "auth/wrong-password") {
+//         errorMessage = "Incorrect password. Please try again.";
+//       } else if (error.code === "auth/user-not-found") {
+//         errorMessage = "No account found with this email.";
+//       } else if (error.message) {
+//         errorMessage = error.message;
+//       }
+
+//       // Show error modal
+//       setModalContent({
+//         title: "Login Error",
+//         message: errorMessage,
+//       });
+//       setShowModal(true);
+//     }
+//   };
+
+//   const closeModal = () => {
+//     setShowModal(false);
+//   };
+
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-blue-500">
+//       <form
+//         onSubmit={handleSubmit}
+//         className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6"
+//       >
+//         <h1 className="text-3xl font-bold text-center text-blue-500">Login</h1>
+
+//         <div className="space-y-4">
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">
+//               Email
+//             </label>
+//             <input
+//               type="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+//               placeholder="you@example.com"
+//               required
+//             />
+//           </div>
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+//               placeholder="••••••••"
+//               required
+//             />
+//           </div>
+//         </div>
+
+//         <button
+//           type="submit"
+//           className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md shadow-md transition-colors duration-300"
+//         >
+//           Login
+//         </button>
+
+//         <p className="text-center text-sm text-gray-600 mt-4">
+//           Dont have an account?{" "}
+//           <a
+//             href="/signup"
+//             className="text-green-500 hover:text-green-600 font-semibold"
+//           >
+//             Sign Up
+//           </a>
+//         </p>
+//       </form>
+
+//       {/* Modal Popup */}
+//       {showModal && (
+//         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+//           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+//             <h2 className="text-xl font-semibold text-gray-800 mb-4">
+//               {modalContent.title}
+//             </h2>
+//             <p className="text-gray-600">{modalContent.message}</p>
+//             <button
+//               onClick={closeModal}
+//               className="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors duration-300 w-full"
+//             >
+//               OK
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Login;
 
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Cookies from "js-cookie"; // Import js-cookie
 import { auth } from "../firebaseConfig";
+import withNoAuth from "./withNoAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", message: "" });
 
-  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email || !password) {
       setModalContent({
         title: "Missing Credentials",
@@ -253,7 +402,6 @@ const Login = () => {
       setShowModal(true);
       return;
     }
-
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -262,20 +410,15 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Fetch and store token in cookies
+      // Get the token and store it in cookies
       const token = await user.getIdToken();
-      if (token) {
-        document.cookie = `token=${token}; path=/; max-age=3600; secure; SameSite=Strict`;
-        document.cookie = `userId=${user.uid}; path=/; max-age=3600; secure; SameSite=Strict`;
-      } else {
-        throw new Error("Unable to retrieve token");
-      }
+      Cookies.set("token", token, { secure: true, sameSite: "Strict" });
+      Cookies.set("userId", user.uid, { secure: true, sameSite: "Strict" });
 
-      console.log(user);
+      // Redirect to the dashboard
       router.push(`/dashboard/${user.uid}`);
     } catch (error) {
       console.error("Error logging in:", error);
-
       // Set error message
       let errorMessage =
         "Login failed. Please check your credentials and try again.";
@@ -376,4 +519,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withNoAuth(Login);
