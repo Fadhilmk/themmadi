@@ -519,7 +519,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth,db } from "../firebaseConfig";
-import withNoAuth from "./withNoAuth";
+
 
 const Signup = () => {
   const [form, setForm] = useState({
