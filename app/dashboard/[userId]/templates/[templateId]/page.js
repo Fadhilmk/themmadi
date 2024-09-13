@@ -1063,27 +1063,28 @@ const TemplateDetailsPage = () => {
   const renderAnalyticsTable = (analyticsData) => {
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+        <table className="table-auto overflow-scroll w-full text-center">
           <thead className="bg-gray-100 text-gray-600">
             <tr>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                 <span className="inline-flex items-center text-amber-600">
                   <span className="material-icons mr-1">calendar_today</span>{" "}
                   Date
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                 <span className="inline-flex items-center text-blue-600">
-                  <span className="material-icons mr-1">send</span> Sent
+                  <span className="material-icons mr-1">send</span> 
+                  Sent
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                 <span className="inline-flex items-center text-green-500">
                   <span className="material-icons mr-1">done_all</span>{" "}
                   Delivered
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                 <span className="inline-flex items-center text-teal-500">
                   <span className="material-icons mr-1">attach_money</span>{" "}
                   Total Cost
@@ -1093,22 +1094,23 @@ const TemplateDetailsPage = () => {
                 (point) => point.clicked?.length > 0
               ) && (
                 <>
-                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                     <span className="inline-flex items-center text-red-600">
                       <span className="material-icons mr-1">text_fields</span>{" "}
                       Button Content
                     </span>
                   </th>
-                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold">
+                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
                     <span className="inline-flex items-center text-orange-600">
-                      <span className="material-icons mr-1">mouse</span> Click
-                      Count
+                      <span className="material-icons mr-1">mouse</span> 
+                      Click Count
                     </span>
                   </th>
                 </>
               )}
             </tr>
           </thead>
+          
           <tbody className="text-gray-700">
             {analyticsData.data_points
               .filter((point) => point.sent > 0 || point.delivered > 0)
@@ -1484,7 +1486,7 @@ const TemplateDetailsPage = () => {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6" style={{width:'100%'}}>
       {/* Header Section */}
       <div className="bg-blue-500 p-4 rounded-lg shadow-md text-white">
         <h1 className="text-2xl font-bold mb-2 text-white">
@@ -1503,8 +1505,7 @@ const TemplateDetailsPage = () => {
 
       <div className="flex flex-col lg:flex-row-reverse lg:space-x-reverse lg:space-x-6 space-y-6 lg:space-y-0">
         {/* Template Details Section - Now on the Right */}
-        <div
-          className="lg:w-1/5 bg-white p-4 rounded-lg shadow-md"
+        <div className="lg:w-2/5 bg-white p-4 rounded-lg shadow-md"
           style={{
             backgroundImage:
               'url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png")',
@@ -1512,7 +1513,7 @@ const TemplateDetailsPage = () => {
             backgroundPosition: "center",
           }}
         >
-          <h2 className="text-xl font-bold mb-4">Template Details</h2>
+          <h2 className="text-xl font-bold mb-4 text-center">Template Details</h2>
           <div
             className="p-1"
             style={{
@@ -1529,10 +1530,10 @@ const TemplateDetailsPage = () => {
 
         {/* Send Message Section - Now on the Left */}
         <div className="lg:w-4/5 bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-bold mb-4">
+          <h2 className="text-xl font-bold mb-4 text-center">
             Send Message With This Template
           </h2>
-          <div className="mt-4">
+          <div className="mt-8">
             <label className="block font-semibold mb-2">Phone Number</label>
             <input
               type="text"
@@ -1714,7 +1715,7 @@ const TemplateDetailsPage = () => {
 
           <button
             onClick={handleSendMessage}
-            className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            className="mt-4 bg-green-500 w-full text-white px-4 py-2 rounded-md hover:bg-green-600"
           >
             Send Message
           </button>
@@ -1829,7 +1830,7 @@ const TemplateDetailsPage = () => {
         <h2 className="text-lg font-semibold mb-4">Campaign History</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
-            <thead className="bg-gray-100 border-b border-gray-300">
+          <thead className="bg-gray-100 border-b border-gray-300">
               <tr>
                 <th className="p-3 text-left text-gray-700">Template Name</th>
                 <th className="p-3 text-left text-gray-700">

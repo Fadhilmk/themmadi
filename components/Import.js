@@ -199,14 +199,15 @@ const ImportPage = ({ userId }) => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Import Phone Numbers</h1>
+    <div className="container mx-auto">
+      <h1 className="text-3xl font-bold mb-6" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:25}}>Import Phone Numbers</h1>
 
       <div className="flex flex-col md:flex-row md:items-center mb-4 gap-4">
         {/* Upload Button */}
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-blue-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-blue-600 transition duration-300"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         >
           Upload
         </button>
@@ -217,6 +218,7 @@ const ImportPage = ({ userId }) => {
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value)}
           className="border border-gray-300 p-2 rounded-md"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         />
 
         {/* Search Bar */}
@@ -232,6 +234,7 @@ const ImportPage = ({ userId }) => {
         <button
           onClick={() => setIsAddContactModalOpen(true)}
           className="bg-green-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-green-600 transition duration-300"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         >
           Add Contact
         </button>
@@ -241,6 +244,7 @@ const ImportPage = ({ userId }) => {
           <button
             onClick={handleDeleteClick}
             className="bg-red-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-600 transition duration-300"
+            style={{fontFamily: "LeagueSpartan, sans-serif"}}
           >
             <MdDelete className="inline mr-2" /> Delete Selected
           </button>
@@ -251,7 +255,7 @@ const ImportPage = ({ userId }) => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3 max-w-md">
-            <h2 className="text-2xl font-semibold mb-4">Upload Phone Numbers</h2>
+            <h2 className="text-2xl font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Upload Phone Numbers</h2>
             <input
               type="file"
               accept=".csv, .xlsx"
@@ -263,12 +267,14 @@ const ImportPage = ({ userId }) => {
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-bold hover:bg-gray-400 transition duration-300 mr-2"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpload}
                 className="bg-blue-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-blue-600 transition duration-300"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Upload
               </button>
@@ -281,18 +287,20 @@ const ImportPage = ({ userId }) => {
       {isDeleteModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3 max-w-md">
-            <h2 className="text-2xl font-semibold mb-4">Confirm Delete</h2>
+            <h2 className="text-2xl font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Confirm Delete</h2>
             <p>Are you sure you want to delete the selected numbers?</p>
             <div className="flex justify-end mt-4">
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
                 className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-bold hover:bg-gray-400 transition duration-300 mr-2"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
                 className="bg-red-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-600 transition duration-300"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Delete
               </button>
@@ -305,7 +313,7 @@ const ImportPage = ({ userId }) => {
       {isAddContactModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3 max-w-md">
-            <h2 className="text-2xl font-semibold mb-4">Add Contact</h2>
+            <h2 className="text-2xl font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Add Contact</h2>
             <input
               type="text"
               placeholder="Name"
@@ -324,12 +332,14 @@ const ImportPage = ({ userId }) => {
               <button
                 onClick={() => setIsAddContactModalOpen(false)}
                 className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-bold hover:bg-gray-400 transition duration-300 mr-2"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Cancel
               </button>
               <button
                 onClick={handleAddContact}
                 className="bg-green-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-green-600 transition duration-300"
+                style={{fontFamily: "LeagueSpartan, sans-serif"}}
               >
                 Add
               </button>
@@ -349,26 +359,27 @@ const ImportPage = ({ userId }) => {
                 checked={paginatedNumbers.length > 0 && selectedNumbers.size === paginatedNumbers.length}
               />
             </th>
-            <th className="border border-gray-300 p-2">Name</th>
-            <th className="border border-gray-300 p-2">
+            <th className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Name</th>
+            <th className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
               Phone ({totalNumbers})
             </th>
-            <th className="border border-gray-300 p-2">Date Added</th>
+            <th className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Date Added</th>
           </tr>
         </thead>
         <tbody>
           {paginatedNumbers.map((number) => (
-            <tr key={number.phone} className="hover:bg-gray-100">
-              <td className="border border-gray-300 p-2">
+            <tr key={number.phone} className="hover:bg-gray-100" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
+              <td className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
                 <input
                   type="checkbox"
                   checked={selectedNumbers.has(number.phone)}
                   onChange={() => handleSelect(number.phone)}
+                  style={{fontFamily: "LeagueSpartan, sans-serif"}}
                 />
               </td>
-              <td className="border border-gray-300 p-2">{number.name}</td>
-              <td className="border border-gray-300 p-2">{number.phone}</td>
-              <td className="border border-gray-300 p-2">{number.dateAdded}</td>
+              <td className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{number.name}</td>
+              <td className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{number.phone}</td>
+              <td className="border border-gray-300 p-2" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{number.dateAdded}</td>
             </tr>
           ))}
         </tbody>
@@ -383,7 +394,7 @@ const ImportPage = ({ userId }) => {
         >
           Previous
         </button>
-        <span className="self-center">Page {currentPage}</span>
+        <span className="self-center" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Page {currentPage}</span>
         <button
           onClick={handleNextPage}
           disabled={(currentPage * rowsPerPage) >= totalNumbers}

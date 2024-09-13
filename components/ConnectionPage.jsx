@@ -84,10 +84,10 @@ const ConnectionPage = ({ userId }) => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Connection Settings</h2>
+      <h2 className="text-xl font-semibold mb-4" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:25}}>Connection Settings</h2>
       <form>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Access Token</label>
+          <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Access Token</label>
           <input
             type="text"
             value={accessToken}
@@ -96,7 +96,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Verify Token</label>
+          <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Verify Token</label>
           <input
             type="text"
             value={verifyToken}
@@ -105,7 +105,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Phone Number ID</label>
+          <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Phone Number ID</label>
           <input
             type="text"
             value={phoneNumberId}
@@ -114,7 +114,7 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Business Phone Number ID</label>
+          <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Business Phone Number ID</label>
           <input
             type="text"
             value={businessPhoneNumberId}
@@ -123,12 +123,13 @@ const ConnectionPage = ({ userId }) => {
           />
         </div>
         <div className="mb-4 relative flex items-center">
-          <label className="block text-sm font-medium text-gray-700">Webhook URL</label>
+          <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Webhook URL</label>
           <input
             type="text"
             value={webhookUrl}
             readOnly
             className="mt-1 block w-full p-2 border rounded-md bg-gray-100 cursor-not-allowed pr-12"
+            style={{fontFamily: "LeagueSpartan, sans-serif"}}
           />
           <FaCopy
             onClick={copyToClipboard}
@@ -140,6 +141,7 @@ const ConnectionPage = ({ userId }) => {
           type="button"
           onClick={handleSave}
           className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         >
           Save
         </button>

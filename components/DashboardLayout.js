@@ -759,7 +759,7 @@ import Link from "next/link";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
+import { FiSettings, FiMessageSquare } from "react-icons/fi";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import Cookies from "js-cookie";
@@ -847,18 +847,26 @@ const DashboardLayout = ({ children }) => {
     <div className="flex h-screen overflow-hidden font-sans bg-gray-50">
       {/* Sidebar */}
       <div
-        className={`sidebar bg-white text-blue-500 w-72 fixed top-0 h-full transition-transform transform ${
+        className={`sidebar bg-white text-black w-72 fixed top-0 h-full transition-transform duration-300 ease-in-out transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 z-50 shadow-2xl flex flex-col`}
       >
-        <div className="p-6 border-b flex items-center space-x-4">
+      <div className="p-5 border-b flex items-center justify-between">
+        {/* Left Section */}
+        <div className="flex items-center">
           <FaUserCircle className="text-4xl" />
-          <h2 className="text-2xl font-semibold truncate">{username}</h2>
+          <h2 className="text-2xl font-semibold truncate ml-4">{username}</h2>
+        </div>
+        
+        {/* Right Section */}
+        <div className="flex items-center">
           <IoClose
             onClick={toggleSidebar}
-            className="md:hidden text-blue-500 text-3xl cursor-pointer ml-auto"
+            className="md:hidden text-black text-3xl cursor-pointer"
           />
         </div>
+      </div>
+
         <nav className="flex-1 p-6">
           <ul className="space-y-4">
             {[
@@ -870,12 +878,17 @@ const DashboardLayout = ({ children }) => {
             ].map((item) => (
               <li key={item.label}>
                 <button
-                  onClick={() => handleLinkClick(item.href.split("/").pop())}
+                  onClick={() => {
+                    handleLinkClick(item.href.split("/").pop()) 
+                    toggleSidebar()
+                  }
+                  }
                   className={`block pl-4 pr-4 py-3 rounded-lg transition-transform ${
                     activeSection === item.href.split("/").pop()
-                      ? "bg-blue-500 text-white"
-                      : "bg-white text-blue-500 hover:bg-blue-100"
+                      ? "bg-black text-white"
+                      : "bg-white text-white-500 hover:bg-gray-200"
                   } flex items-center w-full text-left`}
+                  style={{fontFamily: "LeagueSpartan, sans-serif"}}
                 >
                   <i className={`fa-solid ${item.icon} text-xl mr-3`}></i>
                   {item.label}
@@ -888,7 +901,8 @@ const DashboardLayout = ({ children }) => {
         <div className="p-6 border-t mt-auto">
           <button
             onClick={handleLogout}
-            className="bg-blue-600 text-white w-full p-3 rounded-lg hover:bg-blue-700 transition"
+            className="bg-black text-white w-full p-3 rounded-lg hover:bg-gray-800 transition"
+            style={{fontFamily: "LeagueSpartan, sans-serif"}}
           >
             Logout
           </button>
@@ -897,21 +911,34 @@ const DashboardLayout = ({ children }) => {
 
       {/* Header */}
       <div className="flex-1 flex flex-col">
-        <div className="w-full bg-white text-blue-600 shadow-md p-6 fixed top-0 md:ml-72 z-40 flex items-center justify-between">
+        <div className="w-full bg-white text-black shadow-md p-6 fixed top-0  flex items-center justify-between">
           <div className="flex items-center">
             <div className="md:hidden">
               <HiMenu
                 onClick={toggleSidebar}
-                className="text-blue-600 text-3xl cursor-pointer"
+                className="text-black text-3xl cursor-pointer"
               />
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <FaUserCircle className="text-3xl cursor-pointer" />
-            <FiSettings className="text-3xl cursor-pointer" />
+            <button
+              onClick={() => {
+              handleLinkClick('notification')}}>
+              <FiMessageSquare className="text-3xl cursor-pointer" />
+            </button>
+            <button
+              onClick={() => {
+              handleLinkClick('user_account')}}>
+              <FaUserCircle className="text-3xl cursor-pointer" />
+            </button>
+            <button
+              onClick={() => {
+              handleLinkClick('settings')}}>
+              <FiSettings className="text-3xl cursor-pointer" />
+            </button>
+            
           </div>
         </div>
-
         {/* Main Content Area */}
         <main className="flex-1 p-6 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
           {children}

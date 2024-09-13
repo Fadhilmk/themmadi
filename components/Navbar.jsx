@@ -369,11 +369,11 @@ const Navbar = () => {
 
                     {/* Conditionally Render Mobile Get Started/Dashboard Button */}
                     {isLoggedIn ? (
-                        <button onClick={redirectToDashboard} className="text-black hover:text-white no-underline pb-4 bg-blue-400 py-2 px-4 rounded-lg flex items-center justify-center">
+                        <button onClick={redirectToDashboard} className="text-black hover:text-white no-underline bg-blue-400 py-2 px-4 rounded-lg flex items-center justify-center">
                             Dashboard
                         </button>
                     ) : (
-                        <Link href="/signup" className="text-black hover:text-white no-underline pb-4 bg-blue-400 py-2 px-4 rounded-lg flex items-center justify-center">
+                        <Link href="/signup" className="text-black hover:text-white no-underline bg-blue-400 py-2 px-4 rounded-lg flex items-center justify-center">
                             Get Started
                         </Link>
                     )}

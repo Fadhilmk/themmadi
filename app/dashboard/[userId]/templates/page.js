@@ -464,33 +464,23 @@ const TemplatesPage = () => {
   if (loading) return <Preloader />;
 
   return (
-    <div className="container mx-auto p-4">
+    <div>
       {/* Fixed Category Bar */}
-      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} justify-between bg-blue-500 text-white p-2 fixed top-0 left-0 w-full z-10`}>
-        <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center gap-5`}>
-          <button
+      <div className={`flex ${isMobile ? 'flex-row' : 'flex-row'} justify-between bg-blue-500 rounded-lg text-white p-6 mb-4 w-full z-10 sticky top-1`}>
+        <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center gap-5 ${isMobile ? 'ml-0':'ml-6'}`}>
+          {!isMobile && (
+            <button
             className={`text-lg font-semibold ${category === 'All' ? 'underline' : ''}`}
             onClick={() => handleCategoryClick('All')}
-          >
-            All
-          </button>
-          {isMobile && (
-            <select
-              className="ml-2 bg-blue-600 text-white p-1 rounded"
-              value={category}
-              onChange={(e) => handleCategoryClick(e.target.value)}
             >
-              <option value="All">All</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Utility">Utility</option>
-              <option value="Authentication">Authentication</option>
-            </select>
+            All
+            </button>
           )}
           {!isMobile && (
             ['Marketing', 'Utility', 'Authentication'].map((cat) => (
               <button
                 key={cat}
-                className={`text-lg font-semibold ${category === cat ? 'underline' : ''}`}
+                className={`text-lg font-semibold ml-8 ${category === cat ? 'underline' : ''}`}
                 onClick={() => handleCategoryClick(cat)}
               >
                 {cat}
@@ -505,13 +495,25 @@ const TemplatesPage = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+        {isMobile && (
+          <select
+            className="ml-2 mt-2  bg-blue-600 text-white p-1 rounded w-14 h-10"
+            value={category}
+            onChange={(e) => handleCategoryClick(e.target.value)}
+          >
+            <option value="All">All</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Utility">Utility</option>
+            <option value="Authentication">Authentication</option>
+          </select>
+      )}
       </div>
 
-      <div className="pt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="pt-4 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {filteredTemplates.map(template => (
           <div
             key={template.id}
-            className="template-card w-full lg:w-70 mx-auto rounded-lg shadow hover:shadow-md p-4 bg-white cursor-pointer"
+            className="template-card w-full lg:w-70 mx-auto rounded-lg shadow hover:shadow-md p-2 bg-grey-900 cursor-pointer"
             style={{
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1)",
               transition: "box-shadow 0.3s ease-in-out",
@@ -520,12 +522,14 @@ const TemplatesPage = () => {
             onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 10px 15px rgba(0, 0, 0, 0.2), 0 20px 25px rgba(0, 0, 0, 0.1)"}
             onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1)"}
           >
+              
             <div
-              className="w-full bg-white p-4 rounded-lg shadow-md"
+              className="w-full p-4 rounded-lg shadow-md"
               style={{
                 backgroundImage: 'url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png")',
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                minHeight:450
               }}
             >
               {/* Template Name */}
@@ -545,11 +549,11 @@ const TemplatesPage = () => {
               </div>
 
               <div
-                className="p-1"
+                className="p-1 rounded-lg"
                 style={{
                   background: "white",
-                  borderRadius: "10px",
                   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+
                 }}
               >
                 {template.components.map((component, index) => (

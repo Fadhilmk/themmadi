@@ -130,36 +130,37 @@ const AnalyticsDashboard = () => {
     .toFixed(2);
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">WhatsApp Analytics Dashboard</h1>
+    <div className="container mx-auto p-1">
+      <h1 className="text-3xl font-bold mb-6 text-center py-2" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:30}}>WhatsApp Analytics Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Conversation Analytics Card */}
-        <div className="bg-blue-500 text-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4">Conversation Analytics</h2>
-          <div className="grid grid-cols-2 gap-4">
+        <div className="bg-gradient-to-r from-blue-300 via-cyan-500 to-blue-500 p-6 rounded-2xl shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-center" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Conversation Analytics</h2>
+          <div className="grid grid-cols-2 gap-4 pt-6">
             <div>
-              <label className="block mb-1 text-sm">Start Date:</label>
+              <label className="block mb-1 text-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Start Date:</label>
               <input
                 type="datetime-local"
                 value={conversationStartDate}
                 onChange={(e) => setConversationStartDate(e.target.value)}
-                className="text-black p-2 rounded w-full"
+                className="text-black p-2 rounded-lg w-full"
               />
             </div>
             <div>
-              <label className="block mb-1 text-sm">End Date:</label>
+              <label className="block mb-1 text-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>End Date:</label>
               <input
                 type="datetime-local"
                 value={conversationEndDate}
                 onChange={(e) => setConversationEndDate(e.target.value)}
-                className="text-black p-2 rounded w-full"
+                className="text-black p-2 rounded-lg w-full"
               />
             </div>
           </div>
           <div className="flex space-x-2 mt-4">
             <button
               onClick={fetchConversationAnalyticsData}
-              className="bg-white text-blue-500 py-2 px-4 rounded-lg font-bold hover:bg-green-200 transition duration-300"
+              className="bg-white text-blue-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-200 transition duration-300"
+              style={{fontFamily: "LeagueSpartan, sans-serif"}}
             >
               Apply Filters
             </button>
@@ -168,19 +169,20 @@ const AnalyticsDashboard = () => {
                 setConversationStartDate(getLastMonthDateTime());
                 setConversationEndDate(getCurrentDateTime());
               }}
-              className="bg-gray-200 text-blue-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-300 transition duration-300"
+              className="bg-white text-blue-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-300 transition duration-300"
+              style={{fontFamily: "LeagueSpartan, sans-serif"}}
             >
               Set to Current
             </button>
           </div>
           <div className="mt-6">
             <div className="mb-4">
-              <p className="text-lg font-bold">Total Conversations:</p>
-              <p className="text-3xl font-bold text-shadow-sm">{totalConversations}</p>
+              <p className="text-lg font-bold" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Total Conversations:</p>
+              <p className="text-3xl font-bold text-shadow-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{totalConversations}</p>
             </div>
             <div className="mb-4">
-              <p className="text-lg font-bold">Total Cost:</p>
-              <p className="text-3xl font-bold text-yellow-300 text-shadow-sm">
+              <p className="text-lg font-bold" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Total Cost:</p>
+              <p className="text-3xl font-bold text-yellow-300 text-shadow-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
                 ${totalCost}
               </p>
             </div>
@@ -188,32 +190,33 @@ const AnalyticsDashboard = () => {
         </div>
 
         {/* Message Analytics Card with Modern UI */}
-        <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4">Message Analytics</h2>
-          <div className="grid grid-cols-2 gap-4">
+        <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white p-6 rounded-2xl shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-center" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Message Analytics</h2>
+          <div className="grid grid-cols-2 pt-6 gap-4">
             <div>
-              <label className="block mb-1 text-sm">Start Date:</label>
+              <label className="block mb-1 text-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Start Date:</label>
               <input
                 type="datetime-local"
                 value={messageStartDate}
                 onChange={(e) => setMessageStartDate(e.target.value)}
-                className="text-black p-2 rounded w-full"
+                className="text-black p-2 rounded-lg w-full"
               />
             </div>
             <div>
-              <label className="block mb-1 text-sm">End Date:</label>
+              <label className="block mb-1 text-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>End Date:</label>
               <input
                 type="datetime-local"
                 value={messageEndDate}
                 onChange={(e) => setMessageEndDate(e.target.value)}
-                className="text-black p-2 rounded w-full"
+                className="text-black p-2 rounded-lg w-full"
               />
             </div>
           </div>
           <div className="flex space-x-2 mt-4">
             <button
               onClick={fetchMessageAnalyticsData}
-              className="bg-white text-pink-500 py-2 px-4 rounded-lg font-bold hover:bg-blue-200 transition duration-300"
+              className="bg-white text-pink-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-200 transition duration-300"
+              style={{fontFamily: "LeagueSpartan, sans-serif"}}
             >
               Apply Filters
             </button>
@@ -222,19 +225,20 @@ const AnalyticsDashboard = () => {
                 setMessageStartDate(getLastMonthDateTime());
                 setMessageEndDate(getCurrentDateTime());
               }}
-              className="bg-gray-200 text-pink-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-300 transition duration-300"
+              className="bg-white text-pink-500 py-2 px-4 rounded-lg font-bold hover:bg-gray-300 transition duration-300"
+              style={{fontFamily: "LeagueSpartan, sans-serif"}}
             >
               Set to Current
             </button>
           </div>
           <div className="mt-6">
             <div className="mb-4">
-              <p className="text-lg font-bold">Total Messages Sent:</p>
-              <p className="text-3xl font-bold text-shadow-sm">{totalSent}</p>
+              <p className="text-lg font-bold" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Total Messages Sent:</p>
+              <p className="text-3xl font-bold text-shadow-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{totalSent}</p>
             </div>
             <div className="mb-4">
-              <p className="text-lg font-bold">Total Messages Delivered:</p>
-              <p className="text-3xl font-bold text-shadow-sm">
+              <p className="text-lg font-bold" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Total Messages Delivered:</p>
+              <p className="text-3xl font-bold text-shadow-sm" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
                 {totalDelivered}
               </p>
             </div>

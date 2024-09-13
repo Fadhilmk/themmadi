@@ -35,8 +35,10 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="p-8 md:p-20 text-center" id="features">
-        <div className="bg-blue-100 rounded-lg shadow-lg px-8 py-6">
-          <h2 className="text-4xl font-bold  text-blue-600" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Features</h2>
+        <div className="bg-blue-100 rounded-lg shadow-lg px-4 py-4 md:px-8 md:py-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-blue-600" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+            Features
+          </h2>
         </div>
 
         <div className="mt-12 space-y-16">
