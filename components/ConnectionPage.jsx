@@ -122,7 +122,7 @@ const ConnectionPage = ({ userId }) => {
             className="mt-1 block w-full p-2 border rounded-md"
           />
         </div>
-        <div className="mb-4 relative flex items-center">
+        <div className="mb-4 relative items-center">
           <label className="block text-sm font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Webhook URL</label>
           <input
             type="text"
@@ -133,7 +133,7 @@ const ConnectionPage = ({ userId }) => {
           />
           <FaCopy
             onClick={copyToClipboard}
-            className="absolute right-2 top-4 text-gray-500 cursor-pointer"
+            className="absolute right-2 top-8 text-gray-500 cursor-pointer"
             size={20}
           />
         </div>

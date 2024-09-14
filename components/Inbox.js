@@ -323,31 +323,30 @@ export default function Inbox({ userId }) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen rounded-2xl">
-            <header className="relative w-full h-15 md:h-24 bg-blue-500 flex items-center justify-center rounded-2xl">
+        <div className="flex flex-col min-h-screen">
+            <header className="relative w-full h-24 bg-blue-500 flex items-center justify-center rounded-lg">
                 <div className="relative z-10 flex items-center justify-center p-4">
-                    <h1 className="text-2xl md:text-4xl font-bold text-white" style={{fontFamily: "LeagueSpartanBold, sans-serif"}}>Inbox</h1>
+                    <h1 className="text-4xl font-bold text-white">Inbox</h1>
                 </div>
             </header>
-            <main className="flex-1 py-6 px-3">
+            <main className="flex-1 pt-4">
                 <div className="container mx-auto max-w-6xl">
                     <div className="bg-white shadow-md rounded-lg divide-y divide-gray-200 mb-4">
                         <div className="flex border-b border-gray-200">
                             <button
                                 onClick={() => setActiveTab('received')}
-                                className={`flex-1 py-2 text-center relative ${activeTab === 'received' ? 'bg-blue-500 text-white rounded-lg' : 'text-blue-500'}`}
+                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'received' ? 'bg-blue-500 text-white' : 'text-blue-500'}`}
                             >
-                                <div className="flex items-center justify-center text-sm sm:text-lg">
-                                    <span style={{fontFamily: "LeagueSpartan, sans-serif"}}>Received Messages</span>
+                                <div className="flex items-center justify-center">
+                                    <span>Received Messages</span>
                                     {hasReceivedMessages && (
-                                        <span className="ml-2 w-2 h-2 bg-green-500 rounded-full"></span>
+                                        <span className="ml-2 w-3 h-3 bg-green-500 rounded-full"></span>
                                     )}
                                 </div>
                             </button>
                             <button
                                 onClick={() => setActiveTab('conversations')}
-                                className={`flex-1 py-2 text-center ${activeTab === 'conversations' ? 'bg-blue-500 text-white rounded-lg' : 'text-blue-500'} text-sm sm:text-lg`}
-                                style={{fontFamily: "LeagueSpartan, sans-serif"}}
+                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'conversations' ? 'bg-blue-500 text-white' : 'text-blue-500'}`}
                             >
                                 Conversations
                             </button>
@@ -379,7 +378,7 @@ export default function Inbox({ userId }) {
                                     </Link>
                                 ))
                             ) : (
-                                <p className="text-gray-600 text-center py-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>No phone numbers available.</p>
+                                <p className="text-gray-600 text-center py-4">No phone numbers available.</p>
                             )}
                         </div>
                     ) : (
@@ -406,7 +405,7 @@ export default function Inbox({ userId }) {
                                     </Link>
                                 ))
                             ) : (
-                                <p className="text-gray-600 text-center py-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>No conversations available.</p>
+                                <p className="text-gray-600 text-center py-4">No conversations available.</p>
                             )}
                         </div>
                     )}

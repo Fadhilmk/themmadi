@@ -1062,8 +1062,8 @@ const TemplateDetailsPage = () => {
 
   const renderAnalyticsTable = (analyticsData) => {
     return (
-      <div className="overflow-x-auto">
-        <table className="table-auto overflow-scroll w-full text-center">
+      <div className="overflow-x-auto table-1">
+        <table className="table-auto overflow-scroll w-full text-center border border-gray-300">
           <thead className="bg-gray-100 text-gray-600">
             <tr>
               <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
@@ -1111,7 +1111,7 @@ const TemplateDetailsPage = () => {
             </tr>
           </thead>
           
-          <tbody className="text-gray-700">
+          <tbody className="text-gray-700 bg-white">
             {analyticsData.data_points
               .filter((point) => point.sent > 0 || point.delivered > 0)
               .map((point, index) => {
@@ -1793,31 +1793,36 @@ const TemplateDetailsPage = () => {
           />
         )}
       </div>
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto">
         <h2 className="text-xl font-bold mb-4">Template Analytics</h2>
-        <div className="mb-4">
-          <label htmlFor="startDate" className="mr-2">
-            Start Date:
-          </label>
-          <input
-            type="date"
-            id="startDate"
-            name="startDate"
-            value={new Date(startDate * 1000).toISOString().split("T")[0]}
-            onChange={handleDateChange}
-            className="border px-2 py-1 rounded"
-          />
-          <label htmlFor="endDate" className="ml-4 mr-2">
-            End Date:
-          </label>
-          <input
-            type="date"
-            id="endDate"
-            name="endDate"
-            value={new Date(endDate * 1000).toISOString().split("T")[0]}
-            onChange={handleDateChange}
-            className="border px-2 py-1 rounded"
-          />
+        <div className="mb-4 flex">
+          <div>
+            <label htmlFor="startDate" className="mr-2">
+              Start Date:
+            </label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              value={new Date(startDate * 1000).toISOString().split("T")[0]}
+              onChange={handleDateChange}
+              className="border px-2 py-1 rounded"
+            />
+          </div>
+          <div className="ml-0 mb:ml-8">
+            <label htmlFor="endDate" className="ml-2 mr-2">
+              End Date:
+            </label>
+            <input
+              type="date"
+              id="endDate"
+              name="endDate"
+              value={new Date(endDate * 1000).toISOString().split("T")[0]}
+              onChange={handleDateChange}
+              className="border px-2 py-1 rounded"
+            />
+          </div>
+
         </div>
         {analyticsData ? (
           renderAnalyticsTable(analyticsData)
@@ -1826,7 +1831,7 @@ const TemplateDetailsPage = () => {
         )}
       </div>
 
-      <footer className="mt-8">
+      <footer className="mt-8 table-2">
         <h2 className="text-lg font-semibold mb-4">Campaign History</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">

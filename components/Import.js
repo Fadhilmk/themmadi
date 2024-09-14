@@ -391,6 +391,7 @@ const ImportPage = ({ userId }) => {
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
           className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-bold hover:bg-gray-400 transition duration-300"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         >
           Previous
         </button>
@@ -399,6 +400,7 @@ const ImportPage = ({ userId }) => {
           onClick={handleNextPage}
           disabled={(currentPage * rowsPerPage) >= totalNumbers}
           className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-bold hover:bg-gray-400 transition duration-300"
+          style={{fontFamily: "LeagueSpartan, sans-serif"}}
         >
           Next
         </button>
