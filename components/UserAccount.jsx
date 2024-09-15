@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserAccount = ({userId}) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-6">
       {/* Profile Section */}
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
         <div className="flex items-center">
@@ -12,7 +12,7 @@ const UserAccount = ({userId}) => {
             alt="User Avatar"
           />
           <div>
-            <h2 className="text-2xl font-bold" style={{fontFamily: "LeagueSpartanbold, sans-serif"}}>John Doe</h2>
+            <h2 className="text-2xl font-bold" style={{fontFamily: "LeagueSpartanBold, sans-serif"}}>John Doe</h2>
             <p className="text-gray-600" style={{fontFamily: "LeagueSpartan, sans-serif"}}>johndoe@example.com</p>
             <p className="text-gray-500" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Member since January 2023</p>
           </div>
@@ -21,7 +21,7 @@ const UserAccount = ({userId}) => {
 
       {/* Account Information Section */}
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
-        <h3 className="text-xl font-semibold mb-4" style={{fontFamily: "LeagueSpartanbold, sans-serif"}}>Account Information</h3>
+        <h3 className="text-xl font-semibold mb-4" style={{fontFamily: "LeagueSpartanBold, sans-serif"}}>Account Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className="text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}><span className="font-semibold" >Full Name:</span> John Doe</p>

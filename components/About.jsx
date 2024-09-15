@@ -20,7 +20,7 @@ const AboutUs = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-center">
           <div className="lg:w-1/2 p-8">
-            <p className="text-lg text-gray-700 leading-snug" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+            <p className="text-lg text-gray-700 leading-snug">
               At MaaDiy we&apos;re all about making your marketing journey exciting and effective.
               Our platform is designed to help you connect with your audience through direct, personalized messaging that truly resonates.
             </p>

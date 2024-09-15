@@ -3,9 +3,9 @@ import { CheckIcon } from "@heroicons/react/24/solid"; // Correct import for Her
 
 export default function PricingCard() {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4">
+    <div className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4" id="card">
       {/* Pricing Heading */}
-      <h1 className="text-2xl md:text-4xl  font-bold bg-blue-200 text-blue-600 py-4 px-24 rounded-lg mb-8 shadow-md">
+      <h1 className="text-2xl md:text-4xl  font-bold bg-blue-200 text-blue-600 py-4 px-2 rounded-lg mb-8 shadow-md">
         PRICING
       </h1>
 

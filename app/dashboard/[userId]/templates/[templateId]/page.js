@@ -966,8 +966,10 @@ const fetchTemplateAnalytics = async (templateId, startDate, endDate) => {
     return null;
   }
 };
+
 const TemplateDetailsPage = () => {
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState(false);
   const { templateId, userId } = useParams();
   const [templateDetails, setTemplateDetails] = useState(null);
   const [error, setError] = useState(null);
@@ -1037,6 +1039,18 @@ const TemplateDetailsPage = () => {
     }
   }, [templateId, startDate, endDate]);
 
+  useEffect(() => {
+    // Check for mobile view
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleDateChange = (e) => {
     const { name, value } = e.target;
     const selectedDate = new Date(value);
@@ -1062,7 +1076,7 @@ const TemplateDetailsPage = () => {
 
   const renderAnalyticsTable = (analyticsData) => {
     return (
-      <div className="overflow-x-auto table-1">
+      <div className="overflow-x-auto table-1" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
         <table className="table-auto overflow-scroll w-full text-center border border-gray-300">
           <thead className="bg-gray-100 text-gray-600">
             <tr>
@@ -1486,7 +1500,7 @@ const TemplateDetailsPage = () => {
   }
 
   return (
-    <div className="space-y-6" style={{width:'100%'}}>
+    <div className="space-y-6 p-6" style={{width:'100%' ,fontFamily: "LeagueSpartan, sans-serif"}}>
       {/* Header Section */}
       <div className="bg-blue-500 p-4 rounded-lg shadow-md text-white">
         <h1 className="text-2xl font-bold mb-2 text-white">
@@ -1503,7 +1517,7 @@ const TemplateDetailsPage = () => {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row-reverse lg:space-x-reverse lg:space-x-6 space-y-6 lg:space-y-0">
+      <div className="flex flex-col lg:flex-row-reverse lg:space-x-reverse lg:space-x-6 space-y-6 lg:space-y-0" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
         {/* Template Details Section - Now on the Right */}
         <div className="lg:w-2/5 bg-white p-4 rounded-lg shadow-md"
           style={{
@@ -1722,7 +1736,8 @@ const TemplateDetailsPage = () => {
 
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-              <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg">
+              
+              <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 max-w-lg" style={isMobile ? {} : { position: "absolute", left: "60%", transform: "translateX(-50%)" }}>
                 <h2 className="text-xl font-bold mb-4">Select Phone Numbers</h2>
 
                 {/* Set a fixed height and make it scrollable */}
@@ -1832,10 +1847,10 @@ const TemplateDetailsPage = () => {
       </div>
 
       <footer className="mt-8 table-2">
-        <h2 className="text-lg font-semibold mb-4">Campaign History</h2>
+        <h2 className="text-lg font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Campaign History</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
-          <thead className="bg-gray-100 border-b border-gray-300">
+          <thead className="bg-gray-100 border-b border-gray-300" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
               <tr>
                 <th className="p-3 text-left text-gray-700">Template Name</th>
                 <th className="p-3 text-left text-gray-700">
@@ -1844,7 +1859,7 @@ const TemplateDetailsPage = () => {
                 <th className="p-3 text-left text-gray-700">Date</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{fontFamily: "LeagueSpartan, sans-serif"}}>
               {campaigns.map((campaign, index) => (
                 <tr
                   key={index}

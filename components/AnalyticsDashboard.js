@@ -130,8 +130,8 @@ const AnalyticsDashboard = () => {
     .toFixed(2);
 
   return (
-    <div className="container mx-auto p-1">
-      <h1 className="text-3xl font-bold mb-6 text-center py-2" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:30}}>WhatsApp Analytics Dashboard</h1>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center pb-2" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:30}}>WhatsApp Analytics Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Conversation Analytics Card */}
         <div className="bg-gradient-to-r from-blue-300 via-cyan-500 to-blue-500 p-6 rounded-2xl shadow-md">

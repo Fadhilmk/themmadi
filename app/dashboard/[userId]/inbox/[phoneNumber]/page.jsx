@@ -577,8 +577,8 @@ export default function Inbox({ params }) {
 
   return (
     <div
-      className="flex flex-col h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('/walpaper2.jpg')` }}
+      className="flex flex-col bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url('/walpaper2.jpg')`,height: 'calc(99vh - 4rem)', marginTop: -20, fontFamily: "LeagueSpartan, sans-serif"}}
     >
       <header className="bg-blue-500 text-white p-4 flex items-center z-10">
         <button
@@ -606,18 +606,11 @@ export default function Inbox({ params }) {
         <h1 className="text-2xl font-bold ml-4">{userName}</h1>
       </header>
       <main className="flex-1 p-4 overflow-auto">
-        <ul className="inbox">
+        <ul className="inbox space-y-2">
           {messages.map((msg) => (
-            <li
-              key={msg.id}
-              className={`message mb-2 p-2 max-w-xs ${
-                msg.read
-                  ? "sent bg-green-400 text-left text-white"
-                  : "received bg-gray-400 text-left text-white"
-              }`}
-            >
-              <p>{msg.messageBody}</p>
-              <span className="text-gray-200 text-sm">
+            <li key={msg.id} className={`mb-2 p-3 max-w-xs ${ msg.read ? "sent bg-green-400 text-left text-white rounded-t-3xl rounded-bl-3xl" : "received rounded-t-3xl rounded-br-3xl bg-gray-400 text-left text-white"  } shadow-md`}>
+                <p className="text-base">{msg.messageBody}</p>
+              <span className="text-gray-200 text-xs block mt-1">
                 {formatTimestamp(msg.sentAt)}
               </span>
             </li>
@@ -629,17 +622,22 @@ export default function Inbox({ params }) {
         <textarea
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          className="w-full p-1 pl-5 pt-4 border border-gray-300 rounded-full mb-2 resize-none"
+          className="w-full pl-5 border border-gray-300 rounded-full resize-none"
           placeholder="Message"
           style={{ paddingRight: "48px" }}
         ></textarea>
-        <button
-          onClick={handleSendMessage}
-          className="bg-green-500 text-white pt-3 pb-2 pl-3 pr-3 rounded-full ml-2"
-        >
-          <span className="material-icons-round">send</span>
-        </button>
+        <div>
+          <button
+            onClick={handleSendMessage}
+            className="bg-green-500 text-white ml-2"
+          >
+            <span className="material-icons-round ml-1">send</span>
+          </button>
+        </div>
       </footer>
     </div>
   );
 }
+
+
+

@@ -2,9 +2,9 @@ import React from 'react'
 
 const Settings = ({userId}) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-6">
       {/* Page Title */}
-      <h1 className="text-3xl font-bold mb-6 text-center" style={{fontFamily: "LeagueSpartanbold, sans-serif"}}>Account Settings</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center" style={{fontFamily: "LeagueSpartanBold, sans-serif"}}>Account Settings</h1>
 
       {/* Account Settings Section */}
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6">

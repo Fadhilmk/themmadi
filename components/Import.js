@@ -199,7 +199,7 @@ const ImportPage = ({ userId }) => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:25}}>Import Phone Numbers</h1>
 
       <div className="flex flex-col md:flex-row md:items-center mb-4 gap-4">

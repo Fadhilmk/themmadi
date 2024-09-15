@@ -27,13 +27,15 @@ html {
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'LeagueSpartanBold';
   src: url('/fonts/LeagueSpartan-Bold.ttf') format('truetype');
 }
+
 body {
   font-family: 'LeagueSpartan', sans-serif;
-  font-family: 'LeagueSpartanBold', sans-serif;
+  /* font-family: 'LeagueSpartanBold', sans-serif; */
 
 }
 

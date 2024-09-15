@@ -464,9 +464,9 @@ const TemplatesPage = () => {
   if (loading) return <Preloader />;
 
   return (
-    <div>
+    <div className='p-6' style={{fontFamily: "LeagueSpartan, sans-serif"}}>
       {/* Fixed Category Bar */}
-      <div className={`flex ${isMobile ? 'flex-row' : 'flex-row'} justify-between bg-blue-500 rounded-lg text-white p-6 mb-4 w-full z-10 sticky top-1`}>
+      <div className={`flex ${isMobile ? 'flex-row' : 'flex-row'} justify-between bg-blue-500 rounded-lg text-white p-6 w-full z-10 sticky top-1`}>
         <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center gap-5 ${isMobile ? 'ml-0':'ml-6'}`}>
           {!isMobile && (
             <button

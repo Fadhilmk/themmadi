@@ -313,17 +313,17 @@ const Navbar = () => {
                     {/* Right Section for Nav Links */}
                     <div className='flex' style={{width:'50%'}}>
                         <div className="hidden md:flex items-center space-x-10 ml-auto">
-                            <Link href="/" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
-                            <Link href="/pricing" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
-                            <Link href="/#about" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
-                            <Link href="/#features" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
+                            <Link href="/" className="text-black hover:text-blue-500 no-underline" >Home</Link>
+                            <Link href="/#card" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
+                            <Link href="/#about" className="text-black hover:text-blue-500 no-underline" >About Us</Link>
+                            <Link href="/#features" className="text-black hover:text-blue-500 no-underline" >Features</Link>
                         </div>
                         <div className="hidden md:flex items-center space-x-4 ml-auto">
                             {/* Conditionally Render Login/Logout Button */}
                             {isLoggedIn ? (
-                                <button onClick={handleLogout} className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{fontFamily: 'LeagueSpartan, sans-serif', borderWidth:1}}>Logout</button>
+                                <button onClick={handleLogout} className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{borderWidth:1}}>Logout</button>
                             ) : (
-                                <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{fontFamily: 'LeagueSpartan, sans-serif', borderWidth:1}}>Login</Link>
+                                <Link href="/login" className="text-black text-sm hover:text-blue-500 no-underline p-2 rounded-lg border-blue-400" style={{borderWidth:1}}>Login</Link>
                             )}
                             
                             {/* Conditionally Render Get Started/Dashboard Button */}

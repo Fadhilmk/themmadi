@@ -6,31 +6,34 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative text-grey-800 text-center flex flex-col justify-center items-center">
-        <video
-          className="w-full h-auto max-h-[calc(100vh-80px)] object-cover"
-          autoPlay
-          muted
-          loop
-        >
-          <source src="/MaadiyHome.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Get Started Button */}
-        <div className="items-center mt-8">
-          <a
-            href="/signup"
-            className="bg-green-400 text-white px-4 py-2 rounded getStart"
-            style={{fontFamily: 'LeagueSpartan, sans-serif'}}
+        <div className="w-full" style={{backgroundColor:'#0470d5'}}>
+          <video
+            className="w-full h-auto max-h-[calc(84vh-80px)] object-contain"
+            autoPlay
+            muted
+            loop
           >
-            Get Started
-          </a>
-
-          {/* No credit card required text */}
-          <p className="mt-4 text-gray-600" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-            * No credit card required for demo
-          </p>
+            <source src="/MaadiyHome.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
+
+
+          {/* Get Started Button */}
+          <div className="items-center mt-4">
+            <a
+              href="/signup"
+              className="bg-green-400 text-white px-4 py-2 rounded getStart"
+              
+            >
+              Get Started
+            </a>
+
+            {/* No credit card required text */}
+            <p className="mt-4 text-gray-600"  >
+              * No credit card required for demo
+            </p>
+          </div>
       </section>
 
       {/* Features Section */}
@@ -54,8 +57,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Send Messages with a Clear Call to Action</h3>
-              <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Send Messages with a Clear Call to Action</h3>
+              <p className="mt-4 text-gray-700"  >
                 Boost customer engagement by sending direct messages that include powerful Calls to Action (CTAs) through our platform. Track the effectiveness of each message with real-time analytics.
               </p>
             </div>
@@ -73,8 +76,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pr-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Track Delivered and Click-Through Rates</h3>
-              <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Track Delivered and Click-Through Rates</h3>
+              <p className="mt-4 text-gray-700"  >
                 With MaaDiy, you can easily monitor the performance of your messages with *Delivered Rate* and *Click-Through Rate* tracking.
               </p>
             </div>
@@ -92,8 +95,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Bulk Upload Contacts via Excel Sheet</h3>
-              <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Bulk Upload Contacts via Excel Sheet</h3>
+              <p className="mt-4 text-gray-700"  >
                 Easily upload an Excel sheet with your customer contact list into MaaDiy and send messages to all your contacts in just a few clicks.
               </p>
             </div>
@@ -109,8 +112,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pr-12 text-left mt-6 lg:mt-0">
-            <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Manage WhatsApp Conversations Directly on Our Platform</h3>
-              <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+            <h3 className="text-2xl font-bold text-gray-900"  >Manage WhatsApp Conversations Directly on Our Platform</h3>
+              <p className="mt-4 text-gray-700"  >
                 Access and manage your WhatsApp conversations directly within MaaDiy to stay organized and improve communication efficiency.
               </p>
             </div>
@@ -127,8 +130,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Analyze Campaign Performance and Optimize for Better ROI</h3>
-              <p className="mt-4 text-gray-700" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Analyze Campaign Performance and Optimize for Better ROI</h3>
+              <p className="mt-4 text-gray-700"  >
                 Track and analyze the performance of your marketing campaigns with detailed metrics to optimize for better ROI.
               </p>
             </div>
@@ -141,14 +144,14 @@ export default function Home() {
             <a
               href="#"
               className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300"
-              style={{fontFamily: 'LeagueSpartan, sans-serif'}}
+               
             >
               Free Trial
             </a>
             <a
               href="#"
               className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300"
-              style={{fontFamily: 'LeagueSpartan, sans-serif'}}
+               
             >
               Get Demo
             </a>

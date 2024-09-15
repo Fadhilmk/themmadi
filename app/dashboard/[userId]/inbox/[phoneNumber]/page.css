@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .message {
     border-radius: 15px;
     padding: 10px;
     margin-bottom: 10px;
-    max-width: 80%;
     word-wrap: break-word;
     position: relative;
   }
@@ -15,11 +14,13 @@
   .sent {
     align-self: flex-end;
     background-color: #4caf50; /* Green */
+    overflow-wrap: break-word;
   }
   
   .received {
     align-self: flex-start;
     background-color: #9e9e9e; /* Gray */
+    overflow-wrap: break-word;
   }
   
   .message p {
@@ -52,4 +53,6 @@
     align-items: center;
     justify-content: center;
   }
+
+  
   

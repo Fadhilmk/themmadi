@@ -83,7 +83,7 @@ const ConnectionPage = ({ userId }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 m-6 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4" style={{fontFamily: "LeagueSpartanBold, sans-serif", fontSize:25}}>Connection Settings</h2>
       <form>
         <div className="mb-4">
