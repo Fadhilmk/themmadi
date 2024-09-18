@@ -1235,7 +1235,7 @@ const DashboardLayout = ({ children }) => {
     let activeSidebarItem = pathname.split('/')[3]; 
     // activeSidebarItem is undefined when its dashboard page
     if(activeSidebarItem !== undefined){
-      setActiveSection(`${pathname.split('/')[3]}`);
+      setActiveSection(activeSidebarItem);
     }
     else{
       setActiveSection("")
