@@ -649,8 +649,9 @@ import {
   setPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie"; // Import js-cookie
-import { auth } from "../firebaseConfig";
+import { auth,db } from "../firebaseConfig";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -661,6 +662,17 @@ const Login = () => {
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState(""); // Email input for password reset
 
   const router = useRouter();
+  
+  const getIpAddress = async () => {
+    try {
+      const response = await fetch("https://api.ipify.org?format=json");
+      const data = await response.json();
+      return data.ip;
+    } catch (error) {
+      console.error("Error fetching IP address:", error);
+      return null;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -677,6 +689,26 @@ const Login = () => {
       await setPersistence(auth, browserSessionPersistence);
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+
+      // Fetch the IP address
+      const ipAddress = await getIpAddress();
+
+      // Save login history to Firebase
+    const loginHistoryRef = doc(db, "users", user.uid);
+    await setDoc(
+      loginHistoryRef,
+      {
+        loginHistory: [
+          {
+            timestamp: new Date(),
+            ip: ipAddress,
+          },
+        ],
+        lastLogin: new Date(),
+        lastLoginIP: ipAddress,
+      },
+      { merge: true } // Use merge to avoid overwriting existing data
+    );
 
       // Get the token and store it in cookies
       const token = await user.getIdToken();

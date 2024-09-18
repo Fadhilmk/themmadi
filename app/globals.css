@@ -27,8 +27,16 @@ html {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'LeagueSpartanBold';
+  src: url('/fonts/LeagueSpartan-Bold.ttf') format('truetype');
+}
+
 body {
   font-family: 'LeagueSpartan', sans-serif;
+  /* font-family: 'LeagueSpartanBold', sans-serif; */
+
 }
 
 
@@ -393,4 +401,47 @@ body {
 
 .parent:hover .card .logo .circle5 {
   transform: translate3d(0, 0, 120px);
+}
+@media (max-width: 550px) { /* Adjust styles for mobile phones */
+  .table-2 {
+    width: 480px;
+  }
+}
+@media (max-width: 500px) { /* Adjust styles for mobile phones */
+  .table-2 {
+    width: 430px;
+  }
+}
+
+@media (max-width: 400px) { /* Adjust styles for mobile phones */
+  .table-2 {
+    width: 330px;
+  }
+}
+@media (max-width: 350px) { /* Adjust styles for mobile phones */
+  .table-2 {
+    width: 280px;
+  }
+}
+
+@media (max-width: 550px) { /* Adjust styles for mobile phones */
+  .table-1 {
+    width: 480px;
+  }
+}
+@media (max-width: 500px) { /* Adjust styles for mobile phones */
+  .table-1 {
+    width: 430px;
+  }
+}
+
+@media (max-width: 400px) { /* Adjust styles for mobile phones */
+  .table-1 {
+    width: 330px;
+  }
+}
+@media (max-width: 350px) { /* Adjust styles for mobile phones */
+  .table-1 {
+    width: 280px;
+  }
 }

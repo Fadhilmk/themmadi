@@ -46,7 +46,7 @@ const Preloader = () => {
   return (
     <div id="preloader" className="fixed inset-0 flex items-center justify-center bg-white z-50 transition-opacity duration-500">
       <video
-        className="w-full h-full max-w-xs max-h-xs md:max-w-md md:max-h-md lg:max-w-lg lg:max-h-lg"
+        className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80"
         src="/ogMadiy.mp4"  // Replace with the actual video path
         autoPlay
         muted
