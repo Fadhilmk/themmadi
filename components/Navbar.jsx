@@ -294,7 +294,7 @@ const Navbar = () => {
     return (
         <>
         {/* Navbar */}
-        <nav className="sticky top-0 z-10 py-4 bg-white border-b-1 shadow-lg">
+        <nav className="sticky top-0 z-10 py-2 bg-white border-b-1 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
                     {/* Left Section for Logo */}
@@ -302,12 +302,12 @@ const Navbar = () => {
                         <Image
                             src="/nav_logo.jpeg"
                             alt="Logo"
-                            width={90}
-                            height={90}
+                            width={80}
+                            height={80}
                             className="object-contain"
                             priority
                         />
-                        <p style={{color:'#2c8ffa', fontSize:35, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
+                        <p style={{color:'#2c8ffa', fontSize:30, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
                     </div>
 
                     {/* Right Section for Nav Links */}

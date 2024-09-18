@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative text-grey-800 text-center flex flex-col justify-center items-center">
         <div className="w-full" style={{backgroundColor:'#0470d5'}}>
           <video
-            className="w-full h-auto max-h-[calc(84vh-80px)] object-contain"
+            className="w-full h-auto max-h-[calc(80vh-80px)] object-contain"
             autoPlay
             muted
             loop

@@ -2,7 +2,6 @@
 
 import React from "react";
 
-
 const CategoryTypeCards = ({
   categoryTotals,
   typeTotals,
