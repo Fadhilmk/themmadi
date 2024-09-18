@@ -825,6 +825,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { MdDelete } from "react-icons/md";
+import Preloader from "@/components/Preloader";
 
 const ImportPage = ({ userId }) => {
   const [numbers, setNumbers] = useState([]);
@@ -846,6 +847,8 @@ const ImportPage = ({ userId }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 50;
 
+  const [dataLoading,setDataLoading] = useState(true);
+
   // Limits
   const trialLimit = 10;
   const realAccountLimit = 5000;
@@ -854,10 +857,12 @@ const ImportPage = ({ userId }) => {
     // fetchAccountStatus();
     const fetchAccountStatus = async () => {
       try {
+        setDataLoading(true);
         const userDocRef = doc(db, "users", userId);
         const userDoc = await getDoc(userDocRef);
   
         if (userDoc.exists()) {
+          setDataLoading(false);
           setIsTrial(userDoc.data().isTrial || false);
         }
   
@@ -1124,6 +1129,10 @@ const ImportPage = ({ userId }) => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  if(dataLoading){
+    return <Preloader />
+  }
 
   return (
     <div className="container mx-auto">
