@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState  } from 'react';
 import Cookies from "js-cookie";
+import Preloader from './Preloader';
 
 const ProtectedRoute = ({ children }) => {
     const router = useRouter();
@@ -17,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
     }, [router]);
 
     if (isAuthenticated === null) {
-        return <div>Loading...</div>;
+        return <div><Preloader /></div>;
     }
 
     return children;
