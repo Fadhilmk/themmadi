@@ -167,7 +167,7 @@ export default function Home() {
       <section className="relative text-grey-800 text-center flex flex-col justify-center items-center">
         <div className="w-full" style={{backgroundColor:'#0470d5'}}>
           <video
-            className="w-full h-auto max-h-[calc(84vh-80px)] object-contain"
+            className="w-full h-auto max-h-[calc(75vh-80px)] object-contain"
             autoPlay
             muted
             loop
@@ -179,25 +179,28 @@ export default function Home() {
 
 
           {/* Get Started Button */}
-          <div className="items-center mt-4">
+          <div className="items-center mt-3">
             <a
               href="/signup"
-              className="bg-green-400 text-white px-4 py-2 rounded getStart"
-              
+              className="bg-green-400 text-white px-2 py-2 rounded getStart"
+              style={{ fontFamily: 'LeagueSpartan, sans-serif' }}
             >
               Get Started
             </a>
 
             {/* No credit card required text */}
-            <p className="mt-4 text-gray-600"  >
-              * No credit card required for demo
+            <p className="mt-2 text-sm md:text-2xl text-blue-400">
+              No credit card required for demo
+            </p>
+            <p className="mt-0 text-sm md:text-xl text-green-400">
+              30 days money back guarantee
             </p>
           </div>
       </section>
 
       {/* Features Section */}
       <section className="p-8 md:p-20 text-center" id="features">
-        <div className="bg-blue-100 rounded-lg shadow-lg px-4 py-4 md:px-8 md:py-6">
+        <div className="bg-blue-100 rounded-lg shadow-lg px-4 py-2 md:px-8 md:py-6">
           <h2 className="text-2xl md:text-4xl font-bold text-blue-600" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
             Features
           </h2>

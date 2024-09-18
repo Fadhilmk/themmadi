@@ -68,7 +68,7 @@ body {
 .getStart{
   background-color:#65e448;
   background-size: 0% 100%;
-  padding: 1rem 2rem; /* Adjust padding for better mobile experience */
+  padding: 0.5rem 1rem; /* Adjust padding for better mobile experience */
 	color:#fff;
 	display:inline-block;
 	outline:none;
@@ -92,10 +92,10 @@ body {
 
 .getStart {
   font-family: Arial, sans-serif;
-  padding: 1rem 2rem; /* Adjust padding for better mobile experience */
+  padding: 0.8rem 1rem; /* Adjust padding for better mobile experience */
   text-align: center;
   border-radius: 30px;
-  font-size: 1.5rem; /* Set a base font size */
+  font-size: 1.4rem; /* Set a base font size */
   transition: background-color 0.3s ease; /* Smooth transition for background color changes */
 }
 

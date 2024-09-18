@@ -30,7 +30,7 @@ const FAQs = () => {
   };
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white p-4 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-extrabold text-center text-blue-500" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Frequently Asked Questions</h2>
         <div className="mt-8 space-y-6">

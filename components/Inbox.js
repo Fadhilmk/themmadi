@@ -544,7 +544,7 @@ export default function Inbox({ userId }) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen p-6">
             <header className="relative w-full h-24 bg-blue-500 flex items-center justify-center rounded-lg">
                 <div className="relative z-10 flex items-center justify-center p-4">
                     <h1 className="text-4xl font-bold text-white">Inbox</h1>

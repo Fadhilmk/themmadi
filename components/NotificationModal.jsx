@@ -16,7 +16,9 @@ const NotificationModal = ({
         className="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-4 sm:mx-0"
         style={
           isMobile
-            ? {}
+            ? {
+              position: "absolute",
+            }
             : {
                 position: "absolute",
                 left: "50%",
@@ -26,7 +28,7 @@ const NotificationModal = ({
       >
         <div
           className="flex justify-end absolute p-2"
-          style={isMobile ? { top: 25, right: 15 } : { top: 0, right: 0 }}
+          style={isMobile ? { top: 0, right: 0 } : { top: 0, right: 0 }}
         >
           <IoClose
             onClick={handleCloseNotificationModel}

@@ -387,7 +387,6 @@
 
 // export default Navbar;
 
-
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -456,53 +455,50 @@ const Navbar = () => {
     return (
         <>
         {/* Navbar */}
-        <nav className="sticky top-0 z-10 py-4 bg-white border-b-1 shadow-lg">
+        <nav className="sticky top-0 z-10 py-1 bg-white border-b-1 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex h-20" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+                <div className="flex items-center justify-between h-20">
                     {/* Left Section for Logo */}
-                    <div className="flex items-center">
+                    <div className="flex items-center space-x-2">
                         <Image
                             src="/nav_logo.jpeg"
                             alt="Logo"
-                            width={90}
-                            height={90}
+                            width={80}
+                            height={80}
                             className="object-contain"
                             priority
                         />
-                        <p style={{color:'#2c8ffa', fontSize:35, fontFamily:'serif', fontWeight:700}}>MaaDiy</p>
+                        <p className="text-2xl lg:text-3xl font-bold text-blue-500" style={{fontFamily:'serif'}}>MaaDiy</p>
                     </div>
 
                     {/* Right Section for Nav Links */}
-                    <div className='flex' style={{width:'50%'}}>
-                        <div className="hidden md:flex items-center space-x-10 ml-auto">
-                            <Link href="/" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
-                            <Link href="/pricing" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
-                            <Link href="/#about" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
-                            <Link href="/#features" className="text-black hover:text-blue-500 no-underline" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
-                        </div>
-                        <div className="hidden md:flex items-center space-x-4 ml-auto">
-                            {/* Conditionally Render Login/Logout Button */}
-                            {isLoggedIn ? (
-                                <button onClick={handleLogout} className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                                    Logout
-                                </button>
-                            ) : (
-                                <Link href="/login" className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                                    Login
-                                </Link>
-                            )}
-                            
-                            {/* Conditionally Render Get Started/Dashboard Button */}
-                            {isLoggedIn ? (
-                                <button onClick={redirectToDashboard} className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-500" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                                    Dashboard
-                                </button>
-                            ) : (
-                                <Link href="/signup" className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-500" style={{fontFamily: 'LeagueSpartan, sans-serif'}}>
-                                    Get Started
-                                </Link>
-                            )}
-                        </div>
+                    <div className="hidden md:flex items-center space-x-6">
+                        <Link href="/" className="text-black hover:text-blue-500 no-underline">Home</Link>
+                        <Link href="/#features" className="text-black hover:text-blue-500 no-underline">Features</Link>
+                        <Link href="/#card" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
+                        <Link href="/#about" className="text-black hover:text-blue-500 no-underline">About Us</Link>
+                        
+                        {/* Conditionally Render Login/Logout Button */}
+                        {isLoggedIn ? (
+                            <button onClick={handleLogout} className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600">
+                                Logout
+                            </button>
+                        ) : (
+                            <Link href="/login" className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600">
+                                Login
+                            </Link>
+                        )}
+                        
+                        {/* Conditionally Render Get Started/Dashboard Button */}
+                        {isLoggedIn ? (
+                            <button onClick={redirectToDashboard} className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600">
+                                Dashboard
+                            </button>
+                        ) : (
+                            <Link href="/signup" className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600">
+                                Get Started
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -516,30 +512,30 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`md:hidden flex flex-col text-center space-y-4 transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                    <Link href="/" className="text-black hover:text-blue-600 no-underline pt-4">Home</Link>
-                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline">Pricing</Link>
-                    <Link href="/#about" className="text-black hover:text-blue-600 no-underline">About Us</Link>
-                    <Link href="/#features" className="text-black hover:text-blue-600 no-underline">Features</Link>
+                <div className={`md:hidden flex flex-col items-center bg-white transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                    <Link href="/" className="text-black hover:text-blue-600 no-underline py-2">Home</Link>
+                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline py-2">Pricing</Link>
+                    <Link href="/#about" className="text-black hover:text-blue-600 no-underline py-2">About Us</Link>
+                    <Link href="/#features" className="text-black hover:text-blue-600 no-underline py-2">Features</Link>
 
                     {/* Conditionally Render Mobile Login/Logout Button */}
                     {isLoggedIn ? (
-                        <button onClick={handleLogout} className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2">
+                        <button onClick={handleLogout} className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4">
                             Logout
                         </button>
                     ) : (
-                        <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2">
+                        <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4">
                             Login
                         </Link>
                     )}
 
                     {/* Conditionally Render Mobile Get Started/Dashboard Button */}
                     {isLoggedIn ? (
-                        <button onClick={redirectToDashboard} className="bg-green-500 text-white hover:bg-blue-500 no-underline py-2 px-4 rounded-lg flex items-center justify-center">
+                        <button onClick={redirectToDashboard} className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2">
                             Dashboard
                         </button>
                     ) : (
-                        <Link href="/signup" className="bg-green-500 text-white hover:bg-blue-500 no-underline py-2 px-4 rounded-lg flex items-center justify-center">
+                        <Link href="/signup" className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2">
                             Get Started
                         </Link>
                     )}

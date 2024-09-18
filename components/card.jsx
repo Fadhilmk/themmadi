@@ -3,14 +3,14 @@ import { CheckIcon } from "@heroicons/react/24/solid"; // Correct import for Her
 
 export default function PricingCard() {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4">
+    <div id="card" className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4">
       {/* Pricing Heading */}
       <h1 className="text-4xl font-bold bg-blue-200 text-blue-600 py-4 px-8 rounded-lg mb-8 shadow-md">
         PRICING
       </h1>
 
       {/* Pricing Card */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg w-full md:p-10">
+      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg md:p-10">
         <h2 className="text-5xl font-extrabold text-blue-500 text-center mb-6">
           $3
           <span className="text-lg font-medium text-gray-600"> / month</span>
