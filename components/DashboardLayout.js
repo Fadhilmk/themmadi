@@ -1186,7 +1186,7 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { FiSettings, FiMessageSquare } from "react-icons/fi";
@@ -1206,6 +1206,7 @@ const DashboardLayout = ({ children }) => {
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
   const { userId, section } = useParams();
+  const pathname = usePathname();
 
   // Handle window resize
   useEffect(() => {
@@ -1231,11 +1232,19 @@ const DashboardLayout = ({ children }) => {
 
   // Set the active section on route change
   useEffect(() => {
-    if (!section) {
-      router.push(`/dashboard/${userId}`);
-    } else {
-      setActiveSection(section);
+    let activeSidebarItem = pathname.split('/')[3]; 
+    // activeSidebarItem is undefined when its dashboard page
+    if(activeSidebarItem !== undefined){
+      setActiveSection(`${pathname.split('/')[3]}`);
     }
+    else{
+      setActiveSection("")
+    }
+    // if (!section) {
+    //   router.push(`/dashboard/${userId}`);
+    // } else {
+    //   setActiveSection(`${pathname.split('/')[3]}`);
+    // }
   }, [section, userId, router]);
 
   // Fetch the username from Firestore
