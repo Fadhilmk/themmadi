@@ -2763,7 +2763,7 @@ const TemplateDetailsPage = () => {
       </div>
       <div className="container mx-auto">
         <h2 className="text-xl font-bold mb-4">Template Analytics</h2>
-        <div className="mb-4 flex">
+        <div className="mb-4" style={{display:isMobile ? 'block' : 'flex'}}>
           <div>
             <label htmlFor="startDate" className="mr-2">
               Start Date:
