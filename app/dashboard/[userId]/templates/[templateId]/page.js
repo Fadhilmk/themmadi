@@ -2761,7 +2761,7 @@ const TemplateDetailsPage = () => {
           />
         )}
       </div>
-      <div className="container mx-auto">
+      {/* <div className="container mx-auto">
         <h2 className="text-xl font-bold mb-4">Template Analytics</h2>
         <div className="mb-4" style={{display:isMobile ? 'block' : 'flex'}}>
           <div>
@@ -2797,9 +2797,9 @@ const TemplateDetailsPage = () => {
         ) : (
           <p>Loading analytics data...</p>
         )}
-      </div>
+      </div> */}
 
-      <footer className="mt-8 table-2">
+      {/* <footer className="mt-8 table-2">
         <h2 className="text-lg font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Campaign History</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
@@ -2832,7 +2832,7 @@ const TemplateDetailsPage = () => {
             </tbody>
           </table>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

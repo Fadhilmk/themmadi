@@ -445,3 +445,13 @@ body {
     width: 280px;
   }
 }
+@media (max-width: 424px) { /* Adjust styles for mobile phones */
+  .table-1 {
+    width: 350px;
+  }
+}
+@media (max-width: 424px) { /* Adjust styles for mobile phones */
+  .table-2 {
+    width: 350px;
+  }
+}
