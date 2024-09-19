@@ -2029,87 +2029,94 @@ const TemplateDetailsPage = () => {
 
   const renderAnalyticsTable = (analyticsData) => {
     return (
-      <div className="overflow-x-auto table-1" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
-        <table className="table-auto overflow-scroll w-full text-center border border-gray-300">
+      <div className="overflow-x-auto" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+        <table className="table-auto overflow-scroll w-full text-center border border-gray-300" style={{ tableLayout: 'auto' }}>
           <thead className="bg-gray-100 text-gray-600">
             <tr>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+              <th
+                className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                style={{ fontSize: isMobile?'1.5vw':'1.2vw' }}
+              >
                 <span className="inline-flex items-center text-amber-600">
-                  <span className="material-icons mr-1">calendar_today</span>{" "}
-                  Date
+                  <span className="material-icons mr-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}>calendar_today</span> Date
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+              <th
+                className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}
+              >
                 <span className="inline-flex items-center text-blue-600">
-                  <span className="material-icons mr-1">send</span> 
-                  Sent
+                  <span className="material-icons mr-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}>send</span> Sent
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+              <th
+                className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                style={{ fontSize: isMobile?'1.5vw':'1.2vw'  }}
+              >
                 <span className="inline-flex items-center text-green-500">
-                  <span className="material-icons mr-1">done_all</span>{" "}
-                  Delivered
+                  <span className="material-icons mr-1" style={{ fontSize:isMobile?'1.5vw':'1.2vw'   }}>done_all</span> Delivered
                 </span>
               </th>
-              <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+              <th
+                className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}
+              >
                 <span className="inline-flex items-center text-teal-500">
-                  <span className="material-icons mr-1">attach_money</span>{" "}
-                  Total Cost
+                  <span className="material-icons mr-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}>attach_money</span> Total Cost
                 </span>
               </th>
-              {analyticsData.data_points.some(
-                (point) => point.clicked?.length > 0
-              ) && (
+              {analyticsData.data_points.some((point) => point.clicked?.length > 0) && (
                 <>
-                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+                  <th
+                    className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                    style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}
+                  >
                     <span className="inline-flex items-center text-red-600">
-                      <span className="material-icons mr-1">text_fields</span>{" "}
-                      Button Content
+                      <span className="material-icons mr-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw'   }}>text_fields</span> Button Content
                     </span>
                   </th>
-                  <th className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-center">
+                  <th
+                    className="border-b border-gray-300 px-2 py-1 text-left font-semibold text-center"
+                    style={{ fontSize:isMobile?'1.5vw':'1.2vw'   }}
+                  >
                     <span className="inline-flex items-center text-orange-600">
-                      <span className="material-icons mr-1">mouse</span> 
-                      Click Count
+                      <span className="material-icons mr-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' }}>mouse</span> Click Count
                     </span>
                   </th>
                 </>
               )}
             </tr>
           </thead>
-          
+
           <tbody className="text-gray-700 bg-white">
             {analyticsData.data_points
               .filter((point) => point.sent > 0 || point.delivered > 0)
               .map((point, index) => {
                 // Calculate total cost
-                const totalCost = point.cost.reduce(
-                  (sum, cost) => sum + (cost.value || 0),
-                  0
-                );
+                const totalCost = point.cost.reduce((sum, cost) => sum + (cost.value || 0), 0);
 
                 return (
                   <tr key={index} className="border-t border-gray-300">
-                    <td className="px-4 py-2 text-sm">
+                    <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>
                       {new Date(point.start * 1000).toLocaleDateString()}
                     </td>
-                    <td className="px-4 py-2 text-sm">{point.sent}</td>
-                    <td className="px-4 py-2 text-sm">{point.delivered}</td>
-                    <td className="px-4 py-2 text-sm">
+                    <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>{point.sent}</td>
+                    <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>{point.delivered}</td>
+                    <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>
                       ${totalCost.toFixed(2)}
                     </td>
                     {point.clicked?.length > 0 ? (
                       point.clicked.map((click, clickIndex) => (
                         <React.Fragment key={clickIndex}>
-                          <td className="px-4 py-2 text-sm">
+                          <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>
                             {click.button_content}
                           </td>
-                          <td className="px-4 py-2 text-sm">{click.count}</td>
+                          <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }}>{click.count}</td>
                         </React.Fragment>
                       ))
                     ) : (
                       <>
-                        <td className="px-4 py-2 text-sm" colSpan={2}>
+                        <td className="px-2 py-1" style={{ fontSize: isMobile?'1.5vw':'1.2vw' , wordWrap: 'break-word' }} colSpan={2}>
                           No Click Data
                         </td>
                       </>
@@ -2453,7 +2460,7 @@ const TemplateDetailsPage = () => {
   }
 
   return (
-    <div className="space-y-6 p-6" style={{width:'100%' ,fontFamily: "LeagueSpartan, sans-serif"}}>
+    <div className="space-y-6" style={{width:'100%' ,fontFamily: "LeagueSpartan, sans-serif", padding: isMobile? 15 : 20}}>
       {/* Header Section */}
       <div className="bg-blue-500 p-4 rounded-lg shadow-md text-white">
         <h1 className="text-2xl font-bold mb-2 text-white">
@@ -2761,7 +2768,7 @@ const TemplateDetailsPage = () => {
           />
         )}
       </div>
-      {/* <div className="container mx-auto">
+      <div className="container mx-auto">
         <h2 className="text-xl font-bold mb-4">Template Analytics</h2>
         <div className="mb-4" style={{display:isMobile ? 'block' : 'flex'}}>
           <div>
@@ -2797,19 +2804,19 @@ const TemplateDetailsPage = () => {
         ) : (
           <p>Loading analytics data...</p>
         )}
-      </div> */}
+      </div>
 
-      {/* <footer className="mt-8 table-2">
+      <footer className="mt-8">
         <h2 className="text-lg font-semibold mb-4" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Campaign History</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
           <thead className="bg-gray-100 border-b border-gray-300" style={{fontFamily: "LeagueSpartan, sans-serif"}}>
               <tr>
-                <th className="p-3 text-left text-gray-700">Template Name</th>
-                <th className="p-3 text-left text-gray-700">
+                <th className="p-3 text-left text-gray-700 text-center">Template Name</th>
+                <th className="p-3 text-left text-gray-700 text-center">
                   Message Sent Count
                 </th>
-                <th className="p-3 text-left text-gray-700">Date</th>
+                <th className="p-3 text-left text-gray-700 text-center">Date</th>
               </tr>
             </thead>
             <tbody style={{fontFamily: "LeagueSpartan, sans-serif"}}>
@@ -2818,11 +2825,11 @@ const TemplateDetailsPage = () => {
                   key={index}
                   className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                 >
-                  <td className="p-3 text-gray-900">{campaign.templateName}</td>
-                  <td className="p-3 text-gray-900">
+                  <td className="p-3 text-gray-900 text-center" style={{fontSize: isMobile? '2.4vw':'1.2vw'}}>{campaign.templateName}</td>
+                  <td className="p-3 text-gray-900 text-center" style={{fontSize: isMobile? '2.4vw':'1.2vw'}}>
                     {campaign.messageSentCount}
                   </td>
-                  <td className="p-3 text-gray-900">
+                  <td className="p-3 text-gray-900 text-center" style={{fontSize: isMobile? '2.4vw':'1.2vw'}}>
                     {new Date(
                       campaign.messageSentDate.seconds * 1000
                     ).toLocaleDateString()}
@@ -2832,7 +2839,7 @@ const TemplateDetailsPage = () => {
             </tbody>
           </table>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 };

@@ -1183,8 +1183,9 @@
 // };
 
 // export default DashboardLayout;
+
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
@@ -1194,6 +1195,7 @@ import { auth, db } from "../firebaseConfig";
 import Cookies from "js-cookie";
 import { onAuthStateChanged } from "firebase/auth";
 import NotificationModal from "./NotificationModal"; // Import the NotificationModal component
+import { IoClose } from "react-icons/io5";
 
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -1206,6 +1208,23 @@ const DashboardLayout = ({ children }) => {
   const router = useRouter();
   const { userId, section } = useParams();
   const pathname = usePathname();
+  const sidebarRef = useRef(null); 
+    // Function to close the sidebar when clicking outside
+    const handleClickOutside = (e) => {
+      if (isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    useEffect(() => {
+      // Add event listener to the document
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Clean up event listener on component unmount
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isSidebarOpen]);
+
 
   // Handle window resize
   useEffect(() => {
@@ -1355,6 +1374,7 @@ const DashboardLayout = ({ children }) => {
       <div className="flex h-screen overflow-hidden font-sans bg-gray-50">
         {/* Sidebar */}
         <div
+          ref={sidebarRef}
           className={`sidebar bg-white text-black w-72 fixed top-0 h-full transition-transform duration-300 ease-in-out transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 z-50 shadow-2xl flex flex-col`}
@@ -1366,6 +1386,13 @@ const DashboardLayout = ({ children }) => {
               <h2 className="text-2xl font-semibold truncate ml-4">
                 {username}
               </h2>
+            </div>
+            {/* Right Section */}
+            <div className="flex items-center">
+              <IoClose
+                onClick={toggleSidebar}
+                className="md:hidden text-black text-3xl cursor-pointer"
+              />
             </div>
           </div>
 
@@ -1438,7 +1465,7 @@ const DashboardLayout = ({ children }) => {
               <div className="md:hidden">
                 <HiMenu
                   onClick={toggleSidebar}
-                  className="text-blue-600 text-3xl cursor-pointer"
+                  className="text-black text-3xl cursor-pointer"
                 />
               </div>
             </div>
@@ -1464,7 +1491,7 @@ const DashboardLayout = ({ children }) => {
           </div>
 
           {/* Main Content Area */}
-          <main className="flex-1 p-6 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
+          <main className="flex-1 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
             {children}
           </main>
         </div>
