@@ -172,7 +172,7 @@ export default function Home() {
             muted
             loop
           >
-            <source src="/MaadiyHome.mp4" type="video/mp4" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}/>
+            <source src="/MaadiyHome.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -189,10 +189,10 @@ export default function Home() {
             </a>
 
             {/* No credit card required text */}
-            <p className="mt-2 text-sm md:text-2xl text-blue-400" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+            <p className="mt-2 text-sm md:text-2xl text-blue-400">
               No credit card required for demo
             </p>
-            <p className="mt-0 text-sm md:text-xl text-green-400" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+            <p className="mt-0 text-sm md:text-xl text-green-400">
               30 days money back guarantee
             </p>
           </div>
@@ -219,8 +219,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Send Messages with a Clear Call to Action</h3>
-              <p className="mt-4 text-gray-700"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Send Messages with a Clear Call to Action</h3>
+              <p className="mt-4 text-gray-700"  >
                 Boost customer engagement by sending direct messages that include powerful Calls to Action (CTAs) through our platform. Track the effectiveness of each message with real-time analytics.
               </p>
             </div>
@@ -238,8 +238,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pr-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Track Delivered and Click-Through Rates</h3>
-              <p className="mt-4 text-gray-700"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Track Delivered and Click-Through Rates</h3>
+              <p className="mt-4 text-gray-700"  >
                 With MaaDiy, you can easily monitor the performance of your messages with *Delivered Rate* and *Click-Through Rate* tracking.
               </p>
             </div>
@@ -257,8 +257,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Bulk Upload Contacts via Excel Sheet</h3>
-              <p className="mt-4 text-gray-700"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Bulk Upload Contacts via Excel Sheet</h3>
+              <p className="mt-4 text-gray-700"  >
                 Easily upload an Excel sheet with your customer contact list into MaaDiy and send messages to all your contacts in just a few clicks.
               </p>
             </div>
@@ -274,8 +274,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pr-12 text-left mt-6 lg:mt-0">
-            <h3 className="text-2xl font-bold text-gray-900"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Manage WhatsApp Conversations Directly on Our Platform</h3>
-              <p className="mt-4 text-gray-700"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+            <h3 className="text-2xl font-bold text-gray-900"  >Manage WhatsApp Conversations Directly on Our Platform</h3>
+              <p className="mt-4 text-gray-700"  >
                 Access and manage your WhatsApp conversations directly within MaaDiy to stay organized and improve communication efficiency.
               </p>
             </div>
@@ -292,8 +292,8 @@ export default function Home() {
               />
             </div>
             <div className="lg:w-1/2 lg:pl-12 text-left mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-gray-900"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Analyze Campaign Performance and Optimize for Better ROI</h3>
-              <p className="mt-4 text-gray-700"  style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+              <h3 className="text-2xl font-bold text-gray-900"  >Analyze Campaign Performance and Optimize for Better ROI</h3>
+              <p className="mt-4 text-gray-700"  >
                 Track and analyze the performance of your marketing campaigns with detailed metrics to optimize for better ROI.
               </p>
             </div>
@@ -306,14 +306,14 @@ export default function Home() {
             <a
               href="#"
               className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300"
-              style={{ fontFamily: 'LeagueSpartan, sans-serif' }}
+               
             >
               Free Trial
             </a>
             <a
               href="#"
               className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300"
-              style={{ fontFamily: 'LeagueSpartan, sans-serif' }}
+               
             >
               Get Demo
             </a>

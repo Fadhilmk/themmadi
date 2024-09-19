@@ -3,50 +3,50 @@ import { CheckIcon } from "@heroicons/react/24/solid"; // Correct import for Her
 
 export default function PricingCard() {
   return (
-    <div id="card" className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+    <div id="card" className="flex flex-col items-center min-h-screen bg-blue-100 py-10 px-4">
       {/* Pricing Heading */}
-      <h1 className="text-4xl font-bold bg-blue-200 text-blue-600 py-4 px-8 rounded-lg mb-8 shadow-md" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}> 
+      <h1 className="text-4xl font-bold bg-blue-200 text-blue-600 py-4 px-8 rounded-lg mb-8 shadow-md">
         PRICING
       </h1>
 
       {/* Pricing Card */}
       <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg md:p-10">
-        <h2 className="text-5xl font-extrabold text-blue-500 text-center mb-6" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+        <h2 className="text-5xl font-extrabold text-blue-500 text-center mb-6">
           $3
-          <span className="text-lg font-medium text-gray-600" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}> / month</span>
+          <span className="text-lg font-medium text-gray-600"> / month</span>
         </h2>
-        <p className="text-gray-700 text-center mb-10" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
+        <p className="text-gray-700 text-center mb-10">
           Best plan for growing businesses looking to scale.
         </p>
 
         <ul className="space-y-6 text-gray-700">
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Up to 70% Open rate</span>
+            <span>Up to 70% Open rate</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>40-50% Conversion rate</span>
+            <span>40-50% Conversion rate</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span> style={{ fontFamily: 'LeagueSpartan, sans-serif' }}Up to 5000 Contacts</span>
+            <span>Up to 5000 Contacts</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Bulk contacts upload via Excel sheet</span>
+            <span>Bulk contacts upload via Excel sheet</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Manage conversations on our platform</span>
+            <span>Manage conversations on our platform</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Analyze campaigns for better ROI</span>
+            <span>Analyze campaigns for better ROI</span>
           </li>
           <li className="flex items-center space-x-3">
             <CheckIcon className="w-6 h-6 text-blue-500" />
-            <span style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Reach customers almost anywhere</span>
+            <span>Reach customers almost anywhere</span>
           </li>
         </ul>
 
