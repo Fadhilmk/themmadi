@@ -514,7 +514,7 @@ const Navbar = () => {
                 {/* Mobile Menu */}
                 <div className={`md:hidden flex flex-col items-center bg-white transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                     <Link href="/" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
-                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
+                    <Link href="/#card" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
                     <Link href="/#about" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
                     <Link href="/#features" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
 
