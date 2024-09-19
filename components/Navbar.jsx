@@ -473,29 +473,29 @@ const Navbar = () => {
 
                     {/* Right Section for Nav Links */}
                     <div className="hidden md:flex items-center space-x-6">
-                        <Link href="/" className="text-black hover:text-blue-500 no-underline">Home</Link>
-                        <Link href="/#features" className="text-black hover:text-blue-500 no-underline">Features</Link>
-                        <Link href="/#card" className="text-black hover:text-blue-500 no-underline">Pricing</Link>
-                        <Link href="/#about" className="text-black hover:text-blue-500 no-underline">About Us</Link>
+                        <Link href="/" className="text-black text-lg hover:text-blue-500 no-underline" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
+                        <Link href="/#features" className="text-black text-lg hover:text-blue-500 no-underline" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
+                        <Link href="/#card" className="text-black text-lg hover:text-blue-500 no-underline" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
+                        <Link href="/#about" className="text-black text-lg hover:text-blue-500 no-underline" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
                         
                         {/* Conditionally Render Login/Logout Button */}
                         {isLoggedIn ? (
-                            <button onClick={handleLogout} className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600">
+                            <button onClick={handleLogout} className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                                 Logout
                             </button>
                         ) : (
-                            <Link href="/login" className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600">
+                            <Link href="/login" className="bg-blue-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-blue-600" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                                 Login
                             </Link>
                         )}
                         
                         {/* Conditionally Render Get Started/Dashboard Button */}
                         {isLoggedIn ? (
-                            <button onClick={redirectToDashboard} className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600">
+                            <button onClick={redirectToDashboard} className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                                 Dashboard
                             </button>
                         ) : (
-                            <Link href="/signup" className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600">
+                            <Link href="/signup" className="bg-green-500 text-white text-sm no-underline py-2 px-4 rounded-lg hover:bg-green-600" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                                 Get Started
                             </Link>
                         )}
@@ -513,29 +513,29 @@ const Navbar = () => {
 
                 {/* Mobile Menu */}
                 <div className={`md:hidden flex flex-col items-center bg-white transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                    <Link href="/" className="text-black hover:text-blue-600 no-underline py-2">Home</Link>
-                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline py-2">Pricing</Link>
-                    <Link href="/#about" className="text-black hover:text-blue-600 no-underline py-2">About Us</Link>
-                    <Link href="/#features" className="text-black hover:text-blue-600 no-underline py-2">Features</Link>
+                    <Link href="/" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Home</Link>
+                    <Link href="/pricing" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Pricing</Link>
+                    <Link href="/#about" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>About Us</Link>
+                    <Link href="/#features" className="text-black hover:text-blue-600 no-underline py-2" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>Features</Link>
 
                     {/* Conditionally Render Mobile Login/Logout Button */}
                     {isLoggedIn ? (
-                        <button onClick={handleLogout} className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4">
+                        <button onClick={handleLogout} className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4 text-center mx-auto" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                             Logout
                         </button>
                     ) : (
-                        <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4">
+                        <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 no-underline rounded-lg px-4 py-2 my-2 w-3/4 text-center mx-auto" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                             Login
                         </Link>
                     )}
 
                     {/* Conditionally Render Mobile Get Started/Dashboard Button */}
                     {isLoggedIn ? (
-                        <button onClick={redirectToDashboard} className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2">
+                        <button onClick={redirectToDashboard} className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2 text-center mx-auto" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                             Dashboard
                         </button>
                     ) : (
-                        <Link href="/signup" className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2">
+                        <Link href="/signup" className="bg-green-500 text-white hover:bg-green-600 no-underline py-2 px-4 rounded-lg w-3/4 my-2 text-center mx-auto" style={{ fontFamily: 'LeagueSpartan, sans-serif'}}>
                             Get Started
                         </Link>
                     )}
