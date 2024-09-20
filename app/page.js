@@ -12,7 +12,6 @@ export default function LandingPage() {
       <Home />
       <PricingCard />
       <AboutUs />
-      {/* <ContactUs /> */}
       <FAQs />
       <Footer />
     </div>

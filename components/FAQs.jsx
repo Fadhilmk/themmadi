@@ -1,27 +1,39 @@
+
 "use client"
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-
 
 const FAQs = () => {
   const [openQuestion, setOpenQuestion] = useState(null);
 
   const faqs = [
     {
-      question: "What services do you provide?",
-      answer: "We offer a variety of services including web development, mobile app development, and design services."
+      question: "How can I pay for meta?",
+      answer: "You can click here to pay for the meta platform."
     },
     {
-      question: "How can I contact support?",
-      answer: "You can reach out to our support team via email at support@example.com or call us at +123456789."
+      question: "How can I make a new template?",
+      answer: "To make a new template, you have to log in to your meta platform."
     },
     {
-      question: "What is your refund policy?",
-      answer: "We offer a 30-day money-back guarantee on all our services."
+      question: "How are conversations charged on WhatsApp?",
+      answer: "Meta charges based on conversations. Each conversation lasts 24 hours, and if you message a customer again after that period, it starts a new chargeable conversation."
     },
     {
-      question: "Do you offer custom solutions?",
-      answer: "Yes, we provide custom solutions tailored to your business needs. Contact us for more details."
+      question: "Can I track the performance of my WhatsApp campaigns?",
+      answer: "Yes, you can track key metrics like delivery rate, open rate, and click-through rate. This helps you analyze campaign performance and optimize for better results."
+    },
+    {
+      question: "Is there a limit to the number of messages I can send?",
+      answer: "Currently, we have only 1 plan of 5000 contacts. If you need to add more contacts, you can mail us."
+    },
+    {
+      question: "Do customers need to opt-in before I send them messages?",
+      answer: "Yes, you must ensure that customers have given consent to receive messages from your business, in compliance with WhatsApp&apos;s policies and data protection regulations."
+    },
+    {
+      question: "What happens if a customer reports my message as spam on WhatsApp?",
+      answer: "It&apos;s important to get consent from your customers before sending marketing messages. If a customer reports your message as spam, you may lose the ability to send messages to that number again. In some cases, this could lead to account suspension, and you may need to create a new MaaDiy account to continue using our platform. Always ensure you have permission from your contacts to avoid these issues."
     }
   ];
 
