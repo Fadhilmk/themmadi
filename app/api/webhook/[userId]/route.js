@@ -133,7 +133,7 @@
 
 import { NextResponse } from 'next/server';
 import { db } from '../../../../firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc,collection,addDoc } from 'firebase/firestore';
 import CryptoJS from 'crypto-js';
 
 // Decryption function for Firebase encrypted data
