@@ -545,7 +545,7 @@ export default function Inbox({ userId }) {
 
     return (
         <div className="flex flex-col min-h-screen p-6">
-            <header className="relative w-full h-24 bg-blue-500 flex items-center justify-center rounded-lg">
+            <header className="relative w-full h-24 bg-black flex items-center justify-center rounded-lg">
                 <div className="relative z-10 flex items-center justify-center p-4">
                     <h1 className="text-4xl font-bold text-white">Inbox</h1>
                 </div>
@@ -556,7 +556,7 @@ export default function Inbox({ userId }) {
                         <div className="flex border-b border-gray-200">
                             <button
                                 onClick={() => setActiveTab('received')}
-                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'received' ? 'bg-blue-500 text-white' : 'text-blue-500'}`}
+                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'received' ? 'bg-black text-white' : 'text-black'}`}
                             >
                                 <div className="flex items-center justify-center">
                                     <span>Received Messages</span>
@@ -567,7 +567,7 @@ export default function Inbox({ userId }) {
                             </button>
                             <button
                                 onClick={() => setActiveTab('conversations')}
-                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'conversations' ? 'bg-blue-500 text-white' : 'text-blue-500'}`}
+                                className={`flex-1 py-2 text-center rounded-lg ${activeTab === 'conversations' ? 'bg-black text-white' : 'text-black'}`}
                             >
                                 Conversations
                             </button>
@@ -584,7 +584,7 @@ export default function Inbox({ userId }) {
                                         className="flex items-center p-4 hover:bg-gray-100 transition-colors duration-300"
                                         onClick={() => handleCardClick(number)}
                                     >
-                                        <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                                        <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold">
                                             {number.charAt(0)}
                                         </div>
                                         <div className="ml-4 flex-1">
@@ -611,7 +611,7 @@ export default function Inbox({ userId }) {
                                         href={`/dashboard/${userId}/inbox/${number}`}
                                         className="flex items-center p-4 hover:bg-gray-100 transition-colors duration-300"
                                     >
-                                        <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                                        <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold">
                                             {number.charAt(0)}
                                         </div>
                                         <div className="ml-4 flex-1">

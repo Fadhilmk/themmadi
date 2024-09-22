@@ -645,6 +645,205 @@
 // }
 
 
+// "use client";
+// import { useEffect, useRef, useState } from "react";
+// import { db } from "../../../../../firebaseConfig";
+// import {
+//   collection,
+//   query,
+//   onSnapshot,
+//   addDoc,
+//   serverTimestamp,
+//   doc,
+//   getDoc,
+// } from "firebase/firestore";
+// import './page.css'; // Ensure this file exists with the correct styles
+
+// const PHONE_NUMBER_ID = "405411442646087";
+// const ACCESS_TOKEN = "EAAYbZBkW0wTYBO8MufpJln3szUjyPx8aesb2USJgmYgd9jnqoOwTA7lGASvmv9sVtEDUyQNTZC3KAtZCj6im6eZAtdFYYxeRe0Hag86tUP8ODmNUR7s5uI1VavN712iuUpBAyQPZCCQOsMXu5oX0UY72B8kAvy1L65Er2XoATfT0CFAzOELTzVnL3YuYsfMSXogZDZD";
+
+// export default function Inbox({ params }) {
+//   const { userId, phoneNumber } = params;
+//   const [messages, setMessages] = useState([]);
+//   const [newMessage, setNewMessage] = useState("");
+//   const [userName, setUserName] = useState("User");
+//   const messagesEndRef = useRef(null);
+
+//   useEffect(() => {
+//     const fetchMessages = async () => {
+//       try {
+//         // Fetch Messages
+//         const messagesRef = collection(db, "users", userId, "messages", phoneNumber, "messages");
+//         const messagesQuery = query(messagesRef);
+
+//         const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+//           const msgs = [];
+//           snapshot.forEach((doc) => {
+//             const data = doc.data();
+//             const timestamp = data.sentAt || data.timestamp;
+//             const date = timestamp
+//               ? timestamp.seconds
+//                 ? new Date(timestamp.seconds * 1000)
+//                 : new Date(parseInt(timestamp) * 1000)
+//               : new Date();
+
+//             msgs.push({
+//               id: doc.id,
+//               ...data,
+//               sentAt: date,
+//             });
+
+//             // Set userName from the message data
+//             if (data.userName) {
+//               setUserName(data.userName);
+//             }
+//           });
+
+//           msgs.sort((a, b) => a.sentAt - b.sentAt);
+//           setMessages(msgs);
+//         });
+
+//         return () => {
+//           unsubscribe();
+//         };
+//       } catch (error) {
+//         console.error("Error fetching messages:", error);
+//       }
+//     };
+
+//     fetchMessages();
+//   }, [userId, phoneNumber]);
+
+//   useEffect(() => {
+//     if (messagesEndRef.current) {
+//       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+//     }
+//   }, [messages]);
+
+//   const handleSendMessage = async () => {
+//     if (newMessage.trim()) {
+//       try {
+//         const response = await fetch(
+//           `https://graph.facebook.com/v20.0/${PHONE_NUMBER_ID}/messages`,
+//           {
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "application/json",
+//               Authorization: `Bearer ${ACCESS_TOKEN}`,
+//             },
+//             body: JSON.stringify({
+//               messaging_product: "whatsapp",
+//               to: phoneNumber,
+//               type: "text",
+//               text: { body: newMessage },
+//             }),
+//           }
+//         );
+
+//         if (!response.ok) {
+//           throw new Error("Failed to send message");
+//         }
+
+//         // Add the new message to Firestore
+//         const messagesRef = collection(db, "users", userId, "messages", phoneNumber, "messages");
+//         await addDoc(messagesRef, {
+//           userPhoneNumber: phoneNumber,
+//           messageBody: newMessage,
+//           sentAt: serverTimestamp(),
+//           read: true,
+//           userName,
+//         });
+
+//         setNewMessage("");
+//       } catch (error) {
+//         console.error("Error sending message:", error);
+//       }
+//     }
+//   };
+
+//   const formatTimestamp = (timestamp) => {
+//     if (!timestamp) return "Unknown time";
+
+//     const options = {
+//       year: "numeric",
+//       month: "2-digit",
+//       day: "2-digit",
+//       hour: "2-digit",
+//       minute: "2-digit",
+//       second: "2-digit",
+//       hour12: true,
+//     };
+//     return timestamp.toLocaleString([], options);
+//   };
+
+//   const handleBack = () => {
+//     window.history.back();
+//   };
+
+//   return (
+//     <div
+//       className="flex flex-col bg-cover bg-center bg-no-repeat"
+//       style={{ backgroundImage: `url('/walpaper2.jpg')`,height: 'calc(99vh - 4rem)', marginTop: -20, fontFamily: "LeagueSpartan, sans-serif"}}
+//     >
+//       <header className="bg-black text-white p-4 flex items-center z-10">
+//         <button
+//           onClick={handleBack}
+//           className="flex items-center justify-center mr-4 p-1"
+//         >
+//           <svg
+//             className="w-6 h-6 text-white"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth="2"
+//               d="M15 19l-7-7 7-7"
+//             ></path>
+//           </svg>
+//         </button>
+//         <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+//           <span className="text-xl text-gray-700">{userName.charAt(0)}</span>
+//         </div>
+//         <h1 className="text-2xl font-bold ml-4">{userName}</h1>
+//       </header>
+//       <main className="flex-1 p-4 overflow-auto">
+//         <ul className="inbox space-y-2">
+//           {messages.map((msg) => (
+//             <li key={msg.id} className={`mb-2 p-3 max-w-xs ${ msg.read ? "sent bg-green-400 text-left text-white rounded-t-3xl rounded-bl-3xl" : "received rounded-t-3xl rounded-br-3xl bg-gray-400 text-left text-white"  } shadow-md`}>
+//                 <p className="text-base">{msg.messageBody}</p>
+//               <span className="text-gray-200 text-xs block mt-1">
+//                 {formatTimestamp(msg.sentAt)}
+//               </span>
+//             </li>
+//           ))}
+//           <div ref={messagesEndRef} />
+//         </ul>
+//       </main>
+//       <footer className="bg-white p-4 border-t border-gray-300 flex items-center">
+//         <textarea
+//           value={newMessage}
+//           onChange={(e) => setNewMessage(e.target.value)}
+//           className="w-full pl-5 border border-gray-300 rounded-full resize-none"
+//           placeholder="Message"
+//           style={{ paddingRight: "48px" }}
+//         ></textarea>
+//         <div>
+//           <button
+//             onClick={handleSendMessage}
+//             className="bg-green-500 text-white ml-2"
+//           >
+//             <span className="material-icons-round ml-1">send</span>
+//           </button>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// }
+
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../../../../../firebaseConfig";
@@ -657,17 +856,56 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
-import './page.css'; // Ensure this file exists with the correct styles
+import CryptoJS from "crypto-js";
+import './page.css';
 
-const PHONE_NUMBER_ID = "405411442646087";
-const ACCESS_TOKEN = "EAAYbZBkW0wTYBO8MufpJln3szUjyPx8aesb2USJgmYgd9jnqoOwTA7lGASvmv9sVtEDUyQNTZC3KAtZCj6im6eZAtdFYYxeRe0Hag86tUP8ODmNUR7s5uI1VavN712iuUpBAyQPZCCQOsMXu5oX0UY72B8kAvy1L65Er2XoATfT0CFAzOELTzVnL3YuYsfMSXogZDZD";
+const decryptData = (cipherText) => {
+  const secretKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
+  const bytes = CryptoJS.AES.decrypt(cipherText, secretKey);
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+};
 
 export default function Inbox({ params }) {
   const { userId, phoneNumber } = params;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [userName, setUserName] = useState("User");
+  const [isTrial, setIsTrial] = useState(true); // Assume trial by default
+  const [accessToken, setAccessToken] = useState(process.env.NEXT_PUBLIC_ACCESS_TOKEN); // Default to trial
+  const [phoneNumberId, setPhoneNumberId] = useState(process.env.NEXT_PUBLIC_PHONE_NUMBER_ID); // Default to trial
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    const fetchUserAccountDetails = async () => {
+      try {
+        const userDocRef = doc(db, "users", userId);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setIsTrial(userData.isTrial || false);
+
+          if (!userData.isTrial) {
+            const connectionDocRef = doc(db, "users", userId, "documents", "connectionData");
+            const connectionDoc = await getDoc(connectionDocRef);
+
+            if (connectionDoc.exists()) {
+              const decryptedData = decryptData(connectionDoc.data().data);
+              setAccessToken(decryptedData.accessToken || TRIAL_ACCESS_TOKEN);
+              setPhoneNumberId(decryptedData.phoneNumberId || TRIAL_PHONE_NUMBER_ID);
+              console.log("Real account data set:", decryptedData);
+            } else {
+              console.error("Connection data not found for real account.");
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserAccountDetails();
+  }, [userId]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -693,7 +931,6 @@ export default function Inbox({ params }) {
               sentAt: date,
             });
 
-            // Set userName from the message data
             if (data.userName) {
               setUserName(data.userName);
             }
@@ -724,12 +961,12 @@ export default function Inbox({ params }) {
     if (newMessage.trim()) {
       try {
         const response = await fetch(
-          `https://graph.facebook.com/v20.0/${PHONE_NUMBER_ID}/messages`,
+          `https://graph.facebook.com/v20.0/${phoneNumberId}/messages`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${ACCESS_TOKEN}`,
+              Authorization: `Bearer ${accessToken}`,
             },
             body: JSON.stringify({
               messaging_product: "whatsapp",
@@ -783,9 +1020,14 @@ export default function Inbox({ params }) {
   return (
     <div
       className="flex flex-col bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('/walpaper2.jpg')`,height: 'calc(99vh - 4rem)', marginTop: -20, fontFamily: "LeagueSpartan, sans-serif"}}
+      style={{
+        backgroundImage: `url('/walpaper2.jpg')`,
+        height: "calc(99vh - 4rem)",
+        marginTop: -20,
+        fontFamily: "LeagueSpartan, sans-serif",
+      }}
     >
-      <header className="bg-blue-500 text-white p-4 flex items-center z-10">
+      <header className="bg-black text-white p-4 flex items-center z-10">
         <button
           onClick={handleBack}
           className="flex items-center justify-center mr-4 p-1"
@@ -813,8 +1055,15 @@ export default function Inbox({ params }) {
       <main className="flex-1 p-4 overflow-auto">
         <ul className="inbox space-y-2">
           {messages.map((msg) => (
-            <li key={msg.id} className={`mb-2 p-3 max-w-xs ${ msg.read ? "sent bg-green-400 text-left text-white rounded-t-3xl rounded-bl-3xl" : "received rounded-t-3xl rounded-br-3xl bg-gray-400 text-left text-white"  } shadow-md`}>
-                <p className="text-base">{msg.messageBody}</p>
+            <li
+              key={msg.id}
+              className={`mb-2 p-3 max-w-xs ${
+                msg.read
+                  ? "sent bg-green-400 text-left text-white rounded-t-3xl rounded-bl-3xl"
+                  : "received rounded-t-3xl rounded-br-3xl bg-gray-400 text-left text-white"
+              } shadow-md`}
+            >
+              <p className="text-base">{msg.messageBody}</p>
               <span className="text-gray-200 text-xs block mt-1">
                 {formatTimestamp(msg.sentAt)}
               </span>
@@ -832,10 +1081,7 @@ export default function Inbox({ params }) {
           style={{ paddingRight: "48px" }}
         ></textarea>
         <div>
-          <button
-            onClick={handleSendMessage}
-            className="bg-green-500 text-white ml-2"
-          >
+          <button onClick={handleSendMessage} className="bg-green-500 text-white ml-2">
             <span className="material-icons-round ml-1">send</span>
           </button>
         </div>

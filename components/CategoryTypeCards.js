@@ -77,6 +77,11 @@ const CategoryTypeCards = ({
   totalConversations,
   totalCost,
 }) => {
+
+  console.log("Category Totals:", categoryTotals);
+  console.log("Type Totals:", typeTotals);
+  console.log("Conversation Directions:", conversationDirections);
+  
   return (
     <div className="container mx-auto py-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

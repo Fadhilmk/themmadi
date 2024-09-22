@@ -193,7 +193,7 @@ export default function Home() {
               No credit card required for demo
             </p>
             <p className="mt-0 text-sm md:text-xl text-green-400" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
-              30 days money back guarantee
+              * 30 days money back guarantee
             </p>
           </div>
       </section>

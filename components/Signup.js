@@ -1197,7 +1197,7 @@ const Signup = () => {
       email: form.email,
       username: form.username,
       whatsapp: form.whatsapp,
-      isTrial: false,
+      isTrial: true,
       createdAt: new Date(),
       loginHistory: [
         {

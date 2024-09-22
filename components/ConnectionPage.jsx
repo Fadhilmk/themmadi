@@ -326,7 +326,6 @@ const ConnectionPage = ({ userId }) => {
   // Encryption function
   const encryptData = (data) => {
     const secretKey = process.env.NEXT_PUBLIC_ENCRYPTION_KEY;
-    console.log('Encryption Key:', secretKey); // Add this line
     if (!secretKey) {
       throw new Error('Encryption key is not defined');
     }
@@ -394,7 +393,8 @@ const ConnectionPage = ({ userId }) => {
       await setDoc(userDocRef, { data: encryptedData });
 
       // Optionally redirect or show success message
-      router.push("/dashboard"); // Redirect to another page if needed
+      // router.push("/dashboard"); // Redirect to another page if needed
+      
     } catch (error) {
       console.error("Error saving data:", error);
     }
