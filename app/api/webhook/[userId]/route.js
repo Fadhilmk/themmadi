@@ -171,8 +171,8 @@ export async function GET(req, { params }) {
             if (storedVerifyToken === token) {
                 // Token matches, respond with the challenge
                 console.log(`Webhook verification successful for user: ${userId}`);
-                return NextResponse.text(challenge);
-            } else {
+                return new NextResponse(challenge);
+            } else {z
                 // Token mismatch, return forbidden
                 console.error(`Webhook verification failed for user: ${userId}, token mismatch.`);
                 return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
