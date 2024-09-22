@@ -319,7 +319,7 @@ const ConnectionPage = ({ userId }) => {
   const [phoneNumberId, setPhoneNumberId] = useState("");
   const [businessPhoneNumberId, setBusinessPhoneNumberId] = useState("");
   const [isTrial, setIsTrial] = useState(true); // Assume trial by default
-  const [webhookUrl] = useState(`https://themmadi.onrender.com/api/webhook/${userId}`); // Dynamic URL
+  const [webhookUrl] = useState(`https://maadiy.com//api/webhook/${userId}`); // Dynamic URL
   const router = useRouter();
   const [loading, setLoading] = useState(true); // To show loading while fetching data
 

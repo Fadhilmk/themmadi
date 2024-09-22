@@ -132,9 +132,9 @@
 
 
 import { NextResponse } from 'next/server';
-import { db } from '../../../../firebaseConfig'; // Firebase config file
+import { db } from '../../../../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
-import CryptoJS from 'crypto-js'; // To decrypt the token
+import CryptoJS from 'crypto-js';
 
 // Decryption function for Firebase encrypted data
 const decryptData = (cipherText) => {
@@ -171,7 +171,7 @@ export async function GET(req, { params }) {
             if (storedVerifyToken === token) {
                 // Token matches, respond with the challenge
                 console.log(`Webhook verification successful for user: ${userId}`);
-                return new NextResponse(challenge);
+                return NextResponse.text(challenge);
             } else {
                 // Token mismatch, return forbidden
                 console.error(`Webhook verification failed for user: ${userId}, token mismatch.`);
