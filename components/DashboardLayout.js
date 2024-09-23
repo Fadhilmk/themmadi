@@ -1405,14 +1405,14 @@ const DashboardLayout = ({ children }) => {
                   icon: "fa-tachometer-alt",
                 },
                 {
-                  href: `dashboard/${userId}/inbox`,
-                  label: "Inbox",
-                  icon: "fa-inbox",
-                },
-                {
                   href: `dashboard/${userId}/templates`,
                   label: "Templates",
                   icon: "fa-file-alt",
+                },
+                {
+                  href: `dashboard/${userId}/inbox`,
+                  label: "Inbox",
+                  icon: "fa-inbox",
                 },
                 {
                   href: `dashboard/${userId}/contacts`,
