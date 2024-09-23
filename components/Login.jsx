@@ -640,6 +640,259 @@
 
 // export default Login;
 
+// "use client";
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import {
+//   signInWithEmailAndPassword,
+//   sendPasswordResetEmail,
+//   setPersistence,
+//   browserSessionPersistence,
+// } from "firebase/auth";
+// import { doc, setDoc } from "firebase/firestore";
+// import Cookies from "js-cookie"; // Import js-cookie
+// import { auth,db } from "../firebaseConfig";
+
+// const Login = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [showModal, setShowModal] = useState(false);
+//   const [modalContent, setModalContent] = useState({ title: "", message: "" });
+//   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false); // Forgot password modal state
+//   const [forgotPasswordEmail, setForgotPasswordEmail] = useState(""); // Email input for password reset
+
+//   const router = useRouter();
+  
+//   const getIpAddress = async () => {
+//     try {
+//       const response = await fetch("https://api.ipify.org?format=json");
+//       const data = await response.json();
+//       return data.ip;
+//     } catch (error) {
+//       console.error("Error fetching IP address:", error);
+//       return null;
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!email || !password) {
+//       setModalContent({
+//         title: "Missing Credentials",
+//         message: "Please enter both email and password.",
+//       });
+//       setShowModal(true);
+//       return;
+//     }
+//     try {
+//       // Set Firebase session persistence
+//       await setPersistence(auth, browserSessionPersistence);
+//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+//       const user = userCredential.user;
+
+//       // Fetch the IP address
+//       const ipAddress = await getIpAddress();
+
+//       // Save login history to Firebase
+//     const loginHistoryRef = doc(db, "users", user.uid);
+//     await setDoc(
+//       loginHistoryRef,
+//       {
+//         loginHistory: [
+//           {
+//             timestamp: new Date(),
+//             ip: ipAddress,
+//           },
+//         ],
+//         lastLogin: new Date(),
+//         lastLoginIP: ipAddress,
+//       },
+//       { merge: true } // Use merge to avoid overwriting existing data
+//     );
+
+//       // Get the token and store it in cookies
+//       const token = await user.getIdToken();
+//       Cookies.set("token", token, { secure: true, sameSite: "None" });
+//       Cookies.set("userId", user.uid, { secure: true, sameSite: "None" });
+
+//       // Redirect to the dashboard
+//       router.push(`/dashboard/${user.uid}`);
+//     } catch (error) {
+//       console.error("Error logging in:", error);
+//       let errorMessage =
+//         "Login failed. Please check your credentials and try again.";
+//       if (error.code === "auth/wrong-password") {
+//         errorMessage = "Incorrect password. Please try again.";
+//       } else if (error.code === "auth/user-not-found") {
+//         errorMessage = "No account found with this email.";
+//       }
+
+//       setModalContent({
+//         title: "Login Error",
+//         message: errorMessage,
+//       });
+//       setShowModal(true);
+//     }
+//   };
+
+//   // Handle password reset
+//   const handleForgotPassword = async () => {
+//     if (!forgotPasswordEmail) {
+//       setModalContent({
+//         title: "Missing Email",
+//         message: "Please enter your email to reset your password.",
+//       });
+//       setShowModal(true);
+//       return;
+//     }
+
+//     try {
+//       // Firebase will throw an error if the user is not found
+//       await sendPasswordResetEmail(auth, forgotPasswordEmail);
+//       setModalContent({
+//         title: "Reset Email Sent",
+//         message: "A password reset link has been sent to your email.",
+//       });
+//       setShowForgotPasswordModal(false); // Close the modal
+//       setShowModal(true); // Show success message
+//     } catch (error) {
+//       console.error("Error sending password reset email:", error);
+
+//       // Check for "auth/user-not-found" error and display a specific message
+//       let errorMessage =
+//         error.code === "auth/user-not-found"
+//           ? "Invalid email. No account found with this email."
+//           : error.message ||
+//             "An error occurred while sending the password reset email.";
+
+//       setModalContent({
+//         title: "Error",
+//         message: errorMessage,
+//       });
+//       setShowModal(true);
+//     }
+//   };
+
+//   const closeModal = () => {
+//     setShowModal(false);
+//   };
+
+//   return (
+//       <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-blue-500 px-4 md:px-6">
+//       <form
+//         onSubmit={handleSubmit}
+//         className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6"
+//       >
+//         <h1 className="text-3xl font-bold text-center text-blue-500">Login</h1>
+
+//         <div className="space-y-4">
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">
+//               Email
+//             </label>
+//             <input
+//               type="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+//               placeholder="you@example.com"
+//               required
+//             />
+//           </div>
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+//               placeholder="••••••••"
+//               required
+//             />
+//             <p
+//               onClick={() => setShowForgotPasswordModal(true)} // Show password reset modal
+//               className="text-right text-sm text-blue-500 hover:underline cursor-pointer mt-2"
+//             >
+//               Forgot Password?
+//             </p>
+//           </div>
+//         </div>
+
+//         <button
+//           type="submit"
+//           className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md shadow-md transition-colors duration-300"
+//         >
+//           Login
+//         </button>
+
+//         <p className="text-center text-sm text-gray-600 mt-4">
+//           Don&apos;t have an account?{" "}
+//           <a
+//             href="/signup"
+//             className="text-green-500 hover:text-green-600 font-semibold"
+//           >
+//             Sign Up
+//           </a>
+//         </p>
+//       </form>
+
+//       {/* Modal for Forgot Password */}
+//       {showForgotPasswordModal && (
+//         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-4">
+//           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+//             <h2 className="text-xl font-semibold text-gray-800 mb-4">
+//               Reset Password
+//             </h2>
+//             <input
+//               type="email"
+//               value={forgotPasswordEmail}
+//               onChange={(e) => setForgotPasswordEmail(e.target.value)}
+//               className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+//               placeholder="Enter your email"
+//               required
+//             />
+//             <button
+//               onClick={handleForgotPassword}
+//               className="mt-4 w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md shadow-md transition-colors duration-300"
+//             >
+//               Send Reset Link
+//             </button>
+//             <button
+//               onClick={() => setShowForgotPasswordModal(false)} // Close modal
+//               className="mt-2 w-full py-2 px-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md shadow-md transition-colors duration-300"
+//             >
+//               Cancel
+//             </button>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* General Modal */}
+//       {showModal && (
+//         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-4">
+//           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+//             <h2 className="text-xl font-semibold text-gray-800 mb-4">
+//               {modalContent.title}
+//             </h2>
+//             <p className="text-gray-600">{modalContent.message}</p>
+//             <button
+//               onClick={closeModal}
+//               className="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors duration-300 w-full"
+//             >
+//               OK
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -651,7 +904,8 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import Cookies from "js-cookie"; // Import js-cookie
-import { auth,db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -662,7 +916,7 @@ const Login = () => {
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState(""); // Email input for password reset
 
   const router = useRouter();
-  
+
   const getIpAddress = async () => {
     try {
       const response = await fetch("https://api.ipify.org?format=json");
@@ -694,21 +948,21 @@ const Login = () => {
       const ipAddress = await getIpAddress();
 
       // Save login history to Firebase
-    const loginHistoryRef = doc(db, "users", user.uid);
-    await setDoc(
-      loginHistoryRef,
-      {
-        loginHistory: [
-          {
-            timestamp: new Date(),
-            ip: ipAddress,
-          },
-        ],
-        lastLogin: new Date(),
-        lastLoginIP: ipAddress,
-      },
-      { merge: true } // Use merge to avoid overwriting existing data
-    );
+      const loginHistoryRef = doc(db, "users", user.uid);
+      await setDoc(
+        loginHistoryRef,
+        {
+          loginHistory: [
+            {
+              timestamp: new Date(),
+              ip: ipAddress,
+            },
+          ],
+          lastLogin: new Date(),
+          lastLoginIP: ipAddress,
+        },
+        { merge: true } // Use merge to avoid overwriting existing data
+      );
 
       // Get the token and store it in cookies
       const token = await user.getIdToken();
@@ -778,39 +1032,43 @@ const Login = () => {
   };
 
   return (
-      <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-blue-500 px-4 md:px-6">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full space-y-6"
-      >
-        <h1 className="text-3xl font-bold text-center text-blue-500">Login</h1>
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 my-8 sm:my-10 lg:my-12">
+        <h1 className="text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+          Login
+        </h1>
 
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              placeholder="you@example.com"
-              required
-            />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <div className="mt-1 flex items-center border rounded-lg shadow-sm">
+              <FaEnvelope className="text-gray-400 ml-3 mr-5" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              placeholder="••••••••"
-              required
-            />
+
+          {/* Password Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <div className="mt-1 flex items-center border rounded-lg shadow-sm">
+              <FaLock className="text-gray-400 ml-3 mr-5" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                placeholder="Your Password"
+                required
+              />
+            </div>
             <p
               onClick={() => setShowForgotPasswordModal(true)} // Show password reset modal
               className="text-right text-sm text-blue-500 hover:underline cursor-pointer mt-2"
@@ -818,14 +1076,15 @@ const Login = () => {
               Forgot Password?
             </p>
           </div>
-        </div>
 
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md shadow-md transition-colors duration-300"
-        >
-          Login
-        </button>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
+          >
+            Login
+          </button>
+        </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Don&apos;t have an account?{" "}
@@ -836,7 +1095,7 @@ const Login = () => {
             Sign Up
           </a>
         </p>
-      </form>
+      </div>
 
       {/* Modal for Forgot Password */}
       {showForgotPasswordModal && (
