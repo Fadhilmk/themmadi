@@ -165,7 +165,7 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative text-grey-800 text-center flex flex-col justify-center items-center">
-        <div className="w-full" style={{backgroundColor:'#0470d5'}}>
+        <div className="w-full" style={{backgroundColor:'#0165ce'}}>
           <video
             className="w-full h-auto max-h-[calc(75vh-80px)] object-contain"
             autoPlay
