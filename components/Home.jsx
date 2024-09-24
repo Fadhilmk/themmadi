@@ -182,12 +182,11 @@ export default function Home() {
           <div className="items-center mt-3">
             <a
               href="/signup"
-              className="bg-green-400 text-white px-2 py-2 rounded getStart"
+              className="bg-green-400 text-white px-2 py-2 text-bold rounded getStart"
               style={{ fontFamily: 'LeagueSpartan, sans-serif' }}
             >
               Get Started
             </a>
-
             {/* No credit card required text */}
             <p className="mt-2 text-sm md:text-2xl text-blue-400" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>
               No credit card required for demo

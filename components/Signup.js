@@ -1643,9 +1643,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-blue-50 px-4 sm:px-6 lg:px-8 pt-8">
+    <div className="flex items-center justify-center h-[calc(99vh-80px)] bg-blue-50 px-8 sm:px-6 lg:px-8 pt-2 md:pt-8">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 my-8 sm:my-10 lg:my-12">
-        <h1 className="text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+        <h1 className="text-2xl md:text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
           Create Account
         </h1>
 
@@ -1660,7 +1660,7 @@ const Signup = () => {
                 name="username"
                 value={form.username}
                 onChange={handleChange}
-                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Username"
                 required
               />
@@ -1677,7 +1677,7 @@ const Signup = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="you@example.com"
                 required
               />
@@ -1693,7 +1693,7 @@ const Signup = () => {
                 value={form.whatsapp}
                 name="whatsapp"
                 onChange={handlePhoneChange}
-                inputClass="rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500"
+                inputClass="rounded-lg p-2 md:p-6 pl-2 text-sm md:text-lg border-gray-300 focus:ring-2 focus:ring-blue-500"
                 specialLabel={""}
                 inputStyle={{ width: "100%" }}
               />
@@ -1710,7 +1710,7 @@ const Signup = () => {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Password"
                 required
               />
@@ -1720,7 +1720,7 @@ const Signup = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
+            className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
             disabled={isOtpSent} // Disable button if OTP is sent and timer is running
           >
             {isOtpSent ? `Resend OTP in ${Math.floor(timer / 60)}:${(timer % 60).toString().padStart(2, "0")}` : "Send OTP"}
@@ -1742,7 +1742,7 @@ const Signup = () => {
             />
             <button
               onClick={verifyOtpAndSignup}
-              className="w-full py-3 mt-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
+              className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg mt-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
             >
               Verify & Signup
             </button>

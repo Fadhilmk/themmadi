@@ -1032,9 +1032,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-blue-50 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center h-[calc(99vh-80px)] bg-blue-50 px-8 md:px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 my-8 sm:my-10 lg:my-12">
-        <h1 className="text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+        <h1 className="text-2xl md:text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
           Login
         </h1>
 
@@ -1043,12 +1043,12 @@ const Login = () => {
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700">Email</label>
             <div className="mt-1 flex items-center border rounded-lg shadow-sm">
-              <FaEnvelope className="text-gray-400 ml-3 mr-5" />
+              <FaEnvelope className="text-gray-400 ml-3 mr-3 md:mr-4" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="you@example.com"
                 required
               />
@@ -1059,12 +1059,12 @@ const Login = () => {
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <div className="mt-1 flex items-center border rounded-lg shadow-sm">
-              <FaLock className="text-gray-400 ml-3 mr-5" />
+              <FaLock className="text-gray-400 ml-3 mr-3" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 pl-10 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
+                className="w-full p-2 md:p-3 pl-2 md:pl-1 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Password"
                 required
               />
@@ -1080,7 +1080,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
+            className="w-full py-2 text-sm md:text-lg md:py-3 mt-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
           >
             Login
           </button>
