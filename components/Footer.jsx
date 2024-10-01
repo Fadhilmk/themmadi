@@ -68,7 +68,7 @@ const Footer = () => {
             <a href="/blog" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Blog</a>
             <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Product Overview</a>
             <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Book a Demo</a>
-            <a href="/#features" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Features</a>
+            <a href="/shipping-policy" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Shipping Policy</a>
           </div>
                     
           {/* Third Navigation Links */}
@@ -76,14 +76,14 @@ const Footer = () => {
             <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Contact</a>
             <a href="/terms-and-conditions" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Terms & Conditions</a>
             <a href="/signup" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Sign Up</a>
-            <a href="/#features" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Features</a>
+            <a href="/cancellations-refunds" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Cancellations and Refunds</a>
           </div>
           {/* Third Navigation Links */}
           <div className="flex text-lg flex-col items-center md:items-start space-y-3 text-center md:text-left border-b md:border-none pb-4 md:pb-0 md:pb-0 ml-0 md:ml-16">
           <a href="/privacy-policy" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Privacy Policy</a>
           <a href="/" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Help Center</a>
           <a href="/#features" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Features</a>
-          <a href="/#features" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Features</a>
+          <a href="/contact-us" className="hover:underline" style={{ fontFamily: 'LeagueSpartan, sans-serif' }}>Contact Us</a>
           </div>
 
         </div>
