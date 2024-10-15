@@ -1476,6 +1476,7 @@ const ImportPage = ({ userId, isTrial }) => {
   const [limitReached, setLimitReached] = useState(false); // Limit hit flag
   const [isLimitExceededModal, setisLimitExceeded] = useState(false);
   const [LimitMessage, setLimitMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 50;
@@ -1721,12 +1722,57 @@ const ImportPage = ({ userId, isTrial }) => {
   return (
     <div className="container mx-auto p-6">
       <h1
-        className="text-3xl font-bold mb-5"
+        className="text-3xl font-bold mb-5 flex"
         style={{ fontFamily: "LeagueSpartanBold, sans-serif", fontSize: 25 }}
       >
         Import Phone Numbers
-      </h1>
 
+        <button
+          onClick={() => setShowModal(true)} // Open modal on click
+          className="ml-2 mt-1 text-blue-500 hover:text-blue-700 focus:outline-none"
+          aria-label="Template Analytics Information"
+        >
+          <span className="material-icons">help_outline</span>
+        </button>
+
+      </h1>
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold">Import Contacts Information</h2>
+              <button onClick={() => setShowModal(false)} className="text-gray-600 hover:text-gray-900">
+                &times;
+              </button>
+            </div>
+
+            <div className="mt-4">
+              <p className="mb-4">
+                You can import contact phone numbers and their names either manually or via CSV/Excel file.
+              </p>
+              <p className="mb-2">
+                <strong>On a real account</strong>, you can add up to <strong>5000 contacts</strong>.
+              </p>
+              <p className="mb-2">
+                <strong>On a trial account</strong>, you can add up to <strong>10 contacts</strong>.
+              </p>
+              <p>
+                If you wish to import more than <strong>5000 contacts</strong>, please{" "}
+                <strong>contact us</strong> for further assistance.
+              </p>
+            </div>
+
+            <div className="flex justify-end mt-6">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Conditional Message */}
       {isTrial ? (
         <p

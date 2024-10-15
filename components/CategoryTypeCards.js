@@ -76,6 +76,7 @@ const CategoryTypeCards = ({
   conversationDirections,
   totalConversations,
   totalCost,
+  currency,
 }) => {
 
   console.log("Category Totals:", categoryTotals);
@@ -127,7 +128,7 @@ const CategoryTypeCards = ({
           </div>
           <div>
             <p className="text-lg font-medium text-gray-700" style={{fontFamily: "LeagueSpartan, sans-serif"}}>Total Cost:</p>
-            <p className="text-2xl font-extrabold text-yellow-600" style={{fontFamily: "LeagueSpartan, sans-serif"}}>${totalCost}</p>
+            <p className="text-2xl font-extrabold text-yellow-600" style={{fontFamily: "LeagueSpartan, sans-serif"}}>{currency} {totalCost}</p>
           </div>
         </div>
       </div>

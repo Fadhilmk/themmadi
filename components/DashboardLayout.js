@@ -1190,7 +1190,13 @@ import { useRouter, useParams, usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { FiSettings, FiMessageSquare } from "react-icons/fi";
-import { doc, getDoc, collection, getDocs, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import Cookies from "js-cookie";
 import { onAuthStateChanged } from "firebase/auth";
@@ -1205,26 +1211,30 @@ const DashboardLayout = ({ children }) => {
   const [username, setUsername] = useState("");
   const [activeSection, setActiveSection] = useState(""); // State for active link
   const [isMobile, setIsMobile] = useState(false);
+  const [isTrial, setIsTrial] = useState(false); // Track if user is on trial
   const router = useRouter();
   const { userId, section } = useParams();
   const pathname = usePathname();
-  const sidebarRef = useRef(null); 
-    // Function to close the sidebar when clicking outside
-    const handleClickOutside = (e) => {
-      if (isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-        setIsSidebarOpen(false);
-      }
+  const sidebarRef = useRef(null);
+  // Function to close the sidebar when clicking outside
+  const handleClickOutside = (e) => {
+    if (
+      isSidebarOpen &&
+      sidebarRef.current &&
+      !sidebarRef.current.contains(e.target)
+    ) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener to the document
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Clean up event listener on component unmount
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-
-    useEffect(() => {
-      // Add event listener to the document
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Clean up event listener on component unmount
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [isSidebarOpen]);
-
+  }, [isSidebarOpen]);
 
   // Handle window resize
   useEffect(() => {
@@ -1250,13 +1260,12 @@ const DashboardLayout = ({ children }) => {
 
   // Set the active section on route change
   useEffect(() => {
-    let activeSidebarItem = pathname.split('/')[3]; 
+    let activeSidebarItem = pathname.split("/")[3];
     // activeSidebarItem is undefined when its dashboard page
-    if(activeSidebarItem !== undefined){
+    if (activeSidebarItem !== undefined) {
       setActiveSection(activeSidebarItem);
-    }
-    else{
-      setActiveSection("")
+    } else {
+      setActiveSection("");
     }
     // if (!section) {
     //   router.push(`/dashboard/${userId}`);
@@ -1264,6 +1273,25 @@ const DashboardLayout = ({ children }) => {
     //   setActiveSection(`${pathname.split('/')[3]}`);
     // }
   }, [section, userId, router]);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const userDoc = doc(db, "users", userId);
+        const docSnap = await getDoc(userDoc);
+        if (docSnap.exists()) {
+          setUsername(docSnap.data().username || "User");
+          setIsTrial(docSnap.data().isTrial || false); // Check if the user is on a trial
+        } else {
+          console.error("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserDetails();
+  }, [userId]);
 
   // Fetch the username from Firestore
   useEffect(() => {
@@ -1398,7 +1426,7 @@ const DashboardLayout = ({ children }) => {
 
           <nav className="flex-1 p-6">
             <ul className="space-y-4">
-              {[ 
+              {[
                 {
                   href: `dashboard/`,
                   label: "Dashboard",
