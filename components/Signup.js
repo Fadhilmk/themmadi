@@ -1665,6 +1665,7 @@ const Signup = () => {
                 className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Username"
                 required
+                style={{ fontFamily: "LeagueSpartan, sans-serif" }}
               />
             </div>
           </div>
@@ -1682,6 +1683,7 @@ const Signup = () => {
                 className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="you@example.com"
                 required
+                style={{ fontFamily: "LeagueSpartan, sans-serif" }}
               />
             </div>
           </div>
@@ -1715,6 +1717,7 @@ const Signup = () => {
                 className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Password"
                 required
+                style={{ fontFamily: "LeagueSpartan, sans-serif" }}
               />
             </div>
           </div>

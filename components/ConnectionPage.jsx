@@ -809,7 +809,7 @@ const ConnectionPage = ({ userId }) => {
   const [phoneNumberId, setPhoneNumberId] = useState("");
   const [businessPhoneNumberId, setBusinessPhoneNumberId] = useState("");
   const [isTrial, setIsTrial] = useState(true); // Assume trial by default
-  const [webhookUrl] = useState(`https://maadiy.com/api/webhook/${userId}`); // Dynamic URL
+  const [webhookUrl] = useState(`https://www.maadiy.com/api/webhook/${userId}`); // Dynamic URL
   const [showModal, setShowModal] = useState(false);
   const verifyToken = "maadiy"; // Permanent token
   const [successMessage, setSuccessMessage] = useState(false);

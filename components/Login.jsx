@@ -1053,6 +1053,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="you@example.com"
+                style={{ fontFamily: "LeagueSpartan, sans-serif" }}
                 required
               />
             </div>
@@ -1069,6 +1070,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-2 md:p-3 pl-2 md:pl-1 text-sm md:text-lg text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 border-gray-300"
                 placeholder="Your Password"
+                style={{ fontFamily: "LeagueSpartan, sans-serif" }}
                 required
               />
             </div>
