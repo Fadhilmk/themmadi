@@ -21,6 +21,7 @@
 
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Inbox from "@/components/Inbox";
@@ -33,6 +34,8 @@ const InboxPage = () => {
     const { userId } = useParams();
     const [isTrial, setIsTrial] = useState(false);
     const [showModal, setShowModal] = useState(false);
+
+    const router = useRouter();
 
     useEffect(() => {
         const checkTrialStatus = async () => {
@@ -60,6 +63,10 @@ const InboxPage = () => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
+    
+    const handleUpgradeClick = () => {
+        router.push("/checkout"); // Redirect to the checkout page when "Upgrade" is clicked
+      };
 
     if (!userId) return <Preloader />;
 
@@ -72,7 +79,7 @@ const InboxPage = () => {
                         <p className="mb-4">You are currently using a trial account. To access this feature including message sending, please upgrade your plan.</p>
                         <div className="flex justify-between">
                             <button 
-                                onClick={handleCloseModal} 
+                                onClick={handleUpgradeClick} 
                                 className="bg-blue-500 text-white px-4 py-2 rounded-lg"
                             >
                                 Upgrade
