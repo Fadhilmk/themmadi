@@ -5143,7 +5143,7 @@ const TemplateDetailsPage = () => {
                   For sending messages with this template, you need to select a
                   phone number, or if sending to just one number, enter it in
                   the input field above. Make sure to include the country code
-                  (without spaces).
+                  without spaces.
                 </p>
                 <p className="mb-2">
                   If the template contains media such as an image, document, or
@@ -5151,7 +5151,7 @@ const TemplateDetailsPage = () => {
                   occur.
                 </p>
                 <p className="mb-2">
-                  After clicking "Send Message," please wait a moment for the
+                  After clicking &quot; Send Message &quot; please wait a moment for the
                   response.
                 </p>
                 <p className="mb-2">
@@ -5542,12 +5542,12 @@ const TemplateDetailsPage = () => {
               </p>
               <ul className="list-disc list-inside space-y-2 mb-4">
                 <li>
-                  <strong>Detailed Error:</strong> "Start time must be within
-                  the query period of the last 90 days."
+                  <strong>Detailed Error:</strong> &quot; Start time must be within
+                  the query period of the last 90 days.&quot;
                 </li>
                 <li>
-                  <strong>Detailed Error:</strong> "End time must be within the
-                  query period of the last 90 days."
+                  <strong>Detailed Error:</strong> &quot;End time must be within the
+                  query period of the last 90 days.&quot;
                 </li>
               </ul>
               <h4 className="font-semibold mb-2">
@@ -5603,7 +5603,7 @@ const TemplateDetailsPage = () => {
               </p>
               <ul className="list-disc list-inside space-y-2 mb-4">
                 <li>
-                  <strong>API Rate Limits:</strong> Exceeding Facebook's API
+                  <strong>API Rate Limits:</strong> Exceeding Facebook&apos;s API
                   rate limits can result in incomplete data retrieval.
                 </li>
                 <li>

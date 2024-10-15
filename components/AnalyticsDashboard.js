@@ -1431,7 +1431,7 @@ const fetchCurrencyData = async () => {
                 </h4>
                 <p className="mb-2">
                   Conversations are opened when you send a message under certain
-                  conditions. Here's how different categories work:
+                  conditions. Here&apos;s how different categories work:
                 </p>
                 <ul className="list-disc list-inside mb-4">
                   <li>
