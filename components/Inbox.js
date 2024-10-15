@@ -419,13 +419,31 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { db } from '../firebaseConfig';
-import { collection, onSnapshot, query, where, writeBatch, getDocs, doc } from 'firebase/firestore';
+import { collection, onSnapshot, query, where, writeBatch, getDocs, doc, getDoc } from 'firebase/firestore';
 
 export default function Inbox({ userId }) {
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [activeTab, setActiveTab] = useState('received');
     const [conversations, setConversations] = useState([]);
     const [hasReceivedMessages, setHasReceivedMessages] = useState(false);
+    const [isWebhookConnected, setIsWebhookConnected] = useState(false);
+
+    useEffect(() => {
+        // Fetch webhook connection status
+        const fetchWebhookStatus = async () => {
+            try {
+                const userDocRef = doc(db, 'users', userId);
+                const userDocSnap = await getDoc(userDocRef);
+                if (userDocSnap.exists()) {
+                    const userData = userDocSnap.data();
+                    setIsWebhookConnected(userData.webhookConnected || false); // Assuming the field is 'webhookConnected'
+                }
+            } catch (error) {
+                console.error("Error fetching webhook status:", error);
+            }
+        };
+        fetchWebhookStatus();
+    },[userId])
 
     useEffect(() => {
         const fetchMessages = async () => {
@@ -544,10 +562,25 @@ export default function Inbox({ userId }) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen p-6">
+        <div className="flex flex-col min-h-screen p-6" style={{ fontFamily: "LeagueSpartanBold, sans-serif"}}>
             <header className="relative w-full h-24 bg-black flex items-center justify-center rounded-lg">
                 <div className="relative z-10 flex items-center justify-center p-4">
                     <h1 className="text-4xl font-bold text-white">Inbox</h1>
+                    {isWebhookConnected !== null && (
+                        <div className="ml-4 flex items-center">
+                            {isWebhookConnected ? (
+                                <>
+                                    <span className="text-green-500 text-lg font-semibold">Connected</span>
+                                    <span className="material-icons ml-2 text-green-500" style={{ fontSize: '28px' }}>lock</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-red-500 text-lg pt-2 font-semibold">Not Connected</span>
+                                    <span className="material-icons ml-2  text-red-500" style={{ fontSize: '28px' }}>lock_open</span>
+                                </>
+                            )}
+                        </div>
+                    )}
                 </div>
             </header>
             <main className="flex-1 pt-4">
