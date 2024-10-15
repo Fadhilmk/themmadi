@@ -1212,6 +1212,7 @@ const DashboardLayout = ({ children }) => {
   const [activeSection, setActiveSection] = useState(""); // State for active link
   const [isMobile, setIsMobile] = useState(false);
   const [isTrial, setIsTrial] = useState(false); // Track if user is on trial
+  const [loading, setLoading] = useState(false); // Loading state for button
   const router = useRouter();
   const { userId, section } = useParams();
   const pathname = usePathname();
@@ -1366,6 +1367,7 @@ const DashboardLayout = ({ children }) => {
   };
 
   const handleLogout = async () => {
+    setLoading(true);
     try {
       await auth.signOut();
       Cookies.remove("token", { secure: true, sameSite: "Strict" });
@@ -1478,10 +1480,37 @@ const DashboardLayout = ({ children }) => {
           <div className="p-6 border-t mt-auto">
             <button
               onClick={handleLogout}
-              className="bg-black text-white w-full p-3 rounded-lg hover:bg-gray-800 transition"
+              className={`bg-black text-white w-full p-3 ${loading ? "bg-gray-400 cursor-not-allowed" :"bg-black"} rounded-lg hover:bg-gray-800 transition`}
               style={{ fontFamily: "LeagueSpartan, sans-serif" }}
+              disabled={loading}
             >
-              Logout
+              {loading ? (
+              <span className="flex items-center justify-center">
+                <svg
+                  aria-hidden="true"
+                  role="status"
+                  className="inline w-4 h-4 mr-3 text-white animate-spin"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5C100 78.709 78.709 100 50.5 100C22.291 100 1 78.709 1 50.5C1 22.291 22.291 1 50.5 1C78.709 1 100 22.291 100 50.5Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.967 50.5C93.967 76.917 76.917 93.967 50.5 93.967C24.083 93.967 7.033 76.917 7.033 50.5C7.033 24.083 24.083 7.033 50.5 7.033C76.917 7.033 93.967 24.083 93.967 50.5Z"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Logging Out...
+              </span>
+            ) : (
+              "Logout"
+            )}
             </button>
           </div>
         </div>

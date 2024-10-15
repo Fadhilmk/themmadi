@@ -1434,7 +1434,7 @@ const Signup = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", message: "" });
   const [isOtpSent, setIsOtpSent] = useState(false); // State to check if OTP is already sent
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   // Handle normal input change for email, username, password fields
@@ -1579,6 +1579,8 @@ const Signup = () => {
       setShowModal(true);
       return;
     }
+
+    setLoading(true);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
@@ -1742,9 +1744,36 @@ const Signup = () => {
             />
             <button
               onClick={verifyOtpAndSignup}
-              className="w-full p-2 md:p-3 pl-2 text-sm md:text-lg mt-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200"
+              className={`w-full p-2 md:p-3 pl-2 text-sm md:text-lg mt-2 ${loading ? "bg-gray-400 cursor-not-allowed" :"bg-blue-600"} text-white font-semibold rounded-lg hover:bg-blue-500 transition duration-200`}
+              disabled={loading}
             >
-              Verify & Signup
+              {loading ? (
+              <span className="flex items-center justify-center">
+                <svg
+                  aria-hidden="true"
+                  role="status"
+                  className="inline w-4 h-4 mr-3 text-white animate-spin"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5C100 78.709 78.709 100 50.5 100C22.291 100 1 78.709 1 50.5C1 22.291 22.291 1 50.5 1C78.709 1 100 22.291 100 50.5Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.967 50.5C93.967 76.917 76.917 93.967 50.5 93.967C24.083 93.967 7.033 76.917 7.033 50.5C7.033 24.083 24.083 7.033 50.5 7.033C76.917 7.033 93.967 24.083 93.967 50.5Z"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Loading...
+              </span>
+            ) : (
+              "Verify & SignUp"
+            )}
             </button>
           </div>
         )}
