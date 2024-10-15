@@ -1710,7 +1710,7 @@ const fetchCurrencyData = async () => {
                   within a particular time frame.
                 </p>
                 <p className="mb-2">
-                  By default, it displays data from the last month. You can
+                  By default, it displays datas from the last month. You can
                   adjust the start and end dates for filtering to customize the
                   analytics data you view.
                 </p>
