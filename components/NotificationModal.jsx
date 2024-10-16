@@ -13,7 +13,7 @@ const NotificationModal = ({
       style={{ zIndex: 60 }}
     >
       <div
-        className="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-4 sm:mx-0"
+        className="bg-white p-6 m-4 rounded-xl shadow-lg max-w-lg mx-4 sm:mx-0 w-[90%] md:w-full"
         style={
           isMobile
             ? {

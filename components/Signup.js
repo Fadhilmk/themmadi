@@ -1656,7 +1656,7 @@ const Signup = () => {
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700">Username</label>
             <div className="mt-1 flex items-center border rounded-lg shadow-sm">
-              <FaUser className="text-gray-400 ml-3 mr-5" />
+              <FaUser className="text-gray-400 ml-3 mr-3" />
               <input
                 type="text"
                 name="username"
@@ -1674,7 +1674,7 @@ const Signup = () => {
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700">Email</label>
             <div className="mt-1 flex items-center border rounded-lg shadow-sm">
-              <FaEnvelope className="text-gray-400 ml-3 mr-5" />
+              <FaEnvelope className="text-gray-400 ml-3 mr-3" />
               <input
                 type="email"
                 name="email"
@@ -1708,7 +1708,7 @@ const Signup = () => {
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <div className="mt-1 flex items-center border rounded-lg shadow-sm">
-              <FaLock className="text-gray-400 ml-3 mr-5" />
+              <FaLock className="text-gray-400 ml-3 mr-3" />
               <input
                 type="password"
                 name="password"

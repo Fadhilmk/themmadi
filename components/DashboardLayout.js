@@ -1526,6 +1526,12 @@ const DashboardLayout = ({ children }) => {
                 />
               </div>
             </div>
+            {isTrial && !isMobile ? 
+            <div className="flex items-center space-x-4">
+              <p class="animate-pulse text-lg" style={{ fontFamily: "LeagueSpartan, sans-serif", color:'red'}}>Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!</p>
+            </div>:''}
+            
+
             <div className="flex items-center space-x-4">
               <button
                 onClick={handleOpenNotificationModel}
@@ -1549,6 +1555,10 @@ const DashboardLayout = ({ children }) => {
 
           {/* Main Content Area */}
           <main className="flex-1 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
+            {isTrial && isMobile ? 
+            <div className="flex items-center space-x-4 pl-6 pr-6">
+              <p class="animate-pulse text-lg" style={{ fontFamily: "LeagueSpartan, sans-serif", color:'red'}}>Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!</p>
+            </div>:''}
             {children}
           </main>
         </div>

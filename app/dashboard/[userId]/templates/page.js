@@ -620,24 +620,28 @@ const TemplatesPage = () => {
   return (
     <div className='p-6' style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
       {/* Fixed Category Bar */}
-      <div className={`flex flex-col md:flex-row justify-between bg-black rounded-lg text-white p-6 w-full z-10 sticky top-1`}>
-        <div className="flex flex-col md:flex-row items-center gap-5 md:ml-6">
-          <button
-            className={`text-lg font-semibold ${category === 'All' ? 'underline' : ''}`}
-            onClick={() => handleCategoryClick('All')}
-          >
-            All
-          </button>
-          {['Marketing', 'Utility', 'Authentication'].map((cat) => (
+      <div className={`flex flex-col md:flex-row justify-between bg-black rounded-lg text-white p-6 w-full z-10`}>
+        {!isMobile? 
+          <div className="flex flex-col md:flex-row items-center gap-5 md:ml-6">
             <button
-              key={cat}
-              className={`text-lg font-semibold ${category === cat ? 'underline' : ''}`}
-              onClick={() => handleCategoryClick(cat)}
+              className={`text-lg font-semibold ${category === 'All' ? 'underline' : ''}`}
+              onClick={() => handleCategoryClick('All')}
             >
-              {cat}
+              All
             </button>
-          ))}
-        </div>
+            {['Marketing', 'Utility', 'Authentication'].map((cat) => (
+              <button
+                key={cat}
+                className={`text-lg font-semibold ${category === cat ? 'underline' : ''}`}
+                onClick={() => handleCategoryClick(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div> 
+          :
+          ''   
+        }
         <input
           type="text"
           placeholder="Search templates..."
@@ -647,7 +651,7 @@ const TemplatesPage = () => {
         />
         {isMobile && (
           <select
-            className="ml-2 mt-2 bg-blue-600 text-white p-1 rounded w-14 h-10"
+            className="mt-4 bg-blue-600 text-white p-1 rounded  h-10"
             value={category}
             onChange={(e) => handleCategoryClick(e.target.value)}
           >
