@@ -1517,7 +1517,7 @@ const DashboardLayout = ({ children }) => {
 
         {/* Header */}
         <div className="flex-1 flex flex-col">
-          <div className="w-full bg-white text-black shadow-md p-6 fixed top-0 z-40 flex items-center justify-between">
+          <div className="w-full bg-white text-black shadow-md p-6 fixed top-0 z-40 flex items-center">
             <div className="flex items-center">
               <div className="md:hidden">
                 <HiMenu
@@ -1526,38 +1526,38 @@ const DashboardLayout = ({ children }) => {
                 />
               </div>
             </div>
-            {isTrial && !isMobile ? 
-            <div className="flex items-center space-x-4">
-              <p class="animate-pulse text-lg" style={{ fontFamily: "LeagueSpartan, sans-serif", color:'red'}}>Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!</p>
-            </div>:''}
             
+            {isTrial && !isMobile ? (
+              <div className="flex items-center justify-center space-x-4 bg-red-500 p-1 rounded-md ml-[290px]">
+                <p className="animate-pulse text-base text-center pl-2 pr-2" style={{ fontFamily: "LeagueSpartan, sans-serif", color: 'white' }}>
+                  Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!
+                </p>
+              </div>
+            ) : ''}
 
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={handleOpenNotificationModel}
-                className="relative"
-              >
-                <FiMessageSquare className="text-3xl cursor-pointer" />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {unreadCount}
-                  </span>
-                )}
-              </button>
-              <button onClick={() => handleLinkClick("user_account")}>
-                <FaUserCircle className="text-3xl cursor-pointer" />
-              </button>
-              <button onClick={() => handleLinkClick("settings")}>
-                <FiSettings className="text-3xl cursor-pointer" />
-              </button>
-            </div>
+          <div className="flex items-center space-x-4 ml-auto">
+            <button onClick={handleOpenNotificationModel} className="relative">
+              <FiMessageSquare className="text-3xl cursor-pointer" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {unreadCount}
+                </span>
+              )}
+            </button>
+            <button onClick={() => handleLinkClick("user_account")}>
+              <FaUserCircle className="text-3xl cursor-pointer" />
+            </button>
+            <button onClick={() => handleLinkClick("settings")}>
+              <FiSettings className="text-3xl cursor-pointer" />
+            </button>
+          </div>
           </div>
 
           {/* Main Content Area */}
           <main className="flex-1 pt-24 md:ml-72 overflow-y-auto bg-gray-100">
             {isTrial && isMobile ? 
-            <div className="flex items-center space-x-4 pl-6 pr-6">
-              <p class="animate-pulse text-lg" style={{ fontFamily: "LeagueSpartan, sans-serif", color:'red'}}>Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!</p>
+            <div className="flex items-center bg-red-500 rounded-md space-x-4 ml-6 mr-6 p-4">
+              <p class="animate-pulse text-lg" style={{ fontFamily: "LeagueSpartan, sans-serif", color:'white'}}>Unlock the full experience – Upgrade to Premium and enjoy exclusive features today!</p>
             </div>:''}
             {children}
           </main>
