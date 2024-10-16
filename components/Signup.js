@@ -1645,7 +1645,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[calc(99vh-80px)] bg-blue-50 px-8 sm:px-6 lg:px-8 pt-2 md:pt-8">
+    <div className="flex items-center justify-center bg-blue-50 px-8 sm:px-6 lg:px-8 pt-2 md:pt-8">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 space-y-6 my-8 sm:my-10 lg:my-12">
         <h1 className="text-2xl md:text-4xl font-extrabold text-center text-blue-600" style={{ fontFamily: "LeagueSpartan, sans-serif" }}>
           Create Account
